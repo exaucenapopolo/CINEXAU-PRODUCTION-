@@ -245,11 +245,8 @@ document.addEventListener('DOMContentLoaded', () => {
   // Au clic sur une carte, injecter la fiche correspondante
   services.forEach((service) => {
     service.addEventListener('click', () => {
-      // Tout d’abord, récupérer la clé du service
       const clé = service.getAttribute('data-service');
-      // Injection du HTML dans le conteneur
       detailContainer.innerHTML = serviceForms[clé] || '';
-      // Faire défiler vers la fiche (optionnel, pour UX)
       detailContainer.scrollIntoView({ behavior: 'smooth' });
     });
   });
@@ -258,36 +255,29 @@ document.addEventListener('DOMContentLoaded', () => {
      4) Génération dynamique des nuages (inchangé)
      ——————————— */
   const backgroundAnimation = document.querySelector('.background-animation');
-  const numClouds = 5; // Nombre de nuages à générer
+  const numClouds = 5;
 
   function createCloud() {
     const cloud = document.createElement('div');
     cloud.classList.add('cloud');
 
-    // Taille aléatoire 80px → 180px
     const size = Math.random() * 100 + 80;
     cloud.style.width = `${size}px`;
     cloud.style.height = `${size * 0.4}px`;
 
-    // Position verticale aléatoire
     const topPosition = Math.random() * 80;
     cloud.style.top = `${topPosition}%`;
 
-    // Démarrage hors de l’écran à gauche
     const startLeft = -20 - Math.random() * 30;
     cloud.style.left = `${startLeft}%`;
 
-    // Durée d’animation aléatoire 40s → 100s
     const duration = Math.random() * 60 + 40;
     cloud.style.animationDuration = `${duration}s`;
 
-    // Délai de démarrage aléatoire 0 → 30s
     const delay = Math.random() * 30;
     cloud.style.animationDelay = `${delay}s`;
 
-    // Passer la largeur au keyframe
     cloud.style.setProperty('--width', `${size}px`);
-    // Facteur d’échelle aléatoire 0.8 → 1.2
     const scaleFactor = Math.random() * 0.4 + 0.8;
     cloud.style.setProperty('--scale', scaleFactor);
 

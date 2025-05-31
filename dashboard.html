@@ -22,6 +22,74 @@
     crossorigin="anonymous"
     referrerpolicy="no-referrer"
   />
+
+  <!-- Styles supplémentaires pour le scroll horizontal des services -->
+  <style>
+    /* Conteneur scrollable horizontal */
+    .services-scroll {
+      display: flex;
+      gap: 20px;
+      overflow-x: auto;
+      padding-bottom: 10px;
+      /* Masquer les barres de défilement pour un rendu épuré */
+      scrollbar-width: none;          /* Firefox */
+      -ms-overflow-style: none;       /* IE 10+ */
+    }
+    .services-scroll::-webkit-scrollbar {
+      display: none;                  /* Chrome, Safari, Opera */
+    }
+
+    /* Chaque carte doit garder une largeur fixe (et ne pas se rétrécir) */
+    .dashboard-service {
+      flex: 0 0 280px; /* 280px = largeur min dans services-grid initial */
+    }
+
+    /* La fiche détaillée (au clic) */
+    .service-detail-card {
+      background-color: rgba(0, 0, 0, 0.4);
+      padding: 25px;
+      border-radius: 8px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+      color: var(--text-light);
+      font-family: 'Roboto', sans-serif;
+    }
+    .service-detail-card h3 {
+      font-family: 'Playfair Display', serif;
+      color: var(--highlight-color);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 20px;
+    }
+    .service-detail-card label {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-weight: 500;
+      font-family: 'Playfair Display', serif;
+    }
+    .service-detail-card input,
+    .service-detail-card textarea {
+      border: none;
+      border-radius: 4px;
+      background-color: rgba(255, 255, 255, 0.1);
+      color: var(--text-light);
+      outline: none;
+      font-family: 'Roboto', sans-serif;
+    }
+    .service-detail-card input::placeholder,
+    .service-detail-card textarea::placeholder {
+      color: #ccc;
+    }
+    .service-detail-card .form-group {
+      margin-bottom: 15px;
+    }
+    .service-detail-card .form-group input,
+    .service-detail-card .form-group textarea {
+      width: 100%;
+      padding: 8px;
+    }
+  </style>
 </head>
 <body>
   <!-- Arrière-plan animé (étoiles + nuages) -->
@@ -70,12 +138,12 @@
     <section id="dashboard-services" class="container">
       <h2>Services Disponibles</h2>
       <p class="text-content">
-        Cliquez sur l’un des services ci-dessous pour accéder au formulaire correspondant.
+        Faites glisser horizontalement pour découvrir tous les services. Cliquez sur l’un d’eux pour afficher le formulaire en bas.
       </p>
 
-      <!-- Grille horizontale de services -->
-      <div class="services-grid">
-        <!-- Chaque carte a un data-service pour l’identifier en JS -->
+      <!-- Conteneur à scroll horizontal -->
+      <div class="services-scroll">
+        <!-- Service : Distribution Digitale -->
         <div class="dashboard-service" data-service="distribution">
           <div class="service-header service-item">
             <i class="fas fa-globe icon-color"></i>
@@ -83,6 +151,7 @@
           </div>
         </div>
 
+        <!-- Service : Réservation Studio -->
         <div class="dashboard-service" data-service="reservation">
           <div class="service-header service-item">
             <i class="fas fa-microphone-alt icon-color"></i>
@@ -90,6 +159,7 @@
           </div>
         </div>
 
+        <!-- Service : Accompagnement Artistique -->
         <div class="dashboard-service" data-service="accompagnement">
           <div class="service-header service-item">
             <i class="fas fa-users icon-color"></i>
@@ -97,6 +167,7 @@
           </div>
         </div>
 
+        <!-- Service : Production Audiovisuelle -->
         <div class="dashboard-service" data-service="audiovisuel">
           <div class="service-header service-item">
             <i class="fas fa-camera-retro icon-color"></i>
@@ -104,6 +175,7 @@
           </div>
         </div>
 
+        <!-- Service : Gestion des Droits -->
         <div class="dashboard-service" data-service="droits">
           <div class="service-header service-item">
             <i class="fas fa-scroll icon-color"></i>
@@ -111,6 +183,7 @@
           </div>
         </div>
 
+        <!-- Service : Stratégie de Carrière -->
         <div class="dashboard-service" data-service="carriere">
           <div class="service-header service-item">
             <i class="fas fa-project-diagram icon-color"></i>
@@ -119,9 +192,9 @@
         </div>
       </div>
 
-      <!-- Conteneur pour afficher la fiche du service sélectionné -->
+      <!-- Conteneur pour la fiche détaillée -->
       <div id="service-detail-container" class="container" style="margin-top: 40px;">
-        <!-- Rempli dynamiquement par script.js -->
+        <!-- Injecté dynamiquement par script.js -->
       </div>
     </section>
   </main>
