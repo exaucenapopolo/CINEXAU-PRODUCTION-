@@ -1,13 +1,13 @@
 document.addEventListener('DOMContentLoaded', () => {
   /* ———————————
-     1) Accordéon FAQ
+     1) Accordéon FAQ (ouvrir/fermer une seule réponse à la fois)
      ——————————— */
   const faqItems = document.querySelectorAll('.faq-item');
 
   faqItems.forEach((item) => {
     const questionBtn = item.querySelector('.faq-question');
-    const answerDiv   = item.querySelector('.faq-answer');
-    const icon        = item.querySelector('.toggle-icon');
+    const answerDiv = item.querySelector('.faq-answer');
+    const icon = item.querySelector('.toggle-icon');
 
     questionBtn.addEventListener('click', () => {
       /* Fermer toutes les autres réponses ouvertes */
@@ -33,7 +33,7 @@ document.addEventListener('DOMContentLoaded', () => {
      2) Menu hamburger (mobile)
      ——————————— */
   const hamburgerIcon = document.getElementById('hamburger-icon');
-  const navLinks      = document.getElementById('nav-links');
+  const navLinks = document.getElementById('nav-links');
 
   hamburgerIcon.addEventListener('click', () => {
     navLinks.classList.toggle('active');

@@ -6,8 +6,8 @@
   <title>CINEXAU PRODUCTION - Accompagnement artistique</title>
 
   <!-- Google Fonts :
-       - Playfair Display pour les titres
-       - Roboto pour le texte courant -->
+       - Playfair Display (pour les titres)
+       - Roboto (pour le texte courant) -->
   <link
     href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Roboto:wght@400;500&display=swap"
     rel="stylesheet"
@@ -307,5 +307,65 @@
       <span class="tooltip">Nous contacter</span>
     </a>
   </div>
+
+  <!-- ============================
+       Scripts JS
+       ============================ -->
+  <!-- 1) Accordéon FAQ + menu hamburger -->
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      /* ———————————
+         1) Accordéon FAQ
+         ——————————— */
+      const faqItems = document.querySelectorAll('.faq-item');
+
+      faqItems.forEach((item) => {
+        const questionBtn = item.querySelector('.faq-question');
+        const answerDiv = item.querySelector('.faq-answer');
+        const icon = item.querySelector('.toggle-icon');
+
+        questionBtn.addEventListener('click', () => {
+          /* Fermer toutes les autres réponses ouvertes */
+          faqItems.forEach((other) => {
+            if (other !== item) {
+              other.querySelector('.faq-answer').style.display = 'none';
+              other.querySelector('.toggle-icon').classList.remove('rotated');
+            }
+          });
+
+          /* Basculer l’affichage de la réponse courante */
+          if (answerDiv.style.display === 'block') {
+            answerDiv.style.display = 'none';
+            icon.classList.remove('rotated');
+          } else {
+            answerDiv.style.display = 'block';
+            icon.classList.add('rotated');
+          }
+        });
+      });
+
+      /* ———————————
+         2) Hamburger menu (mobile)
+         ——————————— */
+      const hamburgerIcon = document.getElementById('hamburger-icon');
+      const navLinks = document.getElementById('nav-links');
+
+      hamburgerIcon.addEventListener('click', () => {
+        navLinks.classList.toggle('active');
+      });
+
+      document.addEventListener('click', (event) => {
+        if (
+          !navLinks.contains(event.target) &&
+          !hamburgerIcon.contains(event.target)
+        ) {
+          navLinks.classList.remove('active');
+        }
+      });
+    });
+  </script>
+
+  <!-- 2) Génération dynamique des nuages -->
+  <script src="script.js"></script>
 </body>
 </html>
