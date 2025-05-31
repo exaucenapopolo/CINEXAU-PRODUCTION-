@@ -5,41 +5,44 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>CINEXAU PRODUCTION - Accompagnement artistique</title>
 
-  <!-- Lien vers notre feuille de styles externe -->
+  <!-- Polices Google Fonts :
+       - Montserrat pour les titres
+       - Roboto pour le texte courant -->
+  <link
+    href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700&family=Roboto:wght@400;500&display=swap"
+    rel="stylesheet"
+  />
+
+  <!-- Feuille de style principale -->
   <link rel="stylesheet" href="style.css" />
 
   <!-- Font Awesome pour les icônes -->
   <link
     rel="stylesheet"
     href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
-    integrity="sha512-Fo3rlrQdP2XLuXE/..." 
+    integrity="sha512-Fo3rlrQdP2XLuXE/..."
     crossorigin="anonymous"
     referrerpolicy="no-referrer"
   />
 </head>
 <body>
-  <!-- 
-    Conteneur d’arrière‑plan animé : 
-    étoile (via pseudo‑éléments ::before/::after) + nuages générés en JavaScript 
-  -->
+  <!-- Arrière-plan animé (étoiles + nuages générés par script.js) -->
   <div class="background-animation"></div>
 
-  <!-- =============================
-       En‑tête / Navigation
-       ============================= -->
+  <!-- ============================
+       HEADER / NAVIGATION
+       ============================ -->
   <header>
     <div class="logo">
-      <i class="fas fa-compact-disc"></i>
+      <i class="fas fa-compact-disc icon-color"></i>
       CINEXAU PRODUCTION
     </div>
-
-    <!-- Icône hamburger (affichée en <768px) -->
     <div class="hamburger-menu" id="hamburger-icon">
-      <i class="fas fa-bars"></i>
+      <i class="fas fa-bars icon-color"></i>
     </div>
-
     <nav>
       <ul id="nav-links">
+        <li><a href="#hero">Accueil</a></li>
         <li><a href="#about-cinexau">À propos</a></li>
         <li><a href="#services">Services</a></li>
         <li><a href="#why-choose-us">Pourquoi nous choisir</a></li>
@@ -48,13 +51,22 @@
     </nav>
   </header>
 
-  <!-- =============================
-       Contenu principal
-       ============================= -->
+  <!-- ============================
+       CONTENU PRINCIPAL
+       ============================ -->
   <main>
-    <!-- ——— Section « À propos » ——— -->
+    <!-- —— Section Héros : Bienvenue + bouton Nous rejoindre —— -->
+    <section id="hero" class="container">
+      <h1>Bienvenue sur <span class="highlight-title">CINEXAU PRODUCTION</span></h1>
+      <p class="subtitle">Accompagnement artistique & production musicale</p>
+      <a href="dashboard.html" class="primary-button">Nous rejoindre</a>
+    </section>
+
+    <hr />
+
+    <!-- —— Section « Qu'est-ce que CINEXAU PRODUCTION ? » —— -->
     <section id="about-cinexau" class="container">
-      <h2>Qu'est-ce que CINEXAU PRODUCTION ?</h2>
+      <h2>Qu'est-ce que <span class="highlight-title">CINEXAU PRODUCTION</span> ?</h2>
       <div class="text-content">
         <p>
           CINEXAU PRODUCTION est un label de production musicale dédié à la
@@ -77,13 +89,12 @@
 
     <hr />
 
-    <!-- ——— Section « Nos Services » ——— -->
+    <!-- —— Section « Nos Services » —— -->
     <section id="services" class="container">
-      <h2>Nos Services</h2>
-      <!-- On peut garder ici la grille ou la liste que vous souhaitiez -->
+      <h2>Nos <span class="highlight-title">Services</span></h2>
       <div class="services-grid">
         <div class="service-item">
-          <i class="fas fa-globe"></i>
+          <i class="fas fa-globe icon-color"></i>
           <h3>Distribution Digitale</h3>
           <p>
             Nous assurons la distribution de votre musique sur toutes les
@@ -93,8 +104,9 @@
             et les redevances.
           </p>
         </div>
+
         <div class="service-item">
-          <i class="fas fa-microphone-alt"></i>
+          <i class="fas fa-microphone-alt icon-color"></i>
           <h3>Enregistrement &amp; Mixage</h3>
           <p>
             Profitez de nos studios équipés et de nos ingénieurs du son
@@ -103,8 +115,9 @@
             haute qualité qui se démarque.
           </p>
         </div>
+
         <div class="service-item">
-          <i class="fas fa-users"></i>
+          <i class="fas fa-users icon-color"></i>
           <h3>Accompagnement Artistique</h3>
           <p>
             Un soutien personnalisé pour développer votre projet musical,
@@ -113,8 +126,9 @@
             carrière solide et durable.
           </p>
         </div>
+
         <div class="service-item">
-          <i class="fas fa-camera-retro"></i>
+          <i class="fas fa-camera-retro icon-color"></i>
           <h3>Production Audiovisuelle</h3>
           <p>
             Création de clips vidéo, de visuels promotionnels et de contenus
@@ -122,8 +136,9 @@
             et renforcer votre identité artistique.
           </p>
         </div>
+
         <div class="service-item">
-          <i class="fas fa-scroll"></i>
+          <i class="fas fa-scroll icon-color"></i>
           <h3>Gestion des Droits</h3>
           <p>
             Nous gérons la protection et l'administration de vos droits
@@ -131,8 +146,9 @@
             toutes les redevances dues pour l'utilisation de votre musique.
           </p>
         </div>
+
         <div class="service-item">
-          <i class="fas fa-project-diagram"></i>
+          <i class="fas fa-project-diagram icon-color"></i>
           <h3>Stratégie de Carrière</h3>
           <p>
             Développement d'un plan de carrière sur mesure, incluant le
@@ -145,12 +161,12 @@
 
     <hr />
 
-    <!-- ——— Section « Pourquoi nous choisir » ——— -->
+    <!-- —— Section « Pourquoi nous choisir ? » —— -->
     <section id="why-choose-us" class="container">
-      <h2>Pourquoi choisir CINEXAU PRODUCTION ?</h2>
+      <h2>Pourquoi choisir <span class="highlight-title">CINEXAU PRODUCTION</span> ?</h2>
       <div class="text-content">
         <p>
-          Chez CINEXAU PRODUCTION, nous ne sommes pas qu'un simple label ; nous
+          Chez CINEXAU PRODUCTION, nous ne sommes pas qu'un simple label ; nous
           sommes des partenaires dédiés à votre succès. Notre approche
           personnalisée assure que chaque artiste reçoit l'attention et les
           ressources nécessaires pour atteindre son plein potentiel. Nous
@@ -170,73 +186,77 @@
 
     <hr />
 
-    <!-- ——— Section « FAQ » ——— -->
+    <!-- —— Section « FAQ » —— -->
     <section id="faq" class="container">
       <h2>Questions Fréquemment Posées</h2>
       <div class="faq-container">
         <div class="faq-item">
-          <div class="faq-question">
-            <span>Comment puis-je soumettre ma musique à CINEXAU PRODUCTION ?</span>
-            <i class="fas fa-chevron-down"></i>
-          </div>
+          <button class="faq-question">
+            <span>Comment puis-je soumettre ma musique à CINEXAU PRODUCTION ?</span>
+            <i class="fas fa-chevron-right toggle-icon"></i>
+          </button>
           <div class="faq-answer">
             <p>
               Nous acceptons les soumissions via notre page de contact. Veuillez
-              inclure des liens vers vos morceaux (SoundCloud, YouTube, etc.)
-              et une brève présentation de votre projet artistique. Nous
-              écoutons attentivement chaque soumission et vous recontacterons
-              si votre profil correspond à nos critères.
+              inclure des liens vers vos morceaux (SoundCloud, YouTube, etc.) et
+              une brève présentation de votre projet artistique. Nous écoutons
+              attentivement chaque soumission et vous recontacterons si votre
+              profil correspond à nos critères.
             </p>
           </div>
         </div>
+
         <div class="faq-item">
-          <div class="faq-question">
-            <span>Quels genres musicaux accompagnez-vous ?</span>
-            <i class="fas fa-chevron-down"></i>
-          </div>
+          <button class="faq-question">
+            <span>Quels genres musicaux accompagnez-vous ?</span>
+            <i class="fas fa-chevron-right toggle-icon"></i>
+          </button>
           <div class="faq-answer">
             <p>
-              CINEXAU PRODUCTION est ouvert à tous les genres musicaux, du R&amp;B
+              CINEXAU PRODUCTION est ouvert à tous les genres musicaux, du R&amp;B
               au Hip-hop, en passant par l'Afrobeat, la pop, le rock et bien
               d'autres. Notre priorité est le talent et l'originalité, quelle
               que soit la couleur musicale.
             </p>
           </div>
         </div>
+
         <div class="faq-item">
-          <div class="faq-question">
-            <span>Offrez-vous un accompagnement pour les artistes débutants ?</span>
-            <i class="fas fa-chevron-down"></i>
-          </div>
+          <button class="faq-question">
+            <span>Offrez-vous un accompagnement pour les artistes débutants ?</span>
+            <i class="fas fa-chevron-right toggle-icon"></i>
+          </button>
           <div class="faq-answer">
             <p>
-              Absolument ! Notre mission principale est d'accompagner les jeunes
+              Absolument ! Notre mission principale est d'accompagner les jeunes
               artistes, qu'ils soient débutants ou en développement. Nous
               adaptons nos services à votre niveau et à vos besoins spécifiques
               pour vous aider à progresser.
             </p>
           </div>
         </div>
+
         <div class="faq-item">
-          <div class="faq-question">
-            <span>Comment sont gérés les droits d'auteur et les redevances ?</span>
-            <i class="fas fa-chevron-down"></i>
-          </div>
+          <button class="faq-question">
+            <span>Comment sont gérés les droits d'auteur et les redevances ?</span>
+            <i class="fas fa-chevron-right toggle-icon"></i>
+          </button>
           <div class="faq-answer">
             <p>
               Nous nous occupons de l'enregistrement de vos œuvres auprès des
-              sociétés de gestion des droits (comme la SACEM) et assurons le suivi
-              de toutes les redevances générées par la distribution de votre
-              musique. Nous sommes transparents sur la répartition des revenus et
-              vous fournissons des rapports détaillés.
+              sociétés de gestion des droits (comme la SACEM) et assurons le
+              suivi de toutes les redevances générées par la distribution de
+              votre musique. Nous sommes transparents sur la répartition des
+              revenus et vous fournissons des rapports détaillés.
             </p>
           </div>
         </div>
+
         <div class="faq-item">
-          <div class="faq-question">
-            <span>Puis-je garder le contrôle créatif sur ma musique ?</span>
-            <i class="fas fa-chevron-down"></i>
-          </div>
+          <button class="faq-question">
+            <span>Puis-je garder le contrôle créatif sur ma musique ?</span>
+            <i class="fas fa-chevron-right toggle-icon"></i>
+          </button>
           <div class="faq-answer">
             <p>
               Oui, votre liberté artistique est primordiale pour nous. Nous sommes
@@ -251,81 +271,96 @@
     </section>
   </main>
 
-  <!-- =============================
-       Pied de page
-       ============================= -->
+  <!-- ============================
+       FOOTER
+       ============================ -->
   <footer>
     <div class="container">
       <p>&copy; 2025 CINEXAU PRODUCTION. Tous droits réservés.</p>
     </div>
   </footer>
 
-  <!-- =============================
+  <!-- ============================
        Boutons flottants
-       ============================= -->
+       ============================ -->
   <div class="floating-buttons">
-    <a href="#about-cinexau">
-      <i class="fas fa-info-circle"></i>
-      <span class="tooltip">À propos</span>
+    <a href="#hero">
+      <i class="fas fa-home icon-color"></i>
+      <span class="tooltip">Accueil</span>
     </a>
     <a href="#services">
-      <i class="fas fa-tools"></i>
+      <i class="fas fa-tools icon-color"></i>
       <span class="tooltip">Services</span>
     </a>
     <a href="#why-choose-us">
-      <i class="fas fa-question-circle"></i>
+      <i class="fas fa-question-circle icon-color"></i>
       <span class="tooltip">Pourquoi nous choisir</span>
     </a>
     <a href="#faq">
-      <i class="fas fa-comment-dots"></i>
+      <i class="fas fa-comment-dots icon-color"></i>
       <span class="tooltip">FAQ</span>
     </a>
     <a href="#contact-section-placeholder">
-      <i class="fas fa-envelope"></i>
+      <i class="fas fa-envelope icon-color"></i>
       <span class="tooltip">Nous contacter</span>
     </a>
   </div>
 
-  <!-- =============================
-       JavaScript (menu responsive + FAQ)
-       ============================= -->
+  <!-- ============================
+       Scripts JS
+       ============================ -->
+  <!-- 1) Accordéon FAQ + menu hamburger -->
   <script>
-    // Afficher / masquer le menu hamburger
-    const hamburgerIcon = document.getElementById('hamburger-icon');
-    const navLinks       = document.getElementById('nav-links');
+    document.addEventListener('DOMContentLoaded', () => {
+      /* Menu hamburger (afficher / masquer la nav en dessous de 768px) */
+      const hamburgerIcon = document.getElementById('hamburger-icon');
+      const navLinks = document.getElementById('nav-links');
 
-    hamburgerIcon.addEventListener('click', () => {
-      navLinks.classList.toggle('active');
-    });
-
-    // Fermer le menu si on clique en dehors
-    document.addEventListener('click', (event) => {
-      if (!navLinks.contains(event.target) && !hamburgerIcon.contains(event.target)) {
-        navLinks.classList.remove('active');
-      }
-    });
-
-    // Gestion des questions FAQ
-    const faqQuestions = document.querySelectorAll('.faq-question');
-
-    faqQuestions.forEach((question) => {
-      question.addEventListener('click', () => {
-        const faqItem   = question.closest('.faq-item');
-        const faqAnswer = faqItem.querySelector('.faq-answer');
-        faqItem.classList.toggle('active');
-
-        if (faqAnswer.style.display === 'block') {
-          faqAnswer.style.display = 'none';
-        } else {
-          faqAnswer.style.display = 'block';
+      hamburgerIcon.addEventListener('click', () => {
+        navLinks.classList.toggle('active');
+      });
+      document.addEventListener('click', (event) => {
+        if (
+          !navLinks.contains(event.target) &&
+          !hamburgerIcon.contains(event.target)
+        ) {
+          navLinks.classList.remove('active');
         }
+      });
+
+      /* Accordéon FAQ : ouvrir uniquement la question cliquée */
+      const faqItems = document.querySelectorAll('.faq-item');
+
+      faqItems.forEach((item) => {
+        const questionBtn = item.querySelector('.faq-question');
+        const answerDiv = item.querySelector('.faq-answer');
+        const icon = item.querySelector('.toggle-icon');
+
+        questionBtn.addEventListener('click', () => {
+          /* Fermer tous les autres */
+          faqItems.forEach((other) => {
+            if (other !== item) {
+              other.querySelector('.faq-answer').style.display = 'none';
+              other
+                .querySelector('.toggle-icon')
+                .classList.remove('rotated');
+            }
+          });
+
+          /* Basculer celui-ci */
+          if (answerDiv.style.display === 'block') {
+            answerDiv.style.display = 'none';
+            icon.classList.remove('rotated');
+          } else {
+            answerDiv.style.display = 'block';
+            icon.classList.add('rotated');
+          }
+        });
       });
     });
   </script>
 
-  <!-- =============================
-       Script pour générer les nuages
-       ============================= -->
+  <!-- 2) Génération dynamique des nuages -->
   <script src="script.js"></script>
 </body>
 </html>

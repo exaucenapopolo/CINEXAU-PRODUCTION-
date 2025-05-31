@@ -1,278 +1,473 @@
 /* =====================================================
-   Variables pour les couleurs
+   Variables et polices
    ===================================================== */
 :root {
-    --dark-blue-bg: #1a2a4a;       /* Un bleu sombre pour le fond */
-    --button-color: #28a745;       /* Vert pour les boutons (modifiable) */
-    --button-hover-color: #218838; /* Vert plus foncé au survol */
-    --text-light: #f4f4f4;         /* Texte clair */
-    --text-dark: #333;             /* Texte sombre (si besoin) */
+  --dark-blue-bg: #1a2a4a;       /* Fond sombre */
+  --button-color: #28a745;       /* Vert pour les boutons */
+  --button-hover-color: #218838; /* Vert foncé au survol */
+  --text-light: #f4f4f4;         /* Texte clair global */
+  --text-dark: #333;             /* Texte sombre si besoin */
+  --icon-color: #FFA500;         /* Orange pour les icônes (toutes) */
+  --highlight-color: #28a745;    /* Même vert pour les titres mis en avant */
 }
 
-/* =====================================================
-   Réinitialisation et styles globaux
-   ===================================================== */
-*,
-*::before,
-*::after {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
-html {
-    scroll-behavior: smooth;
-}
-
+/* Polices Google */
 body {
-    margin: 0;
-    padding: 0;
-    font-family: Arial, sans-serif;
-    color: var(--text-light);
-    overflow-x: hidden;           /* Empêche le défilement horizontal dû aux animations */
-    position: relative;           /* Nécessaire pour positionner le fond animé */
-    min-height: 100vh;            /* S'assure que le corps prend toute la hauteur */
-    display: flex;
-    flex-direction: column;
+  margin: 0;
+  padding: 0;
+  font-family: 'Roboto', sans-serif; /* Texte courant en Roboto */
+  color: var(--text-light);
+  overflow-x: hidden;
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background: var(--dark-blue-bg);
+}
+
+/* Titres (h1, h2, h3) en Montserrat */
+h1,
+h2,
+h3 {
+  font-family: 'Montserrat', sans-serif;
+  margin-bottom: 0.5em;
+}
+
+/* Couleur à appliquer sur les parties de titres à mettre en avant */
+.highlight-title {
+  color: var(--highlight-color);
 }
 
 /* =====================================================
-   Conteneur d’arrière‑plan animé (étoiles + nuages)
+   Arrière‑plan animé (étoiles + nuages)
    ===================================================== */
 .background-animation {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: var(--dark-blue-bg);
-    z-index: -1;   /* Place le fond derrière le contenu */
-    overflow: hidden; /* Cache les éléments d'animation qui dépassent */
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+  overflow: hidden;
+  background-color: var(--dark-blue-bg);
 }
 
-/* ————————————————————————————————
-   Étoiles « twinkle »
-   ———————————————————————————————— */
+/* Étoiles scintillantes (pseudo‑éléments) */
 .background-animation::before,
 .background-animation::after {
-    content: '';
-    position: absolute;
-    border-radius: 50%;
-    background-color: rgba(255, 255, 255, 0.8); /* Points blancs pour les étoiles */
-    animation: twinkle 5s infinite alternate;    /* Animation de scintillement */
+  content: '';
+  position: absolute;
+  border-radius: 50%;
+  background-color: rgba(255, 255, 255, 0.8);
+  animation: twinkle 5s infinite alternate;
 }
 
 .background-animation::before {
-    width: 2px;
-    height: 2px;
-    /* Plusieurs étoiles réparties via box-shadow */
-    box-shadow:
-        100px  50px 0 0 white,
-        200px 150px 0 0 white,
-        300px 250px 0 0 white,
-        400px  70px 0 0 white,
-         50px 300px 0 0 white,
-        350px 100px 0 0 white;
-    animation-delay: 0s;
+  width: 2px;
+  height: 2px;
+  box-shadow:
+    100px  50px 0 0 white,
+    200px 150px 0 0 white,
+    300px 250px 0 0 white,
+    400px  70px 0 0 white,
+     50px 300px 0 0 white,
+    350px 100px 0 0 white;
+  animation-delay: 0s;
 }
 
 .background-animation::after {
-    width: 3px;
-    height: 3px;
-    box-shadow:
-        150px 200px 0 0 white,
-        250px 300px 0 0 white,
-         50px 100px 0 0 white,
-        300px  10px 0 0 white,
-        450px 200px 0 0 white,
-         10px 250px 0 0 white;
-    animation-delay: 2s;
+  width: 3px;
+  height: 3px;
+  box-shadow:
+    150px 200px 0 0 white,
+    250px 300px 0 0 white,
+     50px 100px 0 0 white,
+    300px  10px 0 0 white,
+    450px 200px 0 0 white,
+     10px 250px 0 0 white;
+  animation-delay: 2s;
 }
 
 @keyframes twinkle {
-    0%   { opacity: 0.5; transform: scale(1); }
-    50%  { opacity: 1;   transform: scale(1.2); }
-    100% { opacity: 0.5; transform: scale(1); }
+  0%   { opacity: 0.5; transform: scale(1); }
+  50%  { opacity: 1;   transform: scale(1.2); }
+  100% { opacity: 0.5; transform: scale(1); }
 }
 
-/* ————————————————————————————————
-   Nuages en mouvement (créés via JavaScript)
-   ———————————————————————————————— */
+/* Nuages (les <div class="cloud"> sont générés en JS) */
 .background-animation .cloud {
-    position: absolute;
-    background: white;
-    border-radius: 50%;
-    opacity: 0.1;                  /* Transparence pour un effet doux */
-    animation: moveClouds 60s linear infinite;
+  position: absolute;
+  background: white;
+  border-radius: 50%;
+  opacity: 0.1;
+  animation: moveClouds linear infinite;
 }
 
-/* Chaque nuage verra ses dimensions et son délai fixés en JS.
-   Ici, on définit simplement la clé d’animation. */
 @keyframes moveClouds {
-    0%   { transform: translateX(0) scale(var(--scale, 1)); }
-    100% { transform: translateX(calc(100vw + var(--width, 200px))) scale(var(--scale, 1)); }
+  0%   { transform: translateX(0) scale(var(--scale, 1)); }
+  100% { transform: translateX(calc(100vw + var(--width, 200px))) scale(var(--scale, 1)); }
 }
 
 /* =====================================================
-   En‑tête et navigation
+   Conteneur global
+   ===================================================== */
+.container {
+  width: 90%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px 0;
+  position: relative;
+  z-index: 1;
+}
+
+/* Lignes de séparation */
+hr {
+  border: none;
+  border-top: 1px dashed rgba(255, 255, 255, 0.2);
+  margin: 40px auto;
+  width: 80%;
+}
+
+/* =====================================================
+   HEADER / NAVIGATION
    ===================================================== */
 header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 20px 40px;
-    background-color: rgba(0, 0, 0, 0.3); /* Légèrement transparent */
-    position: relative;
-    z-index: 10;                           /* Au‑dessus de l’arrière‑plan */
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 40px;
+  background-color: rgba(0, 0, 0, 0.3);
+  position: sticky;
+  top: 0;
+  z-index: 10;
 }
 
 .logo {
-    font-size: 1.8em;
-    font-weight: bold;
-    color: var(--text-light);
+  font-size: 1.8em;
+  font-weight: 700;
+  color: var(--text-light);
 }
 
+.hamburger-menu {
+  display: none;
+  font-size: 1.8rem;
+  cursor: pointer;
+  color: var(--icon-color);
+}
+
+/* Icônes : appliquer la même couleur #FFA500 */
+.icon-color {
+  color: var(--icon-color) !important;
+}
+
+/* Navigation principale */
 nav ul {
-    list-style: none;
-    margin: 0;
-    padding: 0;
-    display: flex;
-}
-
-nav ul li {
-    margin-left: 20px;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  gap: 25px;
 }
 
 nav ul li a {
-    color: var(--text-light);
-    text-decoration: none;
-    font-weight: 600;
-    transition: color 0.3s ease;
+  color: var(--text-light);
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.3s ease;
 }
 
 nav ul li a:hover {
-    color: var(--button-color);
+  color: var(--button-color);
 }
 
-/* Boutons génériques pour nav ou actions principales */
-.nav-button,
-.primary-button {
-    display: inline-block;
-    padding: 10px 20px;
-    border-radius: 5px;
-    text-decoration: none;
-    color: var(--text-light);
-    background-color: var(--button-color);
-    transition: background-color 0.3s ease, transform 0.3s ease;
-    border: none;
-    cursor: pointer;
-    font-size: 1em;
-}
-
-.nav-button:hover,
-.primary-button:hover {
-    background-color: var(--button-hover-color);
-    transform: scale(1.05);
-}
-
-/* Responsive basique pour le menu (onclick / JS à ajouter si nécessaire) */
-.hamburger-menu {
-    display: none;
-    font-size: 1.8rem;
-    cursor: pointer;
-    color: var(--text-light);
-}
-
+/* Responsive : menu hamburger */
 @media (max-width: 768px) {
-    .hamburger-menu {
-        display: block;
-    }
-    nav ul {
-        position: absolute;
-        top: 60px;
-        right: 0;
-        width: 100%;
-        flex-direction: column;
-        background-color: rgba(0, 0, 0, 0.8);
-        display: none;
-        text-align: center;
-        padding: 10px 0;
-        gap: 15px;
-    }
-    nav ul.active {
-        display: flex;
-    }
-    nav ul li {
-        margin: 0;
-    }
-}
-
-/* =====================================================
-   Contenu principal
-   ===================================================== */
-main {
-    flex-grow: 1;              /* Prend tout l’espace disponible */
-    padding: 40px;
+  .hamburger-menu {
+    display: block;
+  }
+  nav ul {
+    position: absolute;
+    top: 60px;
+    right: 0;
+    width: 100%;
+    flex-direction: column;
+    background-color: rgba(0, 0, 0, 0.8);
+    display: none;
     text-align: center;
-    position: relative;
-    z-index: 5;                /* Au‑dessus du fond animé */
-    padding-bottom: 80px;      /* Marge pour le footer */
-}
-
-section {
-    margin-bottom: 60px;
-}
-
-h1, h2, h3 {
-    color: var(--text-light);
+    padding: 10px 0;
+    gap: 15px;
+  }
+  nav ul.active {
+    display: flex;
+  }
+  nav ul li {
+    margin: 0;
+  }
 }
 
 /* =====================================================
-   Section « Nos Services » (Accueil)
+   SECTION HÉROS
+   ===================================================== */
+#hero {
+  padding: 80px 0;
+  text-align: center;
+  color: var(--text-light);
+}
+
+#hero h1 {
+  font-size: 3rem;
+  margin-bottom: 0.5em;
+}
+
+#hero .subtitle {
+  font-size: 1.2rem;
+  margin-bottom: 1.5em;
+  font-weight: 500;
+}
+
+/* Bouton « Nous rejoindre » */
+.primary-button {
+  display: inline-block;
+  padding: 12px 30px;
+  border-radius: 5px;
+  text-decoration: none;
+  color: var(--text-light);
+  background-color: var(--button-color);
+  transition: background-color 0.3s ease, transform 0.3s ease;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 500;
+}
+
+.primary-button:hover {
+  background-color: var(--button-hover-color);
+  transform: scale(1.05);
+}
+
+/* =====================================================
+   SECTIONS « À PROPOS », « POURQUOI NOUS CHOISIR »
+   ===================================================== */
+section {
+  padding: 60px 0;
+}
+
+section h2 {
+  font-size: 2.5rem;
+  margin-bottom: 0.5em;
+  color: var(--text-light);
+}
+
+.text-content {
+  max-width: 800px;
+  margin: 0 auto;
+  line-height: 1.8;
+  text-align: justify;
+  color: var(--text-light);
+}
+
+.text-content p {
+  margin-bottom: 1.2em;
+  font-family: 'Roboto', sans-serif;
+  font-size: 1rem;
+}
+
+/* =====================================================
+   SECTION « NOS SERVICES »
    ===================================================== */
 #services {
-    background-color: rgba(0, 0, 0, 0.2);
-    padding: 40px;
-    border-radius: 10px;
+  background-color: rgba(0, 0, 0, 0.2);
+  padding: 40px;
+  border-radius: 10px;
 }
 
-.service-list {
-    display: flex;
-    justify-content: center;
-    flex-wrap: wrap;
-    gap: 30px;
-    margin-top: 30px;
+.services-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 40px;
+  margin-top: 30px;
 }
 
 .service-item {
-    background-color: rgba(0, 0, 0, 0.4);
-    padding: 25px;
-    border-radius: 8px;
-    width: 250px;
-    text-align: center;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    transition: transform 0.3s ease;
+  background-color: rgba(0, 0, 0, 0.4);
+  padding: 30px;
+  border-radius: 8px;
+  text-align: center;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .service-item:hover {
-    transform: translateY(-5px);
+  transform: translateY(-8px);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.4);
 }
 
-.service-item img {
-    width: 60px;
-    height: 60px;
-    margin-bottom: 15px;
+.service-item i {
+  font-size: 3.5rem;       /* Icônes plus grandes */
+  margin-bottom: 15px;
+  /* couleur appliquée par .icon-color */
+}
+
+.service-item h3 {
+  font-size: 1.5rem;
+  margin-bottom: 10px;
+  color: var(--text-light);
+  font-family: 'Montserrat', sans-serif;
+}
+
+.service-item p {
+  font-size: 1rem;
+  line-height: 1.6;
+  color: var(--text-light);
+  font-family: 'Roboto', sans-serif;
 }
 
 /* =====================================================
-   Footer
+   SECTION « FAQ » (accordéon)
+   ===================================================== */
+.faq-container {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.faq-item {
+  margin-bottom: 20px;
+  border-radius: 8px;
+  overflow: hidden;
+  background-color: rgba(255, 255, 255, 0.1);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+}
+
+.faq-question {
+  width: 100%;
+  padding: 18px 20px;
+  background-color: rgba(0, 0, 0, 0.3);
+  color: var(--text-light);
+  border: none;
+  text-align: left;
+  font-size: 1.1rem;
+  font-family: 'Montserrat', sans-serif;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.faq-question:hover {
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+.toggle-icon {
+  font-size: 1.2rem;
+  transition: transform 0.3s ease;
+  color: var(--icon-color);
+}
+
+/* Quand l’icône a la classe .rotated, on la fait tourner de 90° (vers le bas) */
+.toggle-icon.rotated {
+  transform: rotate(90deg);
+}
+
+.faq-answer {
+  display: none;
+  padding: 15px 20px;
+  background-color: rgba(0, 0, 0, 0.2);
+  color: var(--text-light);
+  font-family: 'Roboto', sans-serif;
+  font-size: 0.95rem;
+  line-height: 1.6;
+}
+
+/* =====================================================
+   FOOTER
    ===================================================== */
 footer {
-    padding: 20px;
-    text-align: center;
-    background-color: rgba(0, 0, 0, 0.3);
-    color: var(--text-light);
-    position: relative;
-    z-index: 10;
-    margin-top: auto; /* Pousse le footer vers le bas */
+  background-color: rgba(0, 0, 0, 0.3);
+  color: var(--text-light);
+  text-align: center;
+  padding: 20px 0;
+  margin-top: auto;
+  font-family: 'Roboto', sans-serif;
+  font-size: 0.9rem;
+}
+
+/* =====================================================
+   Boutons flottants
+   ===================================================== */
+.floating-buttons {
+  position: fixed;
+  top: 50%;
+  right: 20px;
+  transform: translateY(-50%);
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  z-index: 20;
+}
+
+.floating-buttons a {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 50px;
+  height: 50px;
+  background-color: var(--button-color);
+  color: var(--text-light);
+  border-radius: 50%;
+  text-decoration: none;
+  font-size: 1.5rem;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+  transition: all 0.3s ease;
+  position: relative;
+}
+
+.floating-buttons a:hover {
+  background-color: var(--button-hover-color);
+  transform: scale(1.1);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.4);
+}
+
+.floating-buttons a .tooltip {
+  visibility: hidden;
+  width: 100px;
+  background-color: rgba(0, 0, 0, 0.7);
+  color: #fff;
+  text-align: center;
+  border-radius: 6px;
+  padding: 5px 0;
+  position: absolute;
+  z-index: 1;
+  right: 60px;
+  opacity: 0;
+  transition: opacity 0.3s;
+  font-size: 0.8rem;
+}
+
+.floating-buttons a:hover .tooltip {
+  visibility: visible;
+  opacity: 1;
+}
+
+/* Responsive pour les boutons flottants */
+@media (max-width: 768px) {
+  .floating-buttons {
+    flex-direction: row;
+    width: 90%;
+    left: 50%;
+    bottom: 20px;
+    top: auto;
+    right: auto;
+    transform: translateX(-50%);
+    justify-content: space-around;
+    background-color: rgba(0, 0, 0, 0.6);
+    padding: 10px 0;
+    border-radius: 10px;
+  }
+  .floating-buttons a {
+    width: 45px;
+    height: 45px;
+    font-size: 1.3rem;
+  }
+  .floating-buttons a .tooltip {
+    display: none;
+  }
 }
