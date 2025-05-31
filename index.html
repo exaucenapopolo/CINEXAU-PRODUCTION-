@@ -4,7 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CINEXAU PRODUCTION - Accompagnement artistique</title>
-    <link rel="stylesheet" href="style.css"> <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
         /* Styles de base - tu pourrais les avoir dans ton fichier style.css */
         body {
@@ -14,22 +15,128 @@
             box-sizing: border-box;
             background-color: #f4f4f4; /* Exemple de couleur de fond */
             color: #333;
+            /* Nouveau : Arrière-plan avec dégradé sombre */
+            background: linear-gradient(to bottom, #1a1a2e, #16213e, #0f3460);
+            min-height: 100vh; /* S'assure que le dégradé couvre toute la hauteur */
+            overflow-x: hidden; /* Empêche le défilement horizontal dû aux nuages */
+            position: relative; /* Pour positionner les éléments enfants */
         }
+
+        /* Styles pour les nuages */
+        .cloud-container {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            pointer-events: none; /* Permet de cliquer à travers */
+        }
+
+        .cloud {
+            position: absolute;
+            background: rgba(255, 255, 255, 0.1); /* Nuages plus sombres */
+            border-radius: 50%;
+            animation: moveClouds linear infinite;
+        }
+
+        .cloud.large {
+            width: 300px;
+            height: 150px;
+            opacity: 0.2;
+            top: 10%;
+            left: -10%;
+            animation-duration: 40s;
+            animation-delay: 0s;
+        }
+
+        .cloud.medium {
+            width: 200px;
+            height: 100px;
+            opacity: 0.15;
+            top: 40%;
+            left: -20%;
+            animation-duration: 50s;
+            animation-delay: 5s;
+        }
+
+        .cloud.small {
+            width: 150px;
+            height: 75px;
+            opacity: 0.1;
+            top: 70%;
+            left: -5%;
+            animation-duration: 60s;
+            animation-delay: 10s;
+        }
+
+        @keyframes moveClouds {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(calc(100vw + 300px)); } /* Déplace les nuages à travers l'écran */
+        }
+
+        /* Styles pour les étoiles */
+        .stars {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: transparent;
+            pointer-events: none;
+            z-index: -1; /* Derrière tout le contenu */
+            overflow: hidden;
+        }
+
+        .star {
+            position: absolute;
+            background: #fff; /* Couleur des étoiles */
+            border-radius: 50%;
+            animation: twinkle ease-in-out infinite;
+        }
+
+        /* Génération d'étoiles (JavaScript serait plus efficace pour des millions) */
+        /* Pour l'exemple, on en met quelques-unes manuellement */
+        .star:nth-child(1) { top: 10%; left: 20%; width: 2px; height: 2px; animation-delay: 0s; animation-duration: 4s;}
+        .star:nth-child(2) { top: 5%; left: 50%; width: 1px; height: 1px; animation-delay: 1s; animation-duration: 5s;}
+        .star:nth-child(3) { top: 15%; left: 80%; width: 3px; height: 3px; animation-delay: 2s; animation-duration: 3s;}
+        .star:nth-child(4) { top: 30%; left: 10%; width: 2px; height: 2px; animation-delay: 3s; animation-duration: 4.5s;}
+        .star:nth-child(5) { top: 25%; left: 60%; width: 1px; height: 1px; animation-delay: 0.5s; animation-duration: 3.8s;}
+        .star:nth-child(6) { top: 40%; left: 90%; width: 2px; height: 2px; animation-delay: 1.5s; animation-duration: 4.2s;}
+        .star:nth-child(7) { top: 50%; left: 30%; width: 1px; height: 1px; animation-delay: 2.5s; animation-duration: 3.5s;}
+        .star:nth-child(8) { top: 60%; left: 70%; width: 3px; height: 3px; animation-delay: 0s; animation-duration: 4.8s;}
+        .star:nth-child(9) { top: 75%; left: 40%; width: 2px; height: 2px; animation-delay: 1s; animation-duration: 5.2s;}
+        .star:nth-child(10) { top: 85%; left: 5%; width: 1px; height: 1px; animation-delay: 2s; animation-duration: 3.9s;}
+        .star:nth-child(11) { top: 90%; left: 95%; width: 2px; height: 2px; animation-delay: 0.8s; animation-duration: 4.1s;}
+        .star:nth-child(12) { top: 70%; left: 25%; width: 1px; height: 1px; animation-delay: 1.2s; animation-duration: 3.7s;}
+        .star:nth-child(13) { top: 80%; left: 65%; width: 3px; height: 3px; animation-delay: 2.3s; animation-duration: 4.6s;}
+        .star:nth-child(14) { top: 35%; left: 85%; width: 2px; height: 2px; animation-delay: 0.4s; animation-duration: 4.3s;}
+        .star:nth-child(15) { top: 45%; left: 5%; width: 1px; height: 1px; animation-delay: 1.7s; animation-duration: 3.6s;}
+
+
+        @keyframes twinkle {
+            0%, 100% { opacity: 0.5; transform: scale(1); }
+            50% { opacity: 1; transform: scale(1.2); }
+        }
+
 
         .container {
             width: 90%;
             max-width: 1200px;
             margin: 0 auto;
             padding: 20px 0;
+            position: relative; /* Pour que le contenu soit au-dessus des nuages/étoiles */
+            z-index: 1; /* Assure que le contenu est au-dessus */
         }
 
         /* Styles pour l'en-tête */
         header {
-            background-color: #333; /* Couleur de fond de ton choix */
+            background-color: rgba(0, 0, 0, 0.5); /* Couleur de fond de ton choix, légèrement transparente */
             color: white;
             padding: 15px 0;
             position: relative;
             z-index: 1000;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); /* Ombre pour la profondeur */
         }
 
         .navbar {
@@ -44,6 +151,7 @@
             display: flex;
             align-items: center;
             gap: 10px;
+            color: white; /* S'assure que le logo est visible */
         }
 
         .logo i {
@@ -54,6 +162,7 @@
             display: none; /* Masqué par défaut sur les grands écrans */
             font-size: 2em;
             cursor: pointer;
+            color: white;
         }
 
         .nav-menu {
@@ -87,13 +196,13 @@
             .nav-menu {
                 display: none; /* Masqué par défaut */
                 flex-direction: column;
-                background-color: #444; /* Fond du menu déroulant */
+                background-color: rgba(0, 0, 0, 0.7); /* Fond du menu déroulant plus sombre */
                 position: absolute;
                 top: 70px; /* Ajuste selon la hauteur de ton header */
                 right: 0;
                 width: 100%;
                 text-align: center;
-                box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+                box-shadow: 0 8px 16px rgba(0,0,0,0.4);
             }
 
             .nav-menu.active {
@@ -109,12 +218,16 @@
         section {
             padding: 60px 0;
             text-align: center;
+            color: white; /* Texte des sections en blanc */
+            position: relative;
+            z-index: 1; /* Assure que le contenu est au-dessus */
         }
 
         section h2 {
             font-size: 2.5em;
             margin-bottom: 40px;
-            color: #333;
+            color: #ffcc00; /* Titres en couleur pour ressortir */
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
         }
 
         /* Styles pour la section Services */
@@ -126,17 +239,20 @@
         }
 
         .service-item {
-            background-color: white;
+            background-color: rgba(255, 255, 255, 0.1); /* Fond légèrement transparent */
             padding: 30px;
             border-radius: 8px;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+            transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease;
             text-align: left;
+            border: 1px solid rgba(255, 255, 255, 0.05); /* Bordure subtile */
+            color: white; /* Texte du service en blanc */
         }
 
         .service-item:hover {
             transform: translateY(-10px);
-            box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+            box-shadow: 0 8px 16px rgba(0,0,0,0.4);
+            background-color: rgba(255, 255, 255, 0.2); /* Plus opaque au survol */
         }
 
         .service-item i {
@@ -149,13 +265,13 @@
         .service-item h3 {
             font-size: 1.5em;
             margin-bottom: 10px;
-            color: #555;
+            color: #ffcc00; /* Titres de service en jaune */
         }
 
         .service-item p {
             font-size: 1em;
             line-height: 1.6;
-            color: #777;
+            color: #e0e0e0; /* Texte des paragraphes plus clair */
         }
 
         /* Styles pour les sections "Pourquoi nous choisir" et "Qu'est-ce que CINEXAU PRODUCTION" */
@@ -164,20 +280,23 @@
             margin: 0 auto;
             line-height: 1.8;
             text-align: justify;
+            color: #e0e0e0; /* Texte des paragraphes plus clair */
         }
 
         .text-content p {
             margin-bottom: 20px;
-            color: #555;
+            color: #e0e0e0;
         }
 
         /* Styles pour la section FAQ */
         .faq-item {
-            background-color: white;
+            background-color: rgba(255, 255, 255, 0.1);
             margin-bottom: 20px;
             border-radius: 8px;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
             text-align: left;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            color: white;
         }
 
         .faq-question {
@@ -187,27 +306,159 @@
             justify-content: space-between;
             align-items: center;
             font-weight: bold;
-            color: #333;
-            border-bottom: 1px solid #eee;
+            color: #ffcc00; /* Question en jaune */
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            transition: background-color 0.3s ease;
+        }
+
+        .faq-question:hover {
+            background-color: rgba(255, 255, 255, 0.05);
         }
 
         .faq-question i {
             transition: transform 0.3s ease;
+            color: #ffcc00;
         }
 
         .faq-answer {
             padding: 0 20px 20px 20px;
             display: none; /* Masqué par défaut */
-            color: #666;
+            color: #e0e0e0;
             line-height: 1.6;
         }
 
         .faq-item.active .faq-question i {
             transform: rotate(180deg);
         }
+
+        hr {
+            border: none;
+            border-top: 1px dashed rgba(255, 255, 255, 0.2); /* Ligne de séparation plus subtile */
+            margin: 60px auto;
+            width: 80%;
+        }
+
+        footer {
+            background-color: rgba(0, 0, 0, 0.5); /* Pied de page légèrement transparent */
+            color: white;
+            padding: 20px 0;
+            text-align: center;
+            position: relative;
+            z-index: 1000;
+            box-shadow: 0 -4px 8px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Nouveaux styles pour les boutons de navigation */
+        .floating-buttons {
+            position: fixed;
+            top: 50%;
+            right: 20px; /* Ajuste la position latérale */
+            transform: translateY(-50%);
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            z-index: 2000; /* Au-dessus de tout le reste */
+        }
+
+        .floating-buttons a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 50px; /* Taille des boutons */
+            height: 50px;
+            background-color: rgba(255, 204, 0, 0.8); /* Fond jaune transparent */
+            color: #1a1a2e; /* Texte/icône en couleur sombre */
+            border-radius: 50%; /* Boutons ronds */
+            text-decoration: none;
+            font-size: 1.5em;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .floating-buttons a:hover {
+            background-color: #ffcc00; /* Jaune solide au survol */
+            transform: scale(1.1);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.4);
+        }
+
+        .floating-buttons a .tooltip {
+            visibility: hidden;
+            width: 120px;
+            background-color: rgba(0, 0, 0, 0.7);
+            color: #fff;
+            text-align: center;
+            border-radius: 6px;
+            padding: 5px 0;
+            position: absolute;
+            z-index: 1;
+            right: 60px; /* Positionne le tooltip à gauche du bouton */
+            opacity: 0;
+            transition: opacity 0.3s;
+            font-size: 0.8em;
+            white-space: nowrap; /* Empêche le texte de se casser */
+        }
+
+        .floating-buttons a:hover .tooltip {
+            visibility: visible;
+            opacity: 1;
+        }
+
+        /* Responsive pour les boutons flottants */
+        @media (max-width: 768px) {
+            .floating-buttons {
+                flex-direction: row; /* Les boutons s'alignent horizontalement */
+                width: 90%;
+                left: 50%;
+                transform: translateX(-50%);
+                bottom: 20px; /* En bas sur mobile */
+                top: unset; /* Annule le top */
+                right: unset; /* Annule le right */
+                justify-content: space-around; /* Espace les boutons */
+                background-color: rgba(0, 0, 0, 0.6);
+                padding: 10px 0;
+                border-radius: 10px;
+            }
+
+            .floating-buttons a {
+                width: 45px;
+                height: 45px;
+                font-size: 1.3em;
+            }
+
+            .floating-buttons a .tooltip {
+                display: none; /* Cache les tooltips sur mobile */
+            }
+        }
     </style>
 </head>
 <body>
+
+    <div class="cloud-container">
+        <div class="cloud large"></div>
+        <div class="cloud medium"></div>
+        <div class="cloud small"></div>
+        <div class="cloud large" style="left: 60%; top: 20%; animation-delay: 20s;"></div>
+        <div class="cloud medium" style="left: 70%; top: 50%; animation-delay: 25s;"></div>
+    </div>
+
+    <div class="stars">
+        <div class="star"></div>
+        <div class="star"></div>
+        <div class="star"></div>
+        <div class="star"></div>
+        <div class="star"></div>
+        <div class="star"></div>
+        <div class="star"></div>
+        <div class="star"></div>
+        <div class="star"></div>
+        <div class="star"></div>
+        <div class="star"></div>
+        <div class="star"></div>
+        <div class="star"></div>
+        <div class="star"></div>
+        <div class="star"></div>
+    </div>
 
     <header>
         <div class="container navbar">
@@ -218,12 +469,11 @@
                 <i class="fas fa-bars"></i>
             </div>
             <ul class="nav-menu" id="nav-links">
-                <li><a href="#dashboard">Tableau de bord</a></li>
-                <li><a href="#about">À propos</a></li>
+                <li><a href="#about-cinexau">À propos</a></li>
                 <li><a href="#services">Services</a></li>
-                <li><a href="#contact">Nous contacter</a></li>
+                <li><a href="#why-choose-us">Pourquoi nous choisir</a></li>
                 <li><a href="#faq">FAQ</a></li>
-            </ul>
+                </ul>
         </div>
     </header>
 
@@ -345,6 +595,29 @@
         </div>
     </footer>
 
+    <div class="floating-buttons">
+        <a href="#about-cinexau">
+            <i class="fas fa-info-circle"></i>
+            <span class="tooltip">À propos</span>
+        </a>
+        <a href="#services">
+            <i class="fas fa-tools"></i>
+            <span class="tooltip">Services</span>
+        </a>
+        <a href="#why-choose-us">
+            <i class="fas fa-question-circle"></i>
+            <span class="tooltip">Pourquoi nous choisir</span>
+        </a>
+        <a href="#faq">
+            <i class="fas fa-comment-dots"></i>
+            <span class="tooltip">FAQ</span>
+        </a>
+        <a href="#contact-section-placeholder"> <i class="fas fa-envelope"></i>
+            <span class="tooltip">Nous contacter</span>
+        </a>
+    </div>
+
+
     <script>
         // JavaScript pour le menu hamburger et les FAQ
         const hamburgerIcon = document.getElementById('hamburger-icon');
@@ -369,11 +642,23 @@
                 const faqItem = question.closest('.faq-item');
                 faqItem.classList.toggle('active');
                 const faqAnswer = faqItem.querySelector('.faq-answer');
+                // La logique pour afficher/masquer est déjà bonne, je l'ai juste laissée telle quelle
                 if (faqAnswer.style.display === 'block') {
                     faqAnswer.style.display = 'none';
                 } else {
                     faqAnswer.style.display = 'block';
                 }
+            });
+        });
+
+        // Correction pour les liens de navigation flottants (défilement doux)
+        document.querySelectorAll('.floating-buttons a').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
             });
         });
     </script>
