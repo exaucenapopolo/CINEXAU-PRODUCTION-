@@ -1,667 +1,331 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CINEXAU PRODUCTION - Accompagnement artistique</title>
-    <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <style>
-        /* Styles de base - tu pourrais les avoir dans ton fichier style.css */
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            background-color: #f4f4f4; /* Exemple de couleur de fond */
-            color: #333;
-            /* Nouveau : Arrière-plan avec dégradé sombre */
-            background: linear-gradient(to bottom, #1a1a2e, #16213e, #0f3460);
-            min-height: 100vh; /* S'assure que le dégradé couvre toute la hauteur */
-            overflow-x: hidden; /* Empêche le défilement horizontal dû aux nuages */
-            position: relative; /* Pour positionner les éléments enfants */
-        }
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CINEXAU PRODUCTION - Accompagnement artistique</title>
 
-        /* Styles pour les nuages */
-        .cloud-container {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            overflow: hidden;
-            pointer-events: none; /* Permet de cliquer à travers */
-        }
+  <!-- Lien vers notre feuille de styles externe -->
+  <link rel="stylesheet" href="style.css" />
 
-        .cloud {
-            position: absolute;
-            background: rgba(255, 255, 255, 0.1); /* Nuages plus sombres */
-            border-radius: 50%;
-            animation: moveClouds linear infinite;
-        }
-
-        .cloud.large {
-            width: 300px;
-            height: 150px;
-            opacity: 0.2;
-            top: 10%;
-            left: -10%;
-            animation-duration: 40s;
-            animation-delay: 0s;
-        }
-
-        .cloud.medium {
-            width: 200px;
-            height: 100px;
-            opacity: 0.15;
-            top: 40%;
-            left: -20%;
-            animation-duration: 50s;
-            animation-delay: 5s;
-        }
-
-        .cloud.small {
-            width: 150px;
-            height: 75px;
-            opacity: 0.1;
-            top: 70%;
-            left: -5%;
-            animation-duration: 60s;
-            animation-delay: 10s;
-        }
-
-        @keyframes moveClouds {
-            0% { transform: translateX(0); }
-            100% { transform: translateX(calc(100vw + 300px)); } /* Déplace les nuages à travers l'écran */
-        }
-
-        /* Styles pour les étoiles */
-        .stars {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: transparent;
-            pointer-events: none;
-            z-index: -1; /* Derrière tout le contenu */
-            overflow: hidden;
-        }
-
-        .star {
-            position: absolute;
-            background: #fff; /* Couleur des étoiles */
-            border-radius: 50%;
-            animation: twinkle ease-in-out infinite;
-        }
-
-        /* Génération d'étoiles (JavaScript serait plus efficace pour des millions) */
-        /* Pour l'exemple, on en met quelques-unes manuellement */
-        .star:nth-child(1) { top: 10%; left: 20%; width: 2px; height: 2px; animation-delay: 0s; animation-duration: 4s;}
-        .star:nth-child(2) { top: 5%; left: 50%; width: 1px; height: 1px; animation-delay: 1s; animation-duration: 5s;}
-        .star:nth-child(3) { top: 15%; left: 80%; width: 3px; height: 3px; animation-delay: 2s; animation-duration: 3s;}
-        .star:nth-child(4) { top: 30%; left: 10%; width: 2px; height: 2px; animation-delay: 3s; animation-duration: 4.5s;}
-        .star:nth-child(5) { top: 25%; left: 60%; width: 1px; height: 1px; animation-delay: 0.5s; animation-duration: 3.8s;}
-        .star:nth-child(6) { top: 40%; left: 90%; width: 2px; height: 2px; animation-delay: 1.5s; animation-duration: 4.2s;}
-        .star:nth-child(7) { top: 50%; left: 30%; width: 1px; height: 1px; animation-delay: 2.5s; animation-duration: 3.5s;}
-        .star:nth-child(8) { top: 60%; left: 70%; width: 3px; height: 3px; animation-delay: 0s; animation-duration: 4.8s;}
-        .star:nth-child(9) { top: 75%; left: 40%; width: 2px; height: 2px; animation-delay: 1s; animation-duration: 5.2s;}
-        .star:nth-child(10) { top: 85%; left: 5%; width: 1px; height: 1px; animation-delay: 2s; animation-duration: 3.9s;}
-        .star:nth-child(11) { top: 90%; left: 95%; width: 2px; height: 2px; animation-delay: 0.8s; animation-duration: 4.1s;}
-        .star:nth-child(12) { top: 70%; left: 25%; width: 1px; height: 1px; animation-delay: 1.2s; animation-duration: 3.7s;}
-        .star:nth-child(13) { top: 80%; left: 65%; width: 3px; height: 3px; animation-delay: 2.3s; animation-duration: 4.6s;}
-        .star:nth-child(14) { top: 35%; left: 85%; width: 2px; height: 2px; animation-delay: 0.4s; animation-duration: 4.3s;}
-        .star:nth-child(15) { top: 45%; left: 5%; width: 1px; height: 1px; animation-delay: 1.7s; animation-duration: 3.6s;}
-
-
-        @keyframes twinkle {
-            0%, 100% { opacity: 0.5; transform: scale(1); }
-            50% { opacity: 1; transform: scale(1.2); }
-        }
-
-
-        .container {
-            width: 90%;
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 20px 0;
-            position: relative; /* Pour que le contenu soit au-dessus des nuages/étoiles */
-            z-index: 1; /* Assure que le contenu est au-dessus */
-        }
-
-        /* Styles pour l'en-tête */
-        header {
-            background-color: rgba(0, 0, 0, 0.5); /* Couleur de fond de ton choix, légèrement transparente */
-            color: white;
-            padding: 15px 0;
-            position: relative;
-            z-index: 1000;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); /* Ombre pour la profondeur */
-        }
-
-        .navbar {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .logo {
-            font-size: 2em;
-            font-weight: bold;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            color: white; /* S'assure que le logo est visible */
-        }
-
-        .logo i {
-            color: #ffcc00; /* Couleur de ton choix pour l'icône */
-        }
-
-        .hamburger-menu {
-            display: none; /* Masqué par défaut sur les grands écrans */
-            font-size: 2em;
-            cursor: pointer;
-            color: white;
-        }
-
-        .nav-menu {
-            list-style: none;
-            padding: 0;
-            margin: 0;
-            display: flex; /* Affiché par défaut sur les grands écrans */
-        }
-
-        .nav-menu li {
-            margin-left: 25px;
-        }
-
-        .nav-menu a {
-            color: white;
-            text-decoration: none;
-            font-weight: bold;
-            transition: color 0.3s ease;
-        }
-
-        .nav-menu a:hover {
-            color: #ffcc00; /* Couleur de survol de ton choix */
-        }
-
-        /* Styles pour le menu hamburger (responsive) */
-        @media (max-width: 768px) {
-            .hamburger-menu {
-                display: block; /* Affiché sur les petits écrans */
-            }
-
-            .nav-menu {
-                display: none; /* Masqué par défaut */
-                flex-direction: column;
-                background-color: rgba(0, 0, 0, 0.7); /* Fond du menu déroulant plus sombre */
-                position: absolute;
-                top: 70px; /* Ajuste selon la hauteur de ton header */
-                right: 0;
-                width: 100%;
-                text-align: center;
-                box-shadow: 0 8px 16px rgba(0,0,0,0.4);
-            }
-
-            .nav-menu.active {
-                display: flex; /* Affiché quand la classe 'active' est ajoutée par JS */
-            }
-
-            .nav-menu li {
-                margin: 10px 0;
-            }
-        }
-
-        /* Styles des sections générales */
-        section {
-            padding: 60px 0;
-            text-align: center;
-            color: white; /* Texte des sections en blanc */
-            position: relative;
-            z-index: 1; /* Assure que le contenu est au-dessus */
-        }
-
-        section h2 {
-            font-size: 2.5em;
-            margin-bottom: 40px;
-            color: #ffcc00; /* Titres en couleur pour ressortir */
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
-        }
-
-        /* Styles pour la section Services */
-        .services-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 30px;
-            margin-top: 40px;
-        }
-
-        .service-item {
-            background-color: rgba(255, 255, 255, 0.1); /* Fond légèrement transparent */
-            padding: 30px;
-            border-radius: 8px;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
-            transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease;
-            text-align: left;
-            border: 1px solid rgba(255, 255, 255, 0.05); /* Bordure subtile */
-            color: white; /* Texte du service en blanc */
-        }
-
-        .service-item:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 8px 16px rgba(0,0,0,0.4);
-            background-color: rgba(255, 255, 255, 0.2); /* Plus opaque au survol */
-        }
-
-        .service-item i {
-            font-size: 3em;
-            color: #ffcc00; /* Couleur des icônes de service */
-            margin-bottom: 15px;
-            display: block; /* Pour centrer si besoin */
-        }
-
-        .service-item h3 {
-            font-size: 1.5em;
-            margin-bottom: 10px;
-            color: #ffcc00; /* Titres de service en jaune */
-        }
-
-        .service-item p {
-            font-size: 1em;
-            line-height: 1.6;
-            color: #e0e0e0; /* Texte des paragraphes plus clair */
-        }
-
-        /* Styles pour les sections "Pourquoi nous choisir" et "Qu'est-ce que CINEXAU PRODUCTION" */
-        .text-content {
-            max-width: 800px;
-            margin: 0 auto;
-            line-height: 1.8;
-            text-align: justify;
-            color: #e0e0e0; /* Texte des paragraphes plus clair */
-        }
-
-        .text-content p {
-            margin-bottom: 20px;
-            color: #e0e0e0;
-        }
-
-        /* Styles pour la section FAQ */
-        .faq-item {
-            background-color: rgba(255, 255, 255, 0.1);
-            margin-bottom: 20px;
-            border-radius: 8px;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-            text-align: left;
-            border: 1px solid rgba(255, 255, 255, 0.05);
-            color: white;
-        }
-
-        .faq-question {
-            padding: 20px;
-            cursor: pointer;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            font-weight: bold;
-            color: #ffcc00; /* Question en jaune */
-            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-            transition: background-color 0.3s ease;
-        }
-
-        .faq-question:hover {
-            background-color: rgba(255, 255, 255, 0.05);
-        }
-
-        .faq-question i {
-            transition: transform 0.3s ease;
-            color: #ffcc00;
-        }
-
-        .faq-answer {
-            padding: 0 20px 20px 20px;
-            display: none; /* Masqué par défaut */
-            color: #e0e0e0;
-            line-height: 1.6;
-        }
-
-        .faq-item.active .faq-question i {
-            transform: rotate(180deg);
-        }
-
-        hr {
-            border: none;
-            border-top: 1px dashed rgba(255, 255, 255, 0.2); /* Ligne de séparation plus subtile */
-            margin: 60px auto;
-            width: 80%;
-        }
-
-        footer {
-            background-color: rgba(0, 0, 0, 0.5); /* Pied de page légèrement transparent */
-            color: white;
-            padding: 20px 0;
-            text-align: center;
-            position: relative;
-            z-index: 1000;
-            box-shadow: 0 -4px 8px rgba(0, 0, 0, 0.3);
-        }
-
-        /* Nouveaux styles pour les boutons de navigation */
-        .floating-buttons {
-            position: fixed;
-            top: 50%;
-            right: 20px; /* Ajuste la position latérale */
-            transform: translateY(-50%);
-            display: flex;
-            flex-direction: column;
-            gap: 15px;
-            z-index: 2000; /* Au-dessus de tout le reste */
-        }
-
-        .floating-buttons a {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            width: 50px; /* Taille des boutons */
-            height: 50px;
-            background-color: rgba(255, 204, 0, 0.8); /* Fond jaune transparent */
-            color: #1a1a2e; /* Texte/icône en couleur sombre */
-            border-radius: 50%; /* Boutons ronds */
-            text-decoration: none;
-            font-size: 1.5em;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
-            transition: all 0.3s ease;
-            position: relative;
-        }
-
-        .floating-buttons a:hover {
-            background-color: #ffcc00; /* Jaune solide au survol */
-            transform: scale(1.1);
-            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.4);
-        }
-
-        .floating-buttons a .tooltip {
-            visibility: hidden;
-            width: 120px;
-            background-color: rgba(0, 0, 0, 0.7);
-            color: #fff;
-            text-align: center;
-            border-radius: 6px;
-            padding: 5px 0;
-            position: absolute;
-            z-index: 1;
-            right: 60px; /* Positionne le tooltip à gauche du bouton */
-            opacity: 0;
-            transition: opacity 0.3s;
-            font-size: 0.8em;
-            white-space: nowrap; /* Empêche le texte de se casser */
-        }
-
-        .floating-buttons a:hover .tooltip {
-            visibility: visible;
-            opacity: 1;
-        }
-
-        /* Responsive pour les boutons flottants */
-        @media (max-width: 768px) {
-            .floating-buttons {
-                flex-direction: row; /* Les boutons s'alignent horizontalement */
-                width: 90%;
-                left: 50%;
-                transform: translateX(-50%);
-                bottom: 20px; /* En bas sur mobile */
-                top: unset; /* Annule le top */
-                right: unset; /* Annule le right */
-                justify-content: space-around; /* Espace les boutons */
-                background-color: rgba(0, 0, 0, 0.6);
-                padding: 10px 0;
-                border-radius: 10px;
-            }
-
-            .floating-buttons a {
-                width: 45px;
-                height: 45px;
-                font-size: 1.3em;
-            }
-
-            .floating-buttons a .tooltip {
-                display: none; /* Cache les tooltips sur mobile */
-            }
-        }
-    </style>
+  <!-- Font Awesome pour les icônes -->
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+    integrity="sha512-Fo3rlrQdP2XLuXE/..." 
+    crossorigin="anonymous"
+    referrerpolicy="no-referrer"
+  />
 </head>
 <body>
+  <!-- 
+    Conteneur d’arrière‑plan animé : 
+    étoile (via pseudo‑éléments ::before/::after) + nuages générés en JavaScript 
+  -->
+  <div class="background-animation"></div>
 
-    <div class="cloud-container">
-        <div class="cloud large"></div>
-        <div class="cloud medium"></div>
-        <div class="cloud small"></div>
-        <div class="cloud large" style="left: 60%; top: 20%; animation-delay: 20s;"></div>
-        <div class="cloud medium" style="left: 70%; top: 50%; animation-delay: 25s;"></div>
+  <!-- =============================
+       En‑tête / Navigation
+       ============================= -->
+  <header>
+    <div class="logo">
+      <i class="fas fa-compact-disc"></i>
+      CINEXAU PRODUCTION
     </div>
 
-    <div class="stars">
-        <div class="star"></div>
-        <div class="star"></div>
-        <div class="star"></div>
-        <div class="star"></div>
-        <div class="star"></div>
-        <div class="star"></div>
-        <div class="star"></div>
-        <div class="star"></div>
-        <div class="star"></div>
-        <div class="star"></div>
-        <div class="star"></div>
-        <div class="star"></div>
-        <div class="star"></div>
-        <div class="star"></div>
-        <div class="star"></div>
+    <!-- Icône hamburger (affichée en <768px) -->
+    <div class="hamburger-menu" id="hamburger-icon">
+      <i class="fas fa-bars"></i>
     </div>
 
-    <header>
-        <div class="container navbar">
-            <div class="logo">
-                <i class="fas fa-compact-disc"></i> CINEXAU PRODUCTION
-            </div>
-            <div class="hamburger-menu" id="hamburger-icon">
-                <i class="fas fa-bars"></i>
-            </div>
-            <ul class="nav-menu" id="nav-links">
-                <li><a href="#about-cinexau">À propos</a></li>
-                <li><a href="#services">Services</a></li>
-                <li><a href="#why-choose-us">Pourquoi nous choisir</a></li>
-                <li><a href="#faq">FAQ</a></li>
-                </ul>
+    <nav>
+      <ul id="nav-links">
+        <li><a href="#about-cinexau">À propos</a></li>
+        <li><a href="#services">Services</a></li>
+        <li><a href="#why-choose-us">Pourquoi nous choisir</a></li>
+        <li><a href="#faq">FAQ</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <!-- =============================
+       Contenu principal
+       ============================= -->
+  <main>
+    <!-- ——— Section « À propos » ——— -->
+    <section id="about-cinexau" class="container">
+      <h2>Qu'est-ce que CINEXAU PRODUCTION ?</h2>
+      <div class="text-content">
+        <p>
+          CINEXAU PRODUCTION est un label de production musicale dédié à la
+          découverte, au développement et à l'accompagnement des jeunes
+          talents dans l'industrie musicale. Nous croyons au potentiel de chaque
+          artiste et nous engageons à leur fournir les outils et le soutien
+          nécessaires pour transformer leur passion en une carrière
+          professionnelle réussie.
+        </p>
+        <p>
+          Notre mission est de démystifier le monde de la production musicale et
+          d'offrir un environnement où la créativité peut s'épanouir. De la
+          première note à la distribution finale, nous sommes à vos côtés pour
+          chaque étape de votre parcours artistique. Nous sommes plus qu'un
+          label, nous sommes une famille qui bâtit l'avenir de la musique avec
+          vous.
+        </p>
+      </div>
+    </section>
+
+    <hr />
+
+    <!-- ——— Section « Nos Services » ——— -->
+    <section id="services" class="container">
+      <h2>Nos Services</h2>
+      <!-- On peut garder ici la grille ou la liste que vous souhaitiez -->
+      <div class="services-grid">
+        <div class="service-item">
+          <i class="fas fa-globe"></i>
+          <h3>Distribution Digitale</h3>
+          <p>
+            Nous assurons la distribution de votre musique sur toutes les
+            plateformes de streaming et de téléchargement mondiales (Spotify,
+            Apple Music, Deezer, YouTube Music, etc.), maximisant ainsi votre
+            portée et vos revenus. Nous gérons également les droits d'auteur
+            et les redevances.
+          </p>
         </div>
-    </header>
-
-    <main>
-        <section id="about-cinexau" class="container">
-            <h2>Qu'est-ce que CINEXAU PRODUCTION ?</h2>
-            <div class="text-content">
-                <p>CINEXAU PRODUCTION est un label de production musicale dédié à la découverte, au développement et à l'accompagnement des jeunes talents dans l'industrie musicale. Nous croyons au potentiel de chaque artiste et nous engageons à leur fournir les outils et le soutien nécessaires pour transformer leur passion en une carrière professionnelle réussie.</p>
-                <p>Notre mission est de démystifier le monde de la production musicale et d'offrir un environnement où la créativité peut s'épanouir. De la première note à la distribution finale, nous sommes à vos côtés pour chaque étape de votre parcours artistique. Nous sommes plus qu'un label, nous sommes une famille qui bâtit l'avenir de la musique avec vous.</p>
-            </div>
-        </section>
-
-        <hr>
-
-        <section id="services" class="container">
-            <h2>Nos Services</h2>
-            <div class="services-grid">
-                <div class="service-item">
-                    <i class="fas fa-globe"></i>
-                    <h3>Distribution Digitale</h3>
-                    <p>Nous assurons la distribution de votre musique sur toutes les plateformes de streaming et de téléchargement mondiales (Spotify, Apple Music, Deezer, YouTube Music, etc.), maximisant ainsi votre portée et vos revenus. Nous gérons également les droits d'auteur et les redevances.</p>
-                </div>
-                <div class="service-item">
-                    <i class="fas fa-microphone-alt"></i>
-                    <h3>Enregistrement & Mixage</h3>
-                    <p>Profitez de nos studios équipés et de nos ingénieurs du son expérimentés pour enregistrer vos titres. Nous offrons des services de mixage et de mastering professionnels pour garantir un son de haute qualité qui se démarque.</p>
-                </div>
-                <div class="service-item">
-                    <i class="fas fa-users"></i>
-                    <h3>Accompagnement Artistique</h3>
-                    <p>Un soutien personnalisé pour développer votre projet musical, votre image de marque, votre stratégie de communication et votre présence sur les réseaux sociaux. Nous vous aidons à bâtir une carrière solide et durable.</p>
-                </div>
-                <div class="service-item">
-                    <i class="fas fa-camera-retro"></i>
-                    <h3>Production Audiovisuelle</h3>
-                    <p>Création de clips vidéo, de visuels promotionnels et de contenus multimédias professionnels pour accompagner la sortie de vos titres et renforcer votre identité artistique.</p>
-                </div>
-                <div class="service-item">
-                    <i class="fas fa-scroll"></i>
-                    <h3>Gestion des Droits</h3>
-                    <p>Nous gérons la protection et l'administration de vos droits d'auteur et droits voisins, en veillant à ce que vous perceviez toutes les redevances dues pour l'utilisation de votre musique.</p>
-                </div>
-                <div class="service-item">
-                    <i class="fas fa-project-diagram"></i>
-                    <h3>Stratégie de Carrière</h3>
-                    <p>Développement d'un plan de carrière sur mesure, incluant le positionnement artistique, la planification des sorties, et les opportunités de collaboration et de développement.</p>
-                </div>
-            </div>
-        </section>
-
-        <hr>
-
-        <section id="why-choose-us" class="container">
-            <h2>Pourquoi choisir CINEXAU PRODUCTION ?</h2>
-            <div class="text-content">
-                <p>Chez CINEXAU PRODUCTION, nous ne sommes pas qu'un simple label ; nous sommes des partenaires dédiés à votre succès. Notre approche personnalisée assure que chaque artiste reçoit l'attention et les ressources nécessaires pour atteindre son plein potentiel. Nous combinons l'expertise de l'industrie avec une passion sincère pour la musique, créant un environnement propice à l'innovation et à l'épanouissement artistique.</p>
-                <p>Notre engagement se reflète dans notre transparence, notre éthique de travail rigoureuse et notre capacité à nous adapter aux évolutions du marché musical. En choisissant CINEXAU PRODUCTION, vous optez pour un accompagnement complet, des conseils avisés et une équipe qui croit en vous et en votre art.</p>
-            </div>
-        </section>
-
-        <hr>
-
-        <section id="faq" class="container">
-            <h2>Questions Fréquemment Posées</h2>
-            <div class="faq-container">
-                <div class="faq-item">
-                    <div class="faq-question">
-                        <span>Comment puis-je soumettre ma musique à CINEXAU PRODUCTION ?</span>
-                        <i class="fas fa-chevron-down"></i>
-                    </div>
-                    <div class="faq-answer">
-                        <p>Nous acceptons les soumissions via notre page de contact. Veuillez inclure des liens vers vos morceaux (SoundCloud, YouTube, etc.) et une brève présentation de votre projet artistique. Nous écoutons attentivement chaque soumission et vous recontacterons si votre profil correspond à nos critères.</p>
-                    </div>
-                </div>
-                <div class="faq-item">
-                    <div class="faq-question">
-                        <span>Quels genres musicaux accompagnez-vous ?</span>
-                        <i class="fas fa-chevron-down"></i>
-                    </div>
-                    <div class="faq-answer">
-                        <p>CINEXAU PRODUCTION est ouvert à tous les genres musicaux, du R&B au Hip-hop, en passant par l'Afrobeat, la pop, le rock et bien d'autres. Notre priorité est le talent et l'originalité, quelle que soit la couleur musicale.</p>
-                    </div>
-                </div>
-                <div class="faq-item">
-                    <div class="faq-question">
-                        <span>Offrez-vous un accompagnement pour les artistes débutants ?</span>
-                        <i class="fas fa-chevron-down"></i>
-                    </div>
-                    <div class="faq-answer">
-                        <p>Absolument ! Notre mission principale est d'accompagner les jeunes artistes, qu'ils soient débutants ou en développement. Nous adaptons nos services à votre niveau et à vos besoins spécifiques pour vous aider à progresser.</p>
-                    </div>
-                </div>
-                <div class="faq-item">
-                    <div class="faq-question">
-                        <span>Comment sont gérés les droits d'auteur et les redevances ?</span>
-                        <i class="fas fa-chevron-down"></i>
-                    </div>
-                    <div class="faq-answer">
-                        <p>Nous nous occupons de l'enregistrement de vos œuvres auprès des sociétés de gestion des droits (comme la SACEM) et assurons le suivi de toutes les redevances générées par la distribution de votre musique. Nous sommes transparents sur la répartition des revenus et vous fournissons des rapports détaillés.</p>
-                    </div>
-                </div>
-                 <div class="faq-item">
-                    <div class="faq-question">
-                        <span>Puis-je garder le contrôle créatif sur ma musique ?</span>
-                        <i class="fas fa-chevron-down"></i>
-                    </div>
-                    <div class="faq-answer">
-                        <p>Oui, votre liberté artistique est primordiale pour nous. Nous sommes là pour vous guider et vous conseiller, mais la vision créative de votre musique reste entre vos mains. Nous collaborons étroitement avec vous pour réaliser votre vision tout en l'optimisant pour le marché.</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-    </main>
-
-    <footer>
-        <div class="container">
-            <p>&copy; 2025 CINEXAU PRODUCTION. Tous droits réservés.</p>
+        <div class="service-item">
+          <i class="fas fa-microphone-alt"></i>
+          <h3>Enregistrement &amp; Mixage</h3>
+          <p>
+            Profitez de nos studios équipés et de nos ingénieurs du son
+            expérimentés pour enregistrer vos titres. Nous offrons des services
+            de mixage et de mastering professionnels pour garantir un son de
+            haute qualité qui se démarque.
+          </p>
         </div>
-    </footer>
+        <div class="service-item">
+          <i class="fas fa-users"></i>
+          <h3>Accompagnement Artistique</h3>
+          <p>
+            Un soutien personnalisé pour développer votre projet musical,
+            votre image de marque, votre stratégie de communication et votre
+            présence sur les réseaux sociaux. Nous vous aidons à bâtir une
+            carrière solide et durable.
+          </p>
+        </div>
+        <div class="service-item">
+          <i class="fas fa-camera-retro"></i>
+          <h3>Production Audiovisuelle</h3>
+          <p>
+            Création de clips vidéo, de visuels promotionnels et de contenus
+            multimédias professionnels pour accompagner la sortie de vos titres
+            et renforcer votre identité artistique.
+          </p>
+        </div>
+        <div class="service-item">
+          <i class="fas fa-scroll"></i>
+          <h3>Gestion des Droits</h3>
+          <p>
+            Nous gérons la protection et l'administration de vos droits
+            d'auteur et droits voisins, en veillant à ce que vous perceviez
+            toutes les redevances dues pour l'utilisation de votre musique.
+          </p>
+        </div>
+        <div class="service-item">
+          <i class="fas fa-project-diagram"></i>
+          <h3>Stratégie de Carrière</h3>
+          <p>
+            Développement d'un plan de carrière sur mesure, incluant le
+            positionnement artistique, la planification des sorties, et les
+            opportunités de collaboration et de développement.
+          </p>
+        </div>
+      </div>
+    </section>
 
-    <div class="floating-buttons">
-        <a href="#about-cinexau">
-            <i class="fas fa-info-circle"></i>
-            <span class="tooltip">À propos</span>
-        </a>
-        <a href="#services">
-            <i class="fas fa-tools"></i>
-            <span class="tooltip">Services</span>
-        </a>
-        <a href="#why-choose-us">
-            <i class="fas fa-question-circle"></i>
-            <span class="tooltip">Pourquoi nous choisir</span>
-        </a>
-        <a href="#faq">
-            <i class="fas fa-comment-dots"></i>
-            <span class="tooltip">FAQ</span>
-        </a>
-        <a href="#contact-section-placeholder"> <i class="fas fa-envelope"></i>
-            <span class="tooltip">Nous contacter</span>
-        </a>
+    <hr />
+
+    <!-- ——— Section « Pourquoi nous choisir » ——— -->
+    <section id="why-choose-us" class="container">
+      <h2>Pourquoi choisir CINEXAU PRODUCTION ?</h2>
+      <div class="text-content">
+        <p>
+          Chez CINEXAU PRODUCTION, nous ne sommes pas qu'un simple label ; nous
+          sommes des partenaires dédiés à votre succès. Notre approche
+          personnalisée assure que chaque artiste reçoit l'attention et les
+          ressources nécessaires pour atteindre son plein potentiel. Nous
+          combinons l'expertise de l'industrie avec une passion sincère pour
+          la musique, créant un environnement propice à l'innovation et à
+          l'épanouissement artistique.
+        </p>
+        <p>
+          Notre engagement se reflète dans notre transparence, notre éthique de
+          travail rigoureuse et notre capacité à nous adapter aux évolutions du
+          marché musical. En choisissant CINEXAU PRODUCTION, vous optez pour
+          un accompagnement complet, des conseils avisés et une équipe qui
+          croit en vous et en votre art.
+        </p>
+      </div>
+    </section>
+
+    <hr />
+
+    <!-- ——— Section « FAQ » ——— -->
+    <section id="faq" class="container">
+      <h2>Questions Fréquemment Posées</h2>
+      <div class="faq-container">
+        <div class="faq-item">
+          <div class="faq-question">
+            <span>Comment puis-je soumettre ma musique à CINEXAU PRODUCTION ?</span>
+            <i class="fas fa-chevron-down"></i>
+          </div>
+          <div class="faq-answer">
+            <p>
+              Nous acceptons les soumissions via notre page de contact. Veuillez
+              inclure des liens vers vos morceaux (SoundCloud, YouTube, etc.)
+              et une brève présentation de votre projet artistique. Nous
+              écoutons attentivement chaque soumission et vous recontacterons
+              si votre profil correspond à nos critères.
+            </p>
+          </div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-question">
+            <span>Quels genres musicaux accompagnez-vous ?</span>
+            <i class="fas fa-chevron-down"></i>
+          </div>
+          <div class="faq-answer">
+            <p>
+              CINEXAU PRODUCTION est ouvert à tous les genres musicaux, du R&amp;B
+              au Hip-hop, en passant par l'Afrobeat, la pop, le rock et bien
+              d'autres. Notre priorité est le talent et l'originalité, quelle
+              que soit la couleur musicale.
+            </p>
+          </div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-question">
+            <span>Offrez-vous un accompagnement pour les artistes débutants ?</span>
+            <i class="fas fa-chevron-down"></i>
+          </div>
+          <div class="faq-answer">
+            <p>
+              Absolument ! Notre mission principale est d'accompagner les jeunes
+              artistes, qu'ils soient débutants ou en développement. Nous
+              adaptons nos services à votre niveau et à vos besoins spécifiques
+              pour vous aider à progresser.
+            </p>
+          </div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-question">
+            <span>Comment sont gérés les droits d'auteur et les redevances ?</span>
+            <i class="fas fa-chevron-down"></i>
+          </div>
+          <div class="faq-answer">
+            <p>
+              Nous nous occupons de l'enregistrement de vos œuvres auprès des
+              sociétés de gestion des droits (comme la SACEM) et assurons le suivi
+              de toutes les redevances générées par la distribution de votre
+              musique. Nous sommes transparents sur la répartition des revenus et
+              vous fournissons des rapports détaillés.
+            </p>
+          </div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-question">
+            <span>Puis-je garder le contrôle créatif sur ma musique ?</span>
+            <i class="fas fa-chevron-down"></i>
+          </div>
+          <div class="faq-answer">
+            <p>
+              Oui, votre liberté artistique est primordiale pour nous. Nous sommes
+              là pour vous guider et vous conseiller, mais la vision créative de
+              votre musique reste entre vos mains. Nous collaborons étroitement
+              avec vous pour réaliser votre vision tout en l’optimisant pour le
+              marché.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- =============================
+       Pied de page
+       ============================= -->
+  <footer>
+    <div class="container">
+      <p>&copy; 2025 CINEXAU PRODUCTION. Tous droits réservés.</p>
     </div>
+  </footer>
 
+  <!-- =============================
+       Boutons flottants
+       ============================= -->
+  <div class="floating-buttons">
+    <a href="#about-cinexau">
+      <i class="fas fa-info-circle"></i>
+      <span class="tooltip">À propos</span>
+    </a>
+    <a href="#services">
+      <i class="fas fa-tools"></i>
+      <span class="tooltip">Services</span>
+    </a>
+    <a href="#why-choose-us">
+      <i class="fas fa-question-circle"></i>
+      <span class="tooltip">Pourquoi nous choisir</span>
+    </a>
+    <a href="#faq">
+      <i class="fas fa-comment-dots"></i>
+      <span class="tooltip">FAQ</span>
+    </a>
+    <a href="#contact-section-placeholder">
+      <i class="fas fa-envelope"></i>
+      <span class="tooltip">Nous contacter</span>
+    </a>
+  </div>
 
-    <script>
-        // JavaScript pour le menu hamburger et les FAQ
-        const hamburgerIcon = document.getElementById('hamburger-icon');
-        const navLinks = document.getElementById('nav-links');
+  <!-- =============================
+       JavaScript (menu responsive + FAQ)
+       ============================= -->
+  <script>
+    // Afficher / masquer le menu hamburger
+    const hamburgerIcon = document.getElementById('hamburger-icon');
+    const navLinks       = document.getElementById('nav-links');
 
-        hamburgerIcon.addEventListener('click', () => {
-            navLinks.classList.toggle('active');
-        });
+    hamburgerIcon.addEventListener('click', () => {
+      navLinks.classList.toggle('active');
+    });
 
-        // Fermer le menu si on clique en dehors (optionnel)
-        document.addEventListener('click', (event) => {
-            if (!navLinks.contains(event.target) && !hamburgerIcon.contains(event.target)) {
-                navLinks.classList.remove('active');
-            }
-        });
+    // Fermer le menu si on clique en dehors
+    document.addEventListener('click', (event) => {
+      if (!navLinks.contains(event.target) && !hamburgerIcon.contains(event.target)) {
+        navLinks.classList.remove('active');
+      }
+    });
 
-        // Gestion des FAQ
-        const faqQuestions = document.querySelectorAll('.faq-question');
+    // Gestion des questions FAQ
+    const faqQuestions = document.querySelectorAll('.faq-question');
 
-        faqQuestions.forEach(question => {
-            question.addEventListener('click', () => {
-                const faqItem = question.closest('.faq-item');
-                faqItem.classList.toggle('active');
-                const faqAnswer = faqItem.querySelector('.faq-answer');
-                // La logique pour afficher/masquer est déjà bonne, je l'ai juste laissée telle quelle
-                if (faqAnswer.style.display === 'block') {
-                    faqAnswer.style.display = 'none';
-                } else {
-                    faqAnswer.style.display = 'block';
-                }
-            });
-        });
+    faqQuestions.forEach((question) => {
+      question.addEventListener('click', () => {
+        const faqItem   = question.closest('.faq-item');
+        const faqAnswer = faqItem.querySelector('.faq-answer');
+        faqItem.classList.toggle('active');
 
-        // Correction pour les liens de navigation flottants (défilement doux)
-        document.querySelectorAll('.floating-buttons a').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
+        if (faqAnswer.style.display === 'block') {
+          faqAnswer.style.display = 'none';
+        } else {
+          faqAnswer.style.display = 'block';
+        }
+      });
+    });
+  </script>
 
-                document.querySelector(this.getAttribute('href')).scrollIntoView({
-                    behavior: 'smooth'
-                });
-            });
-        });
-    </script>
-
+  <!-- =============================
+       Script pour générer les nuages
+       ============================= -->
+  <script src="script.js"></script>
 </body>
 </html>
