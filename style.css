@@ -10,8 +10,8 @@
   --text-dark: #333;             /* Texte sombre (rarement utilisé) */
   --icon-color: #FFA500;         /* Orange pour toutes les icônes */
   --highlight-color: #28a745;    /* Vert pour les titres mis en avant */
-  --floating-bg: #17a2b8;        /* Bleu–turquoise pour les boutons flottants */
-  --floating-hover: #117a8b;     /* Teinte plus foncée pour le survol */
+  --floating-bg: #17a2b8;        /* Bleu‑turquoise pour boutons flottants */
+  --floating-hover: #117a8b;     /* Teinte plus foncée au survol */
 }
 
 /* Polices Google */
@@ -163,11 +163,8 @@ header {
   color: var(--icon-color) !important;
 }
 
-/* Navigation principale (desktop) */
+/* Navigation principale – desktop */
 nav ul {
-  list-style: none;
-  margin: 0;
-  padding: 0;
   display: flex;
   gap: 25px;
 }
@@ -183,28 +180,34 @@ nav ul li a:hover {
   color: var(--button-color);
 }
 
-/* Responsive : basculer la nav en mode hamburger */
+/* Responsive : basculer la nav en mode hamburger <768px */
 @media (max-width: 768px) {
   .hamburger-menu {
     display: block;
   }
-  nav ul {
+
+  /* Cibler explicitement l’ID nav-links */
+  #nav-links {
+    display: none;
+    flex-direction: column;
+    background-color: rgba(0, 0, 0, 0.8);
     position: absolute;
     top: 60px;
     right: 0;
     width: 100%;
-    flex-direction: column;
-    background-color: rgba(0, 0, 0, 0.8);
-    display: none;
     text-align: center;
     padding: 10px 0;
     gap: 15px;
   }
-  nav ul.active {
+  /* Quand on ajoute “active”, on affiche en flex */
+  #nav-links.active {
     display: flex;
   }
-  nav ul li {
+  #nav-links li {
     margin: 0;
+  }
+  #nav-links li a {
+    font-size: 1.1rem;
   }
 }
 
@@ -371,7 +374,7 @@ section h2 {
 }
 
 .faq-answer {
-  display: none;
+  display: none; /* Masquée par défaut */
   padding: 15px 20px;
   background-color: rgba(0, 0, 0, 0.2);
   color: var(--text-light);
@@ -394,7 +397,7 @@ footer {
 }
 
 /* =====================================================
-   Boutons flottants (hébergés en bas à droite)
+   Boutons flottants (bas à droite)
    ===================================================== */
 .floating-buttons {
   position: fixed;

@@ -6,8 +6,8 @@
   <title>CINEXAU PRODUCTION - Accompagnement artistique</title>
 
   <!-- Google Fonts :
-       - Playfair Display (pour les titres)
-       - Roboto (pour le texte courant) -->
+       - Playfair Display pour les titres
+       - Roboto pour le texte courant -->
   <link
     href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Roboto:wght@400;500&display=swap"
     rel="stylesheet"
@@ -309,7 +309,7 @@
   </div>
 
   <!-- ============================
-       Scripts JS
+       Scripts JavaScript
        ============================ -->
   <!-- 1) Accordéon FAQ + menu hamburger -->
   <script>
@@ -321,8 +321,8 @@
 
       faqItems.forEach((item) => {
         const questionBtn = item.querySelector('.faq-question');
-        const answerDiv = item.querySelector('.faq-answer');
-        const icon = item.querySelector('.toggle-icon');
+        const answerDiv   = item.querySelector('.faq-answer');
+        const icon        = item.querySelector('.toggle-icon');
 
         questionBtn.addEventListener('click', () => {
           /* Fermer toutes les autres réponses ouvertes */
@@ -348,7 +348,7 @@
          2) Hamburger menu (mobile)
          ——————————— */
       const hamburgerIcon = document.getElementById('hamburger-icon');
-      const navLinks = document.getElementById('nav-links');
+      const navLinks      = document.getElementById('nav-links');
 
       hamburgerIcon.addEventListener('click', () => {
         navLinks.classList.toggle('active');
