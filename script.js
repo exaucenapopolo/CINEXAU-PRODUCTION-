@@ -1,34 +1,36 @@
 document.addEventListener('DOMContentLoaded', () => {
-    // Sélectionnez tous les éléments que vous souhaitez animer
-    // Par exemple, les sections, les titres, les paragraphes
-    const animatedElements = document.querySelectorAll('#hero, #about, #featured-projects h2, #featured-projects .project-item, footer p');
+    const backgroundAnimation = document.querySelector('.background-animation');
+    const numClouds = 5; // Nombre de nuages à générer
 
-    // Ajoutez la classe 'hidden' à tous les éléments au chargement
-    animatedElements.forEach(element => {
-        element.classList.add('hidden');
-    });
+    function createCloud() {
+        const cloud = document.createElement('div');
+        cloud.classList.add('cloud');
+        
+        // Taille et position aléatoires
+        const size = Math.random() * 100 + 80; // entre 80px et 180px
+        cloud.style.width = `${size}px`;
+        cloud.style.height = `${size * 0.4}px`; // les nuages sont plus larges que hauts
+        
+        const top = Math.random() * 80; // Position verticale aléatoire
+        cloud.style.top = `${top}%`;
+        
+        // Commencer les nuages en dehors de l'écran à gauche
+        const startLeft = -20 - (Math.random() * 30); // Entre -20% et -50%
+        cloud.style.left = `${startLeft}%`;
 
-    // Fonction pour vérifier si un élément est dans la vue
-    const checkVisibility = () => {
-        animatedElements.forEach(element => {
-            const elementTop = element.getBoundingClientRect().top;
-            const elementBottom = element.getBoundingClientRect().bottom;
+        // Durée et délai d'animation aléatoires
+        const duration = Math.random() * 60 + 40; // entre 40s et 100s
+        cloud.style.animationDuration = `${duration}s`;
+        const delay = Math.random() * 30; // Délai de démarrage aléatoire
+        cloud.style.animationDelay = `${delay}s`;
 
-            // Si le haut de l'élément est dans la vue et que le bas n'est pas encore sorti de la vue
-            if (elementTop < window.innerHeight - 50 && elementBottom > 50) {
-                element.classList.add('visible');
-                element.classList.remove('hidden');
-            } else {
-                // Optionnel : si vous voulez qu'ils disparaissent en sortant de la vue
-                // element.classList.remove('visible');
-                // element.classList.add('hidden');
-            }
-        });
-    };
+        // Appliquer la variable CSS pour la largeur du nuage dans l'animation
+        cloud.style.setProperty('--width', `${size}px`);
 
-    // Écoutez l'événement de scroll
-    window.addEventListener('scroll', checkVisibility);
+        backgroundAnimation.appendChild(cloud);
+    }
 
-    // Vérifiez la visibilité une première fois au chargement de la page
-    checkVisibility();
+    for (let i = 0; i < numClouds; i++) {
+        createCloud();
+    }
 });

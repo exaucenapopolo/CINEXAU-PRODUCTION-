@@ -1,38 +1,114 @@
-/* Styles généraux déjà existants */
+/* Variables pour les couleurs */
+:root {
+    --dark-blue-bg: #1a2a4a; /* Un bleu sombre pour le fond */
+    --button-color: #28a745; /* Vert pour les boutons, tu peux changer en #007bff pour le bleu */
+    --button-hover-color: #218838; /* Vert plus foncé au survol */
+    --text-light: #f4f4f4;
+    --text-dark: #333;
+}
+
 body {
-    font-family: Arial, sans-serif;
     margin: 0;
-    padding: 0;
-    background-color: #f4f4f4;
-    color: #333;
+    font-family: Arial, sans-serif;
+    color: var(--text-light);
+    overflow-x: hidden; /* Empêche le défilement horizontal dû aux animations */
+    position: relative; /* Nécessaire pour positionner le fond animé */
+    min-height: 100vh; /* S'assure que le corps prend au moins toute la hauteur de la fenêtre */
+    display: flex;
+    flex-direction: column;
 }
 
-.container {
-    width: 80%;
-    margin: 0 auto;
-    overflow: hidden;
+/* Fond sombre avec couleur unie */
+.background-animation {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: var(--dark-blue-bg);
+    z-index: -1; /* Place le fond derrière le contenu */
+    overflow: hidden; /* Cache les éléments d'animation qui dépassent */
 }
 
-/* Header */
+/* Styles pour les étoiles (exemple simple, nous pouvons le complexifier) */
+.background-animation::before,
+.background-animation::after {
+    content: '';
+    position: absolute;
+    border-radius: 50%;
+    background-color: rgba(255, 255, 255, 0.8); /* Petits points blancs pour les étoiles */
+    animation: twinkle 5s infinite alternate; /* Animation de scintillement */
+}
+
+.background-animation::before {
+    width: 2px;
+    height: 2px;
+    box-shadow: 100px 50px 0 0 white, 200px 150px 0 0 white, 300px 250px 0 0 white, 400px 70px 0 0 white, 50px 300px 0 0 white, 350px 100px 0 0 white; /* Quelques étoiles */
+    animation-delay: 0s;
+}
+
+.background-animation::after {
+    width: 3px;
+    height: 3px;
+    box-shadow: 150px 200px 0 0 white, 250px 300px 0 0 white, 50px 100px 0 0 white, 300px 10px 0 0 white, 450px 200px 0 0 white, 10px 250px 0 0 white; /* Plus d'étoiles */
+    animation-delay: 2s;
+}
+
+@keyframes twinkle {
+    0% { opacity: 0.5; transform: scale(1); }
+    50% { opacity: 1; transform: scale(1.2); }
+    100% { opacity: 0.5; transform: scale(1); }
+}
+
+/* Styles pour les nuages (plus complexe, nous pourrions utiliser JS pour plus de dynamisme) */
+/* Ceci est une approche simplifiée avec CSS. Pour des nuages plus réalistes, JS est préférable. */
+.background-animation .cloud {
+    position: absolute;
+    background: white;
+    border-radius: 50%;
+    opacity: 0.1; /* Transparence pour un effet doux */
+    animation: moveClouds 60s linear infinite;
+}
+
+.background-animation .cloud:nth-child(1) {
+    width: 150px; height: 50px;
+    top: 10%; left: -20%;
+    animation-delay: 0s;
+    transform: scale(0.8);
+}
+.background-animation .cloud:nth-child(2) {
+    width: 200px; height: 70px;
+    top: 30%; left: -30%;
+    animation-delay: 20s;
+    transform: scale(1.1);
+}
+.background-animation .cloud:nth-child(3) {
+    width: 100px; height: 40px;
+    top: 60%; left: -10%;
+    animation-delay: 40s;
+    transform: scale(0.9);
+}
+
+@keyframes moveClouds {
+    0% { transform: translateX(0) scale(var(--scale, 1)); }
+    100% { transform: translateX(calc(100vw + var(--width, 200px))) scale(var(--scale, 1)); }
+}
+
+/* En-tête et Navigation */
 header {
-    background-color: #333;
-    color: #fff;
-    padding: 1rem 0;
-    border-bottom: 5px solid #ff6600; /* Ajout d'une ligne d'accentuation */
-}
-
-header .container {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    padding: 20px 40px;
+    background-color: rgba(0, 0, 0, 0.3); /* Légèrement transparent */
+    position: relative;
+    z-index: 10;
 }
 
-.logo-text {
-    color: #fff;
-    text-decoration: none;
-    font-size: 2rem;
+.logo {
+    font-size: 1.8em;
     font-weight: bold;
-    letter-spacing: 2px;
+    color: var(--text-light);
 }
 
 nav ul {
@@ -46,260 +122,84 @@ nav ul li {
     margin-left: 20px;
 }
 
-nav ul li a {
-    color: #fff;
-    text-decoration: none;
-    font-weight: bold;
-    padding: 5px 10px;
-    transition: background-color 0.3s ease;
+.nav-button, .primary-button {
+    display: inline-block;
+    padding: 10px 20px;
     border-radius: 5px;
-    display: flex; /* Pour aligner l'icône et le texte */
-    align-items: center;
+    text-decoration: none;
+    color: var(--text-light);
+    background-color: var(--button-color);
+    transition: background-color 0.3s ease, transform 0.3s ease; /* Animation au survol */
+    border: none;
+    cursor: pointer;
+    font-size: 1em;
 }
 
-nav ul li a i {
-    margin-right: 8px; /* Espace entre l'icône et le texte */
+.nav-button:hover, .primary-button:hover {
+    background-color: var(--button-hover-color);
+    transform: scale(1.05); /* Léger agrandissement au survol */
 }
 
-nav ul li a:hover,
-nav ul li a.active { /* Style pour le lien actif */
-    background-color: #ff6600;
-}
-
-/* Sections principales */
-main section {
-    padding: 40px 0;
-    margin-bottom: 20px;
-    background-color: #fff;
-    border-radius: 8px;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-}
-
-main section h1,
-main section h2 {
+/* Contenu principal */
+main {
+    flex-grow: 1; /* Permet au contenu de prendre l'espace disponible */
+    padding: 40px;
     text-align: center;
-    color: #ff6600;
-    margin-bottom: 20px;
-    font-size: 2.5rem;
+    position: relative;
+    z-index: 5; /* Assure que le contenu est au-dessus du fond */
+    padding-bottom: 80px; /* Espace pour le footer */
 }
 
-main section h2 i {
-    margin-right: 10px;
-    color: #333; /* Couleur de l'icône dans les titres de section */
+section {
+    margin-bottom: 60px;
 }
 
-main section p {
-    text-align: center;
-    line-height: 1.6;
-    max-width: 800px;
-    margin: 0 auto 30px auto;
+h1, h2, h3 {
+    color: var(--text-light);
 }
 
-/* Styles pour la section de distribution de musique */
-.distribution-options {
+/* Section Services (Accueil seulement) */
+#services {
+    background-color: rgba(0, 0, 0, 0.2);
+    padding: 40px;
+    border-radius: 10px;
+}
+
+.service-list {
     display: flex;
     justify-content: center;
-    gap: 30px;
-    margin-bottom: 40px;
-}
-
-.option-card {
-    background-color: #f9f9f9;
-    border: 1px solid #ddd;
-    border-radius: 8px;
-    padding: 30px;
-    text-align: center;
-    flex: 1;
-    max-width: 350px;
-    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-    transition: transform 0.3s ease;
-}
-
-.option-card:hover {
-    transform: translateY(-5px);
-}
-
-.option-card .icon-large {
-    font-size: 4rem;
-    color: #ff6600;
-    margin-bottom: 20px;
-}
-
-.option-card h3 {
-    font-size: 1.8rem;
-    margin-bottom: 15px;
-    color: #333;
-}
-
-.option-card p {
-    font-size: 1rem;
-    color: #666;
-    margin-bottom: 25px;
-}
-
-.btn {
-    display: inline-block;
-    padding: 12px 25px;
-    border-radius: 5px;
-    text-decoration: none;
-    font-weight: bold;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-    font-size: 1rem;
-    border: none; /* Enlève la bordure par défaut des boutons */
-}
-
-.btn-primary {
-    background-color: #ff6600;
-    color: #fff;
-}
-
-.btn-primary:hover {
-    background-color: #e65c00;
-}
-
-.btn-secondary {
-    background-color: #666;
-    color: #fff;
-}
-
-.btn-secondary:hover {
-    background-color: #555;
-}
-
-/* Styles pour les formulaires et tableaux */
-#distribution-form,
-#performance-tracker {
-    background-color: #f9f9f9;
-    padding: 30px;
-    border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
-    margin-top: 30px;
-}
-
-#distribution-form h3,
-#performance-tracker h3 {
-    text-align: center;
-    color: #333;
-    margin-bottom: 25px;
-    font-size: 2rem;
-}
-
-.form-group {
-    margin-bottom: 20px;
-}
-
-.form-group label {
-    display: block;
-    margin-bottom: 8px;
-    font-weight: bold;
-    color: #555;
-}
-
-.form-group label i {
-    margin-right: 8px;
-    color: #ff6600;
-}
-
-.form-group input[type="text"],
-.form-group input[type="date"],
-.form-group input[type="url"],
-.form-group textarea {
-    width: calc(100% - 20px); /* Ajuste la largeur avec un peu de padding */
-    padding: 12px;
-    border: 1px solid #ddd;
-    border-radius: 5px;
-    font-size: 1rem;
-}
-
-.form-group textarea {
-    resize: vertical; /* Permet de redimensionner verticalement */
-}
-
-#distribution-form .btn-primary {
-    display: block;
-    width: 100%;
-    padding: 15px;
-    font-size: 1.1rem;
-    margin-top: 20px;
-}
-
-table {
-    width: 100%;
-    border-collapse: collapse;
-    margin-top: 20px;
-}
-
-table th,
-table td {
-    border: 1px solid #ddd;
-    padding: 12px;
-    text-align: left;
-}
-
-table th {
-    background-color: #f2f2f2;
-    font-weight: bold;
-    color: #333;
-}
-
-.track-illustration {
-    width: 80px; /* Taille des illustrations dans le tableau */
-    height: 80px;
-    object-fit: cover;
-    border-radius: 5px;
-    display: block; /* Supprime l'espace sous l'image */
-    margin: auto; /* Centre l'image si la colonne est plus large */
-}
-
-/* Styles pour la section services sur le tableau de bord */
-.services {
-    text-align: center;
-}
-
-.service-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    flex-wrap: wrap;
     gap: 30px;
     margin-top: 30px;
 }
 
 .service-item {
-    background-color: #f9f9f9;
-    border: 1px solid #ddd;
+    background-color: rgba(0, 0, 0, 0.4);
+    padding: 25px;
     border-radius: 8px;
-    padding: 30px;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+    width: 250px;
+    text-align: center;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     transition: transform 0.3s ease;
 }
 
 .service-item:hover {
-    transform: translateY(-5px);
+    transform: translateY(-5px); /* Léger soulèvement au survol */
 }
 
-.service-icon {
-    font-size: 3.5rem;
-    color: #ff6600;
+.service-item img {
+    width: 60px;
+    height: 60px;
     margin-bottom: 15px;
-}
-
-.service-item h3 {
-    font-size: 1.6rem;
-    color: #333;
-    margin-bottom: 10px;
-}
-
-.service-item p {
-    font-size: 0.95rem;
-    color: #666;
-    line-height: 1.5;
 }
 
 /* Footer */
 footer {
-    background-color: #333;
-    color: #fff;
+    padding: 20px;
     text-align: center;
-    padding: 1.5rem 0;
-    margin-top: 40px;
+    background-color: rgba(0, 0, 0, 0.3);
+    color: var(--text-light);
+    position: relative;
+    z-index: 10;
+    margin-top: auto; /* Pousse le footer vers le bas */
 }
