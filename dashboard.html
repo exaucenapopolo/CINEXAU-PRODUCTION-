@@ -1,40 +1,255 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dashboard</title>
-    <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CINEXAU PRODUCTION - Dashboard</title>
+
+  <!-- Google Fonts : Playfair Display (titres) & Roboto (texte) -->
+  <link
+    href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Roboto:wght@400;500&display=swap"
+    rel="stylesheet"
+  />
+
+  <!-- Feuille de style principale (identique à index.html) -->
+  <link rel="stylesheet" href="style.css" />
+
+  <!-- Font Awesome pour les icônes -->
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+    integrity="sha512-Fo3rlrQdP2XLuXE/..."
+    crossorigin="anonymous"
+    referrerpolicy="no-referrer"
+  />
 </head>
 <body>
-    <div class="background-animation">
+  <!-- Arrière‑plan animé (étoiles + nuages) -->
+  <div class="background-animation"></div>
+
+  <!-- ============================
+       HEADER / NAVIGATION
+       ============================ -->
+  <header>
+    <div class="logo">
+      <i class="fas fa-compact-disc icon-color"></i>
+      CINEXAU PRODUCTION
+    </div>
+
+    <!-- Icône hamburger pour le menu mobile -->
+    <div class="hamburger-menu" id="hamburger-icon">
+      <i class="fas fa-bars icon-color"></i>
+    </div>
+
+    <nav>
+      <ul id="nav-links">
+        <li><a href="index.html">Accueil</a></li>
+        <li><a href="index.html#about-cinexau">À propos</a></li>
+        <li><a href="index.html#services">Services</a></li>
+        <li><a href="index.html#why-choose-us">Pourquoi nous choisir</a></li>
+        <li><a href="index.html#faq">FAQ</a></li>
+        <li><a href="#" class="active-link">Dashboard</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <!-- ============================
+       CONTENU PRINCIPAL DU DASHBOARD
+       ============================ -->
+  <main>
+    <!-- —— Section Héros (titre + sous-titre + bouton) —— -->
+    <section id="dashboard-hero" class="container">
+      <h1>Tableau de bord</h1>
+      <p class="subtitle">Bienvenue dans votre espace administrateur</p>
+      <a href="#" class="primary-button">Créer un nouveau projet</a>
+    </section>
+
+    <hr />
+
+    <!-- —— Section « Tableau de bord : Services Disponibles » —— -->
+    <section id="dashboard-services" class="container">
+      <h2>Services Disponibles</h2>
+      <p class="text-content">
+        Cliquez sur l’un des services ci‑dessous pour remplir les informations nécessaires.
+      </p>
+
+      <div class="services-grid">
+        <!-- Service 1 : Distribution Digitale -->
+        <div class="dashboard-service">
+          <div class="service-header service-item">
+            <i class="fas fa-globe icon-color"></i>
+            <h3>Distribution Digitale</h3>
+          </div>
+          <div class="service-detail">
+            <form class="distribution-form">
+              <div class="form-group">
+                <label for="track-title">Titre de la chanson</label>
+                <input type="text" id="track-title" name="track-title" placeholder="Entrez le titre" required />
+              </div>
+              <div class="form-group">
+                <label for="artist-name">Nom de l'artiste</label>
+                <input type="text" id="artist-name" name="artist-name" placeholder="Entrez le nom de l'artiste" required />
+              </div>
+              <div class="form-group">
+                <label for="album-name">Nom de l'album</label>
+                <input type="text" id="album-name" name="album-name" placeholder="Entrez le nom de l'album" />
+              </div>
+              <div class="form-group">
+                <label for="genre">Style / Genre</label>
+                <input type="text" id="genre" name="genre" placeholder="Ex : Pop, Hip-Hop…" />
+              </div>
+              <div class="form-group">
+                <label for="language">Langue</label>
+                <input type="text" id="language" name="language" placeholder="Ex : Français, Anglais…" />
+              </div>
+              <div class="form-group">
+                <label for="cover-art">Photo de l'album</label>
+                <input type="file" id="cover-art" name="cover-art" accept="image/*" />
+              </div>
+              <button type="submit" class="primary-button">Distribuer</button>
+            </form>
+          </div>
         </div>
 
-    <header>
-        <div class="logo">Mon Logo Textuel</div>
-        <nav>
-            <ul>
-                <li><a href="index.html" class="nav-button">Accueil</a></li>
-                <li><a href="dashboard.html" class="nav-button">Dashboard</a></li>
-                </ul>
-        </nav>
-    </header>
+        <!-- Service 2 : Prendre un Rendez‑vous Studio -->
+        <div class="dashboard-service">
+          <div class="service-header service-item">
+            <i class="fas fa-microphone-alt icon-color"></i>
+            <h3>Réservation Studio</h3>
+          </div>
+          <div class="service-detail">
+            <form class="booking-form">
+              <div class="form-group">
+                <label for="artist-booking-name">Nom de l'artiste</label>
+                <input type="text" id="artist-booking-name" name="artist-booking-name" placeholder="Votre nom" required />
+              </div>
+              <div class="form-group">
+                <label for="contact-email">Email</label>
+                <input type="email" id="contact-email" name="contact-email" placeholder="Votre email" required />
+              </div>
+              <div class="form-group">
+                <label for="booking-date">Date souhaitée</label>
+                <input type="date" id="booking-date" name="booking-date" required />
+              </div>
+              <div class="form-group">
+                <label for="booking-time">Heure souhaitée</label>
+                <input type="time" id="booking-time" name="booking-time" required />
+              </div>
+              <div class="form-group">
+                <label for="booking-notes">Commentaires</label>
+                <textarea
+                  id="booking-notes"
+                  name="booking-notes"
+                  rows="3"
+                  placeholder="Ex : J'aimerais enregistrer un single…"
+                ></textarea>
+              </div>
+              <button type="submit" class="primary-button">Prendre Rendez-vous</button>
+            </form>
+          </div>
+        </div>
 
-    <main>
-        <section id="dashboard-content">
-            <h1>Bienvenue sur votre Dashboard !</h1>
-            <p>Ici, vous trouverez :</p>
-            <ul>
-                <li>**Sass**</li>
-                <li>**Elvis Haudage**</li>
-            </ul>
-            </section>
-    </main>
+        <!-- Service 3 : Accompagnement Artistique -->
+        <div class="dashboard-service">
+          <div class="service-header service-item">
+            <i class="fas fa-users icon-color"></i>
+            <h3>Accompagnement Artistique</h3>
+          </div>
+          <div class="service-detail">
+            <p class="text-content">
+              Notre équipe vous accompagne dans le développement de votre image,
+              la stratégie de communication et la présence sur les réseaux sociaux.
+            </p>
+            <a href="#" class="primary-button">En savoir plus</a>
+          </div>
+        </div>
 
-    <footer>
-        <p>&copy; 2025 Mon Site. Tous droits réservés.</p>
-    </footer>
+        <!-- Service 4 : Production Audiovisuelle -->
+        <div class="dashboard-service">
+          <div class="service-header service-item">
+            <i class="fas fa-camera-retro icon-color"></i>
+            <h3>Production Audiovisuelle</h3>
+          </div>
+          <div class="service-detail">
+            <p class="text-content">
+              Créez des clips vidéo professionnels, visuels promotionnels et
+              contenus multimédias pour renforcer votre identité artistique.
+            </p>
+            <a href="#" class="primary-button">En savoir plus</a>
+          </div>
+        </div>
 
-    <script src="script.js"></script>
+        <!-- Service 5 : Gestion des Droits -->
+        <div class="dashboard-service">
+          <div class="service-header service-item">
+            <i class="fas fa-scroll icon-color"></i>
+            <h3>Gestion des Droits</h3>
+          </div>
+          <div class="service-detail">
+            <p class="text-content">
+              Nous nous occupons de l'enregistrement de vos œuvres,
+              l’administration des droits d'auteur et les redevances.
+            </p>
+            <a href="#" class="primary-button">En savoir plus</a>
+          </div>
+        </div>
+
+        <!-- Service 6 : Stratégie de Carrière -->
+        <div class="dashboard-service">
+          <div class="service-header service-item">
+            <i class="fas fa-project-diagram icon-color"></i>
+            <h3>Stratégie de Carrière</h3>
+          </div>
+          <div class="service-detail">
+            <p class="text-content">
+              Développez un plan de carrière sur mesure : positionnement,
+              planification des sorties, opportunités de collaboration, etc.
+            </p>
+            <a href="#" class="primary-button">En savoir plus</a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ============================
+       FOOTER
+       ============================ -->
+  <footer>
+    <div class="container">
+      <p>&copy; 2025 CINEXAU PRODUCTION. Tous droits réservés.</p>
+    </div>
+  </footer>
+
+  <!-- ============================
+       Boutons flottants
+       ============================ -->
+  <div class="floating-buttons">
+    <a href="index.html#hero">
+      <i class="fas fa-home icon-color"></i>
+      <span class="tooltip">Accueil</span>
+    </a>
+    <a href="index.html#services">
+      <i class="fas fa-tools icon-color"></i>
+      <span class="tooltip">Services</span>
+    </a>
+    <a href="index.html#why-choose-us">
+      <i class="fas fa-question-circle icon-color"></i>
+      <span class="tooltip">Pourquoi nous choisir</span>
+    </a>
+    <a href="index.html#faq">
+      <i class="fas fa-comment-dots icon-color"></i>
+      <span class="tooltip">FAQ</span>
+    </a>
+    <a href="index.html#contact-section-placeholder">
+      <i class="fas fa-envelope icon-color"></i>
+      <span class="tooltip">Nous contacter</span>
+    </a>
+  </div>
+
+  <!-- ============================
+       Script JS mis à jour
+       ============================ -->
+  <script src="script.js"></script>
 </body>
 </html>
