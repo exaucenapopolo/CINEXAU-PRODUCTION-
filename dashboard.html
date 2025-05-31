@@ -24,7 +24,7 @@
   />
 </head>
 <body>
-  <!-- Arrière‑plan animé (étoiles + nuages) -->
+  <!-- Arrière-plan animé (étoiles + nuages) -->
   <div class="background-animation"></div>
 
   <!-- ============================
@@ -66,148 +66,62 @@
 
     <hr />
 
-    <!-- —— Section « Tableau de bord : Services Disponibles » —— -->
+    <!-- —— Section « Services Disponibles » —— -->
     <section id="dashboard-services" class="container">
       <h2>Services Disponibles</h2>
       <p class="text-content">
-        Cliquez sur l’un des services ci‑dessous pour remplir les informations nécessaires.
+        Cliquez sur l’un des services ci-dessous pour accéder au formulaire correspondant.
       </p>
 
+      <!-- Grille horizontale de services -->
       <div class="services-grid">
-        <!-- Service 1 : Distribution Digitale -->
-        <div class="dashboard-service">
+        <!-- Chaque carte a un data-service pour l’identifier en JS -->
+        <div class="dashboard-service" data-service="distribution">
           <div class="service-header service-item">
             <i class="fas fa-globe icon-color"></i>
             <h3>Distribution Digitale</h3>
           </div>
-          <div class="service-detail">
-            <form class="distribution-form">
-              <div class="form-group">
-                <label for="track-title">Titre de la chanson</label>
-                <input type="text" id="track-title" name="track-title" placeholder="Entrez le titre" required />
-              </div>
-              <div class="form-group">
-                <label for="artist-name">Nom de l'artiste</label>
-                <input type="text" id="artist-name" name="artist-name" placeholder="Entrez le nom de l'artiste" required />
-              </div>
-              <div class="form-group">
-                <label for="album-name">Nom de l'album</label>
-                <input type="text" id="album-name" name="album-name" placeholder="Entrez le nom de l'album" />
-              </div>
-              <div class="form-group">
-                <label for="genre">Style / Genre</label>
-                <input type="text" id="genre" name="genre" placeholder="Ex : Pop, Hip-Hop…" />
-              </div>
-              <div class="form-group">
-                <label for="language">Langue</label>
-                <input type="text" id="language" name="language" placeholder="Ex : Français, Anglais…" />
-              </div>
-              <div class="form-group">
-                <label for="cover-art">Photo de l'album</label>
-                <input type="file" id="cover-art" name="cover-art" accept="image/*" />
-              </div>
-              <button type="submit" class="primary-button">Distribuer</button>
-            </form>
-          </div>
         </div>
 
-        <!-- Service 2 : Prendre un Rendez‑vous Studio -->
-        <div class="dashboard-service">
+        <div class="dashboard-service" data-service="reservation">
           <div class="service-header service-item">
             <i class="fas fa-microphone-alt icon-color"></i>
             <h3>Réservation Studio</h3>
           </div>
-          <div class="service-detail">
-            <form class="booking-form">
-              <div class="form-group">
-                <label for="artist-booking-name">Nom de l'artiste</label>
-                <input type="text" id="artist-booking-name" name="artist-booking-name" placeholder="Votre nom" required />
-              </div>
-              <div class="form-group">
-                <label for="contact-email">Email</label>
-                <input type="email" id="contact-email" name="contact-email" placeholder="Votre email" required />
-              </div>
-              <div class="form-group">
-                <label for="booking-date">Date souhaitée</label>
-                <input type="date" id="booking-date" name="booking-date" required />
-              </div>
-              <div class="form-group">
-                <label for="booking-time">Heure souhaitée</label>
-                <input type="time" id="booking-time" name="booking-time" required />
-              </div>
-              <div class="form-group">
-                <label for="booking-notes">Commentaires</label>
-                <textarea
-                  id="booking-notes"
-                  name="booking-notes"
-                  rows="3"
-                  placeholder="Ex : J'aimerais enregistrer un single…"
-                ></textarea>
-              </div>
-              <button type="submit" class="primary-button">Prendre Rendez-vous</button>
-            </form>
-          </div>
         </div>
 
-        <!-- Service 3 : Accompagnement Artistique -->
-        <div class="dashboard-service">
+        <div class="dashboard-service" data-service="accompagnement">
           <div class="service-header service-item">
             <i class="fas fa-users icon-color"></i>
             <h3>Accompagnement Artistique</h3>
           </div>
-          <div class="service-detail">
-            <p class="text-content">
-              Notre équipe vous accompagne dans le développement de votre image,
-              la stratégie de communication et la présence sur les réseaux sociaux.
-            </p>
-            <a href="#" class="primary-button">En savoir plus</a>
-          </div>
         </div>
 
-        <!-- Service 4 : Production Audiovisuelle -->
-        <div class="dashboard-service">
+        <div class="dashboard-service" data-service="audiovisuel">
           <div class="service-header service-item">
             <i class="fas fa-camera-retro icon-color"></i>
             <h3>Production Audiovisuelle</h3>
           </div>
-          <div class="service-detail">
-            <p class="text-content">
-              Créez des clips vidéo professionnels, visuels promotionnels et
-              contenus multimédias pour renforcer votre identité artistique.
-            </p>
-            <a href="#" class="primary-button">En savoir plus</a>
-          </div>
         </div>
 
-        <!-- Service 5 : Gestion des Droits -->
-        <div class="dashboard-service">
+        <div class="dashboard-service" data-service="droits">
           <div class="service-header service-item">
             <i class="fas fa-scroll icon-color"></i>
             <h3>Gestion des Droits</h3>
           </div>
-          <div class="service-detail">
-            <p class="text-content">
-              Nous nous occupons de l'enregistrement de vos œuvres,
-              l’administration des droits d'auteur et les redevances.
-            </p>
-            <a href="#" class="primary-button">En savoir plus</a>
-          </div>
         </div>
 
-        <!-- Service 6 : Stratégie de Carrière -->
-        <div class="dashboard-service">
+        <div class="dashboard-service" data-service="carriere">
           <div class="service-header service-item">
             <i class="fas fa-project-diagram icon-color"></i>
             <h3>Stratégie de Carrière</h3>
           </div>
-          <div class="service-detail">
-            <p class="text-content">
-              Développez un plan de carrière sur mesure : positionnement,
-              planification des sorties, opportunités de collaboration, etc.
-            </p>
-            <a href="#" class="primary-button">En savoir plus</a>
-          </div>
         </div>
+      </div>
+
+      <!-- Conteneur pour afficher la fiche du service sélectionné -->
+      <div id="service-detail-container" class="container" style="margin-top: 40px;">
+        <!-- Rempli dynamiquement par script.js -->
       </div>
     </section>
   </main>
@@ -222,7 +136,7 @@
   </footer>
 
   <!-- ============================
-       Boutons flottants
+       Boutons flottants (identiques à index.html)
        ============================ -->
   <div class="floating-buttons">
     <a href="index.html#hero">
