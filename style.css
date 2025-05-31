@@ -3,187 +3,150 @@ body {
     font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
-    background-color: #f4f4f4;
-    color: #333;
-    line-height: 1.6;
+    box-sizing: border-box;
+    color: #f0f0f0; /* Couleur du texte par défaut */
+    /* Styles pour le fond animé */
+    background: linear-gradient(to bottom, #000a12, #001f3f, #003366); /* Fond bleu sombre initial */
+    background-size: 400% 400%; /* Permet une animation de la taille */
+    animation: backgroundAnimation 30s ease infinite alternate; /* Animation du fond */
 }
 
-.container {
-    width: 80%;
-    margin: auto;
-    overflow: hidden; /* Pour gérer les flottants */
-    padding: 20px 0;
+/* Animation de fond (pour le style "nuages") */
+@keyframes backgroundAnimation {
+    0% { background-position: 0% 0%; }
+    100% { background-position: 100% 100%; }
 }
 
-/* Header */
 header {
-    background: #333;
-    color: #fff;
-    padding: 10px 0;
-    border-bottom: #0779e4 3px solid; /* Couleur de la marque */
+    background-color: rgba(0, 0, 0, 0.7); /* Fond légèrement transparent pour la barre de navigation */
+    color: white;
+    padding: 1rem 0;
     display: flex;
-    justify-content: center; /* Centrer le contenu du header */
+    justify-content: space-between;
     align-items: center;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
 }
 
-header .container {
-    display: flex;
-    justify-content: space-between; /* Espacer le logo et la nav */
-    align-items: center;
-    width: 90%; /* Ajuster la largeur pour le header */
+.logo h1 {
+    margin: 0;
+    padding-left: 2rem;
+    font-size: 2.5rem; /* Taille du texte du logo */
+    color: #e0f2f7; /* Couleur du texte du logo (bleu clair) */
+    font-family: 'Montserrat', sans-serif; /* Police stylisée pour le logo */
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); /* Ombre pour donner du relief */
 }
 
-header .logo img {
-    height: 50px; /* Taille de ton logo */
-    width: auto;
-}
-
-header nav ul {
+nav ul {
+    list-style: none;
     margin: 0;
     padding: 0;
-    list-style: none;
+    display: flex;
+    padding-right: 2rem;
 }
 
-header nav ul li {
-    display: inline;
-    padding: 0 15px;
+nav ul li {
+    margin-left: 20px;
 }
 
-header nav a {
-    color: #fff;
+nav ul li a {
+    color: white;
     text-decoration: none;
-    text-transform: uppercase;
-    font-size: 16px;
-    transition: color 0.3s ease; /* Transition douce pour le survol */
+    font-weight: bold;
+    transition: color 0.3s ease;
 }
 
-header nav a:hover {
-    color: #0779e4; /* Couleur au survol */
+nav ul li a:hover {
+    color: #4CAF50; /* Couleur verte pour le survol, à changer si vous préférez */
 }
 
 /* Sections principales */
-main section {
-    padding: 40px 0;
-    margin-bottom: 20px;
-    text-align: center;
+main {
+    padding: 2rem;
 }
 
-/* Section Héro (Bannière d'Accueil) */
 #hero {
-    background: #555 url('images/hero-bg.jpg') no-repeat center center/cover; /* Ajoute une image de fond ici */
-    color: #fff;
-    min-height: 400px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    text-shadow: 2px 2px 4px rgba(0,0,0,0.7); /* Ombre pour la lisibilité du texte */
+    text-align: center;
+    padding: 100px 20px;
+    background: rgba(0, 0, 0, 0.5); /* Fond légèrement transparent pour la section hero */
+    margin-bottom: 2rem;
+    border-radius: 10px;
 }
 
-#hero h1 {
-    font-size: 3.5em;
-    margin-bottom: 10px;
+.hero-content h2 {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+    color: #90CAF9; /* Bleu clair pour le titre hero */
 }
 
-#hero p {
-    font-size: 1.2em;
-    margin-bottom: 30px;
+.hero-content p {
+    font-size: 1.5rem;
+    margin-bottom: 2rem;
+    color: #BBDEFB; /* Bleu plus clair pour le paragraphe hero */
 }
 
-/* Boutons */
 .btn {
     display: inline-block;
-    color: #fff;
-    background: #0779e4; /* Couleur principale */
+    background-color: #007bff; /* Bleu standard pour le bouton */
+    color: white;
     padding: 10px 20px;
     text-decoration: none;
     border-radius: 5px;
-    transition: background 0.3s ease;
+    transition: background-color 0.3s ease;
 }
 
 .btn:hover {
-    background: #055bbd; /* Couleur plus foncée au survol */
+    background-color: #0056b3; /* Bleu plus foncé au survol */
 }
 
-.btn-secondary {
-    display: inline-block;
-    color: #0779e4;
-    background: #fff;
-    border: 2px solid #0779e4;
-    padding: 10px 20px;
-    text-decoration: none;
-    border-radius: 5px;
-    transition: background 0.3s ease, color 0.3s ease;
-    margin-top: 10px;
+#about, #featured-projects {
+    background: rgba(0, 0, 0, 0.6); /* Fond légèrement transparent pour les sections */
+    padding: 3rem 2rem;
+    margin-bottom: 2rem;
+    border-radius: 10px;
 }
 
-.btn-secondary:hover {
-    background: #0779e4;
-    color: #fff;
-}
-
-/* Sections d'aperçu (Accueil) */
-#about-preview, #services-preview {
-    background: #fff;
-    border-radius: 8px;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-    margin-bottom: 20px;
-    padding: 30px;
-}
-
-#services-preview .service-item {
-    margin-bottom: 20px;
-    padding: 15px;
-    border: 1px solid #eee;
-    border-radius: 5px;
-    background-color: #f9f9f9;
-}
-
-#services-preview .service-item img {
-    max-width: 80px; /* Taille des icônes de service */
-    height: auto;
-    margin-top: 10px;
-}
-
-/* Page Services */
-.service-category {
-    background: #fff;
-    border-radius: 8px;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-    margin-bottom: 30px;
-    padding: 30px;
-    text-align: left; /* Alignement du texte à gauche pour les détails */
-}
-
-.service-category h2 {
-    color: #0779e4;
-    border-bottom: 2px solid #eee;
-    padding-bottom: 10px;
-    margin-bottom: 20px;
-}
-
-.service-category ul {
-    list-style: disc; /* Puces pour les listes */
-    margin-left: 20px;
-    margin-bottom: 20px;
-}
-
-.service-category ul li {
-    margin-bottom: 10px;
-}
-
-.service-category img {
-    max-width: 150px; /* Taille des images dans les sections services */
-    height: auto;
-    display: block; /* Pour centrer l'image */
-    margin: 20px auto 0 auto; /* Centrer l'image */
-    border-radius: 5px;
-}
-
-/* Footer */
-footer {
-    background: #333;
-    color: #fff;
+h2 {
     text-align: center;
-    padding: 20px 0;
-    margin-top: 30px;
+    color: #64B5F6; /* Bleu plus vif pour les titres de section */
+    margin-bottom: 2rem;
+    font-size: 2.5rem;
+}
+
+.projects-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 20px;
+}
+
+.project-item {
+    background-color: rgba(0, 0, 0, 0.4); /* Fond légèrement transparent pour les éléments de projet */
+    padding: 20px;
+    border-radius: 8px;
+    text-align: center;
+    color: #E3F2FD; /* Couleur claire pour le texte des projets */
+}
+
+footer {
+    text-align: center;
+    padding: 1rem;
+    background-color: rgba(0, 0, 0, 0.7);
+    color: white;
+    position: relative;
+    bottom: 0;
+    width: 100%;
+}
+
+/* Animations au scroll - CSS */
+/* Ces classes seront ajoutées/retirées par JavaScript */
+.hidden {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+}
+
+.visible {
+    opacity: 1;
+    transform: translateY(0);
 }

@@ -3,60 +3,63 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CINEXAU PRODUCTION - Accueil</title>
+    <title>CINEXAU Production - Accueil</title>
     <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
 <body>
     <header>
-        <div class="container">
-            <div class="logo">
-                <img src="images/logo.png" alt="Logo CINEXAU PRODUCTION">
-            </div>
-            <nav>
-                <ul>
-                    <li><a href="index.html">Accueil</a></li>
-                    <li><a href="dashboard.html">Dashboard</a></li>
-                    <li><a href="about.html">À propos</a></li>
-                    <li><a href="services.html">Services</a></li>
-                </ul>
-            </nav>
+        <div class="logo">
+            <h1>CINEXAU production</h1>
         </div>
+        <nav>
+            <ul>
+                <li><a href="index.html">Accueil</a></li>
+                <li><a href="dashboard.html">Dashboard</a></li>
+                <li><a href="service.html">Services</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+        </nav>
     </header>
 
     <main>
         <section id="hero">
-            <div class="container">
-                <h1>Bienvenue chez CINEXAU PRODUCTION</h1>
-                <p>Votre partenaire pour la distribution musicale et bien plus encore.</p>
-                <a href="services.html" class="btn">Découvrez nos services</a>
+            <div class="hero-content">
+                <h2>Bienvenue chez CINEXAU Production</h2>
+                <p>Votre partenaire pour la création de contenu visuel exceptionnel.</p>
+                <a href="service.html" class="btn">Découvrez nos services</a>
             </div>
         </section>
 
-        <section id="about-preview">
-            <div class="container">
-                <h2>Qui sommes-nous ?</h2>
-                <p>CINEXAU PRODUCTION est un label indépendant dédié à la promotion et à la distribution d'artistes talentueux. Nous nous engageons à offrir une plateforme solide pour que votre musique atteigne le monde entier.</p>
-                <a href="about.html" class="btn-secondary">En savoir plus</a>
-            </div>
+        <section id="about">
+            <h2>À propos de nous</h2>
+            <p>CINEXAU Production est une entreprise dédiée à la réalisation de projets audiovisuels de haute qualité. Que ce soit pour des films, des clips, des publicités ou des événements, notre équipe expérimentée met son savoir-faire à votre disposition.</p>
         </section>
 
-        <section id="services-preview">
-            <div class="container">
-                <h2>Nos Services Clés</h2>
-                <div class="service-item">
-                    <h3>Distribution Numérique</h3>
-                    <p>Nous distribuons votre musique sur toutes les principales plateformes de streaming : Spotify, Apple Music, Deezer, YouTube Music, et bien d'autres.</p>
-                    <img src="images/distribution-icon.png" alt="Icône Distribution">
+        <section id="featured-projects">
+            <h2>Nos Projets Phares</h2>
+            <div class="projects-grid">
+                <div class="project-item">
+                    <h3>Projet A</h3>
+                    <p>Description courte du projet A.</p>
                 </div>
-                <a href="services.html" class="btn-secondary">Voir tous les services</a>
+                <div class="project-item">
+                    <h3>Projet B</h3>
+                    <p>Description courte du projet B.</p>
+                </div>
+                <div class="project-item">
+                    <h3>Projet C</h3>
+                    <p>Description courte du projet C.</p>
+                </div>
             </div>
         </section>
     </main>
 
     <footer>
-        <div class="container">
-            <p>&copy; 2025 CINEXAU PRODUCTION. Tous droits réservés.</p>
-        </div>
+        <p>&copy; 2025 CINEXAU Production. Tous droits réservés.</p>
     </footer>
+
+    <script src="script.js"></script>
 </body>
 </html>
