@@ -1,6 +1,6 @@
 document.addEventListener('DOMContentLoaded', () => {
   /* ———————————
-     1) Accordéon FAQ
+     1) Accordéon FAQ (ouvrir/fermer une seule réponse à la fois)
      ——————————— */
   const faqItems = document.querySelectorAll('.faq-item');
 
@@ -30,7 +30,7 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   /* ———————————
-     2) Hamburger menu (mobile)
+     2) Menu hamburger (mobile)
      ——————————— */
   const hamburgerIcon = document.getElementById('hamburger-icon');
   const navLinks = document.getElementById('nav-links');
@@ -67,15 +67,15 @@ document.addEventListener('DOMContentLoaded', () => {
     const topPosition = Math.random() * 80;
     cloud.style.top = `${topPosition}%`;
 
-    // Commencer hors de l'écran à gauche
-    const startLeft = -20 - Math.random() * 30; // entre -20% et -50%
+    // Commencer hors de l'écran à gauche (entre -20% et -50%)
+    const startLeft = -20 - Math.random() * 30;
     cloud.style.left = `${startLeft}%`;
 
-    // Durée d’animation 40s → 100s
+    // Durée d’animation aléatoire entre 40s et 100s
     const duration = Math.random() * 60 + 40;
     cloud.style.animationDuration = `${duration}s`;
 
-    // Délai de démarrage 0s → 30s
+    // Délai de démarrage aléatoire entre 0s et 30s
     const delay = Math.random() * 30;
     cloud.style.animationDelay = `${delay}s`;
 

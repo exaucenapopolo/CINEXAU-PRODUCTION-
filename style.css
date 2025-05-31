@@ -2,13 +2,16 @@
    Variables et polices
    ===================================================== */
 :root {
+  /* Couleurs principales */
   --dark-blue-bg: #1a2a4a;       /* Fond sombre */
-  --button-color: #28a745;       /* Vert pour les boutons */
+  --button-color: #28a745;       /* Vert pour les boutons primaires */
   --button-hover-color: #218838; /* Vert foncé au survol */
   --text-light: #f4f4f4;         /* Texte clair global */
-  --text-dark: #333;             /* Texte sombre si besoin */
-  --icon-color: #FFA500;         /* Orange pour les icônes (toutes) */
-  --highlight-color: #28a745;    /* Même vert pour les titres mis en avant */
+  --text-dark: #333;             /* Texte sombre (rarement utilisé) */
+  --icon-color: #FFA500;         /* Orange pour toutes les icônes */
+  --highlight-color: #28a745;    /* Vert pour les titres mis en avant */
+  --floating-bg: #17a2b8;        /* Bleu–turquoise pour les boutons flottants */
+  --floating-hover: #117a8b;     /* Teinte plus foncée pour le survol */
 }
 
 /* Polices Google */
@@ -25,15 +28,15 @@ body {
   background: var(--dark-blue-bg);
 }
 
-/* Titres (h1, h2, h3) en Montserrat */
+/* Titres (h1, h2, h3) en Playfair Display */
 h1,
 h2,
 h3 {
-  font-family: 'Montserrat', sans-serif;
+  font-family: 'Playfair Display', serif;
   margin-bottom: 0.5em;
 }
 
-/* Couleur à appliquer sur les parties de titres à mettre en avant */
+/* Partie des titres à mettre en avant */
 .highlight-title {
   color: var(--highlight-color);
 }
@@ -94,7 +97,7 @@ h3 {
   100% { opacity: 0.5; transform: scale(1); }
 }
 
-/* Nuages (les <div class="cloud"> sont générés en JS) */
+/* Nuages (créés dynamiquement en JS) */
 .background-animation .cloud {
   position: absolute;
   background: white;
@@ -120,7 +123,7 @@ h3 {
   z-index: 1;
 }
 
-/* Lignes de séparation */
+/* Ligne de séparation */
 hr {
   border: none;
   border-top: 1px dashed rgba(255, 255, 255, 0.2);
@@ -155,12 +158,12 @@ header {
   color: var(--icon-color);
 }
 
-/* Icônes : appliquer la même couleur #FFA500 */
+/* Appliquer la couleur des icônes */
 .icon-color {
   color: var(--icon-color) !important;
 }
 
-/* Navigation principale */
+/* Navigation principale (desktop) */
 nav ul {
   list-style: none;
   margin: 0;
@@ -180,7 +183,7 @@ nav ul li a:hover {
   color: var(--button-color);
 }
 
-/* Responsive : menu hamburger */
+/* Responsive : basculer la nav en mode hamburger */
 @media (max-width: 768px) {
   .hamburger-menu {
     display: block;
@@ -234,8 +237,8 @@ nav ul li a:hover {
   color: var(--text-light);
   background-color: var(--button-color);
   transition: background-color 0.3s ease, transform 0.3s ease;
-  font-family: 'Montserrat', sans-serif;
-  font-weight: 500;
+  font-family: 'Playfair Display', serif;
+  font-weight: 700;
 }
 
 .primary-button:hover {
@@ -244,7 +247,7 @@ nav ul li a:hover {
 }
 
 /* =====================================================
-   SECTIONS « À PROPOS », « POURQUOI NOUS CHOISIR »
+   SECTIONS « À PROPOS » et « POURQUOI NOUS CHOISIR »
    ===================================================== */
 section {
   padding: 60px 0;
@@ -310,7 +313,7 @@ section h2 {
   font-size: 1.5rem;
   margin-bottom: 10px;
   color: var(--text-light);
-  font-family: 'Montserrat', sans-serif;
+  font-family: 'Playfair Display', serif;
 }
 
 .service-item p {
@@ -344,7 +347,7 @@ section h2 {
   border: none;
   text-align: left;
   font-size: 1.1rem;
-  font-family: 'Montserrat', sans-serif;
+  font-family: 'Playfair Display', serif;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -391,7 +394,7 @@ footer {
 }
 
 /* =====================================================
-   Boutons flottants
+   Boutons flottants (hébergés en bas à droite)
    ===================================================== */
 .floating-buttons {
   position: fixed;
@@ -410,7 +413,7 @@ footer {
   justify-content: center;
   width: 50px;
   height: 50px;
-  background-color: var(--button-color);
+  background-color: var(--floating-bg);
   color: var(--text-light);
   border-radius: 50%;
   text-decoration: none;
@@ -421,7 +424,7 @@ footer {
 }
 
 .floating-buttons a:hover {
-  background-color: var(--button-hover-color);
+  background-color: var(--floating-hover);
   transform: scale(1.1);
   box-shadow: 0 6px 12px rgba(0, 0, 0, 0.4);
 }
@@ -447,7 +450,7 @@ footer {
   opacity: 1;
 }
 
-/* Responsive pour les boutons flottants */
+/* Responsive pour les boutons flottants (<768px) */
 @media (max-width: 768px) {
   .floating-buttons {
     flex-direction: row;

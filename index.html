@@ -5,11 +5,11 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>CINEXAU PRODUCTION - Accompagnement artistique</title>
 
-  <!-- Polices Google Fonts :
-       - Montserrat pour les titres
-       - Roboto pour le texte courant -->
+  <!-- Google Fonts :
+       - Playfair Display (pour les titres)
+       - Roboto (pour le texte courant) -->
   <link
-    href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700&family=Roboto:wght@400;500&display=swap"
+    href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Roboto:wght@400;500&display=swap"
     rel="stylesheet"
   />
 
@@ -26,7 +26,7 @@
   />
 </head>
 <body>
-  <!-- Arrière-plan animé (étoiles + nuages générés par script.js) -->
+  <!-- Arrière‑plan animé (étoiles + nuages générés par script.js) -->
   <div class="background-animation"></div>
 
   <!-- ============================
@@ -37,9 +37,11 @@
       <i class="fas fa-compact-disc icon-color"></i>
       CINEXAU PRODUCTION
     </div>
+
     <div class="hamburger-menu" id="hamburger-icon">
       <i class="fas fa-bars icon-color"></i>
     </div>
+
     <nav>
       <ul id="nav-links">
         <li><a href="#hero">Accueil</a></li>
@@ -55,7 +57,7 @@
        CONTENU PRINCIPAL
        ============================ -->
   <main>
-    <!-- —— Section Héros : Bienvenue + bouton Nous rejoindre —— -->
+    <!-- —— Section Héros : titre + sous-titre + bouton —— -->
     <section id="hero" class="container">
       <h1>Bienvenue sur <span class="highlight-title">CINEXAU PRODUCTION</span></h1>
       <p class="subtitle">Accompagnement artistique & production musicale</p>
@@ -64,7 +66,7 @@
 
     <hr />
 
-    <!-- —— Section « Qu'est-ce que CINEXAU PRODUCTION ? » —— -->
+    <!-- —— Section « À propos CINEXAU PRODUCTION » —— -->
     <section id="about-cinexau" class="container">
       <h2>Qu'est-ce que <span class="highlight-title">CINEXAU PRODUCTION</span> ?</h2>
       <div class="text-content">
@@ -161,7 +163,7 @@
 
     <hr />
 
-    <!-- —— Section « Pourquoi nous choisir ? » —— -->
+    <!-- —— Section « Pourquoi nous choisir » —— -->
     <section id="why-choose-us" class="container">
       <h2>Pourquoi choisir <span class="highlight-title">CINEXAU PRODUCTION</span> ?</h2>
       <div class="text-content">
@@ -186,7 +188,7 @@
 
     <hr />
 
-    <!-- —— Section « FAQ » —— -->
+    <!-- —— Section « FAQ » avec accordéon corrigé —— -->
     <section id="faq" class="container">
       <h2>Questions Fréquemment Posées</h2>
       <div class="faq-container">
@@ -312,23 +314,9 @@
   <!-- 1) Accordéon FAQ + menu hamburger -->
   <script>
     document.addEventListener('DOMContentLoaded', () => {
-      /* Menu hamburger (afficher / masquer la nav en dessous de 768px) */
-      const hamburgerIcon = document.getElementById('hamburger-icon');
-      const navLinks = document.getElementById('nav-links');
-
-      hamburgerIcon.addEventListener('click', () => {
-        navLinks.classList.toggle('active');
-      });
-      document.addEventListener('click', (event) => {
-        if (
-          !navLinks.contains(event.target) &&
-          !hamburgerIcon.contains(event.target)
-        ) {
-          navLinks.classList.remove('active');
-        }
-      });
-
-      /* Accordéon FAQ : ouvrir uniquement la question cliquée */
+      /* ———————————
+         1) Accordéon FAQ
+         ——————————— */
       const faqItems = document.querySelectorAll('.faq-item');
 
       faqItems.forEach((item) => {
@@ -337,17 +325,15 @@
         const icon = item.querySelector('.toggle-icon');
 
         questionBtn.addEventListener('click', () => {
-          /* Fermer tous les autres */
+          /* Fermer toutes les autres réponses ouvertes */
           faqItems.forEach((other) => {
             if (other !== item) {
               other.querySelector('.faq-answer').style.display = 'none';
-              other
-                .querySelector('.toggle-icon')
-                .classList.remove('rotated');
+              other.querySelector('.toggle-icon').classList.remove('rotated');
             }
           });
 
-          /* Basculer celui-ci */
+          /* Basculer l’affichage de la réponse courante */
           if (answerDiv.style.display === 'block') {
             answerDiv.style.display = 'none';
             icon.classList.remove('rotated');
@@ -356,6 +342,25 @@
             icon.classList.add('rotated');
           }
         });
+      });
+
+      /* ———————————
+         2) Hamburger menu (mobile)
+         ——————————— */
+      const hamburgerIcon = document.getElementById('hamburger-icon');
+      const navLinks = document.getElementById('nav-links');
+
+      hamburgerIcon.addEventListener('click', () => {
+        navLinks.classList.toggle('active');
+      });
+
+      document.addEventListener('click', (event) => {
+        if (
+          !navLinks.contains(event.target) &&
+          !hamburgerIcon.contains(event.target)
+        ) {
+          navLinks.classList.remove('active');
+        }
       });
     });
   </script>
