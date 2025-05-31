@@ -1,41 +1,38 @@
-/* Styles généraux */
+/* Styles généraux déjà existants */
 body {
     font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
-    box-sizing: border-box;
-    color: #f0f0f0; /* Couleur du texte par défaut */
-    /* Styles pour le fond animé */
-    background: linear-gradient(to bottom, #000a12, #001f3f, #003366); /* Fond bleu sombre initial */
-    background-size: 400% 400%; /* Permet une animation de la taille */
-    animation: backgroundAnimation 30s ease infinite alternate; /* Animation du fond */
+    background-color: #f4f4f4;
+    color: #333;
 }
 
-/* Animation de fond (pour le style "nuages") */
-@keyframes backgroundAnimation {
-    0% { background-position: 0% 0%; }
-    100% { background-position: 100% 100%; }
+.container {
+    width: 80%;
+    margin: 0 auto;
+    overflow: hidden;
 }
 
+/* Header */
 header {
-    background-color: rgba(0, 0, 0, 0.7); /* Fond légèrement transparent pour la barre de navigation */
-    color: white;
+    background-color: #333;
+    color: #fff;
     padding: 1rem 0;
+    border-bottom: 5px solid #ff6600; /* Ajout d'une ligne d'accentuation */
+}
+
+header .container {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    position: sticky;
-    top: 0;
-    z-index: 1000;
 }
 
-.logo h1 {
-    margin: 0;
-    padding-left: 2rem;
-    font-size: 2.5rem; /* Taille du texte du logo */
-    color: #e0f2f7; /* Couleur du texte du logo (bleu clair) */
-    font-family: 'Montserrat', sans-serif; /* Police stylisée pour le logo */
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); /* Ombre pour donner du relief */
+.logo-text {
+    color: #fff;
+    text-decoration: none;
+    font-size: 2rem;
+    font-weight: bold;
+    letter-spacing: 2px;
 }
 
 nav ul {
@@ -43,7 +40,6 @@ nav ul {
     margin: 0;
     padding: 0;
     display: flex;
-    padding-right: 2rem;
 }
 
 nav ul li {
@@ -51,102 +47,259 @@ nav ul li {
 }
 
 nav ul li a {
-    color: white;
+    color: #fff;
     text-decoration: none;
     font-weight: bold;
-    transition: color 0.3s ease;
+    padding: 5px 10px;
+    transition: background-color 0.3s ease;
+    border-radius: 5px;
+    display: flex; /* Pour aligner l'icône et le texte */
+    align-items: center;
 }
 
-nav ul li a:hover {
-    color: #4CAF50; /* Couleur verte pour le survol, à changer si vous préférez */
+nav ul li a i {
+    margin-right: 8px; /* Espace entre l'icône et le texte */
+}
+
+nav ul li a:hover,
+nav ul li a.active { /* Style pour le lien actif */
+    background-color: #ff6600;
 }
 
 /* Sections principales */
-main {
-    padding: 2rem;
+main section {
+    padding: 40px 0;
+    margin-bottom: 20px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
 }
 
-#hero {
+main section h1,
+main section h2 {
     text-align: center;
-    padding: 100px 20px;
-    background: rgba(0, 0, 0, 0.5); /* Fond légèrement transparent pour la section hero */
-    margin-bottom: 2rem;
-    border-radius: 10px;
+    color: #ff6600;
+    margin-bottom: 20px;
+    font-size: 2.5rem;
 }
 
-.hero-content h2 {
-    font-size: 3rem;
-    margin-bottom: 1rem;
-    color: #90CAF9; /* Bleu clair pour le titre hero */
+main section h2 i {
+    margin-right: 10px;
+    color: #333; /* Couleur de l'icône dans les titres de section */
 }
 
-.hero-content p {
-    font-size: 1.5rem;
-    margin-bottom: 2rem;
-    color: #BBDEFB; /* Bleu plus clair pour le paragraphe hero */
+main section p {
+    text-align: center;
+    line-height: 1.6;
+    max-width: 800px;
+    margin: 0 auto 30px auto;
+}
+
+/* Styles pour la section de distribution de musique */
+.distribution-options {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    margin-bottom: 40px;
+}
+
+.option-card {
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 30px;
+    text-align: center;
+    flex: 1;
+    max-width: 350px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    transition: transform 0.3s ease;
+}
+
+.option-card:hover {
+    transform: translateY(-5px);
+}
+
+.option-card .icon-large {
+    font-size: 4rem;
+    color: #ff6600;
+    margin-bottom: 20px;
+}
+
+.option-card h3 {
+    font-size: 1.8rem;
+    margin-bottom: 15px;
+    color: #333;
+}
+
+.option-card p {
+    font-size: 1rem;
+    color: #666;
+    margin-bottom: 25px;
 }
 
 .btn {
     display: inline-block;
-    background-color: #007bff; /* Bleu standard pour le bouton */
-    color: white;
-    padding: 10px 20px;
-    text-decoration: none;
+    padding: 12px 25px;
     border-radius: 5px;
+    text-decoration: none;
+    font-weight: bold;
+    cursor: pointer;
     transition: background-color 0.3s ease;
+    font-size: 1rem;
+    border: none; /* Enlève la bordure par défaut des boutons */
 }
 
-.btn:hover {
-    background-color: #0056b3; /* Bleu plus foncé au survol */
+.btn-primary {
+    background-color: #ff6600;
+    color: #fff;
 }
 
-#about, #featured-projects {
-    background: rgba(0, 0, 0, 0.6); /* Fond légèrement transparent pour les sections */
-    padding: 3rem 2rem;
-    margin-bottom: 2rem;
-    border-radius: 10px;
+.btn-primary:hover {
+    background-color: #e65c00;
 }
 
-h2 {
-    text-align: center;
-    color: #64B5F6; /* Bleu plus vif pour les titres de section */
-    margin-bottom: 2rem;
-    font-size: 2.5rem;
+.btn-secondary {
+    background-color: #666;
+    color: #fff;
 }
 
-.projects-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 20px;
+.btn-secondary:hover {
+    background-color: #555;
 }
 
-.project-item {
-    background-color: rgba(0, 0, 0, 0.4); /* Fond légèrement transparent pour les éléments de projet */
-    padding: 20px;
+/* Styles pour les formulaires et tableaux */
+#distribution-form,
+#performance-tracker {
+    background-color: #f9f9f9;
+    padding: 30px;
     border-radius: 8px;
-    text-align: center;
-    color: #E3F2FD; /* Couleur claire pour le texte des projets */
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+    margin-top: 30px;
 }
 
-footer {
+#distribution-form h3,
+#performance-tracker h3 {
     text-align: center;
-    padding: 1rem;
-    background-color: rgba(0, 0, 0, 0.7);
-    color: white;
-    position: relative;
-    bottom: 0;
+    color: #333;
+    margin-bottom: 25px;
+    font-size: 2rem;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: bold;
+    color: #555;
+}
+
+.form-group label i {
+    margin-right: 8px;
+    color: #ff6600;
+}
+
+.form-group input[type="text"],
+.form-group input[type="date"],
+.form-group input[type="url"],
+.form-group textarea {
+    width: calc(100% - 20px); /* Ajuste la largeur avec un peu de padding */
+    padding: 12px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 1rem;
+}
+
+.form-group textarea {
+    resize: vertical; /* Permet de redimensionner verticalement */
+}
+
+#distribution-form .btn-primary {
+    display: block;
     width: 100%;
+    padding: 15px;
+    font-size: 1.1rem;
+    margin-top: 20px;
 }
 
-/* Animations au scroll - CSS */
-/* Ces classes seront ajoutées/retirées par JavaScript */
-.hidden {
-    opacity: 0;
-    transform: translateY(20px);
-    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
 }
 
-.visible {
-    opacity: 1;
-    transform: translateY(0);
+table th,
+table td {
+    border: 1px solid #ddd;
+    padding: 12px;
+    text-align: left;
+}
+
+table th {
+    background-color: #f2f2f2;
+    font-weight: bold;
+    color: #333;
+}
+
+.track-illustration {
+    width: 80px; /* Taille des illustrations dans le tableau */
+    height: 80px;
+    object-fit: cover;
+    border-radius: 5px;
+    display: block; /* Supprime l'espace sous l'image */
+    margin: auto; /* Centre l'image si la colonne est plus large */
+}
+
+/* Styles pour la section services sur le tableau de bord */
+.services {
+    text-align: center;
+}
+
+.service-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 30px;
+    margin-top: 30px;
+}
+
+.service-item {
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 30px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+    transition: transform 0.3s ease;
+}
+
+.service-item:hover {
+    transform: translateY(-5px);
+}
+
+.service-icon {
+    font-size: 3.5rem;
+    color: #ff6600;
+    margin-bottom: 15px;
+}
+
+.service-item h3 {
+    font-size: 1.6rem;
+    color: #333;
+    margin-bottom: 10px;
+}
+
+.service-item p {
+    font-size: 0.95rem;
+    color: #666;
+    line-height: 1.5;
+}
+
+/* Footer */
+footer {
+    background-color: #333;
+    color: #fff;
+    text-align: center;
+    padding: 1.5rem 0;
+    margin-top: 40px;
 }
