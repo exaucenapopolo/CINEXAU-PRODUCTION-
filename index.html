@@ -16,45 +16,49 @@
        Variables et polices
        ===================================================== */
     :root {
-      /* Nouvelle palette de couleurs professionnelle */
-      --deep-purple: #0c1021;        /* Fond principal */
-      --electric-blue: #00f0ff;      /* Couleur d'accent - icônes, titres */
-      --violet-gradient: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%);
-      --light-blue: #1a2a4a;         /* Cartes et sections */
-      --light-text: #ffffff;         /* Texte clair */
-      --dark-text: #333333;          /* Texte foncé (rare) */
-      --card-bg: rgba(26, 42, 74, 0.7); /* Fond des cartes */
-      --highlight-color: #00f0ff;    /* Mise en valeur */
-      --button-hover: #00c2ff;       /* Survol des boutons */
-      --floating-bg: #00f0ff;        /* Boutons flottants */
-      --floating-hover: #00c2ff;     /* Survol boutons flottants */
-      --success: #28a745;            /* Succès */
+      /* Nouvelle palette de couleurs claire et professionnelle */
+      --light-gradient: linear-gradient(135deg, #f0f9ff 0%, #e6f7ff 100%);
+      --primary-blue: #0077b6;      /* Bleu professionnel */
+      --accent-blue: #00b4d8;       /* Bleu d'accent */
+      --light-blue: #90e0ef;        /* Bleu clair */
+      --text-dark: #333333;         /* Texte sombre */
+      --text-medium: #555555;       /* Texte moyen */
+      --text-light: #ffffff;        /* Texte clair */
+      --card-bg: rgba(255, 255, 255, 0.85); /* Fond des cartes */
+      --highlight-color: #0077b6;   /* Mise en valeur */
+      --button-color: #0077b6;      /* Boutons */
+      --button-hover: #005f8a;      /* Survol des boutons */
+      --floating-bg: #0077b6;       /* Boutons flottants */
+      --floating-hover: #005f8a;    /* Survol boutons flottants */
+      --success: #28a745;           /* Succès */
+      --border-light: rgba(0, 0, 0, 0.1);
     }
 
     body {
       margin: 0;
       padding: 0;
       font-family: 'Roboto', sans-serif;
-      color: var(--light-text);
+      color: var(--text-dark);
       overflow-x: hidden;
       position: relative;
       min-height: 100vh;
       display: flex;
       flex-direction: column;
-      background: var(--deep-purple);
+      background: var(--light-gradient);
     }
 
     h1, h2, h3 {
       font-family: 'Playfair Display', serif;
       margin-bottom: 0.5em;
+      color: var(--primary-blue);
     }
 
     .highlight-title {
-      color: var(--highlight-color);
+      color: var(--accent-blue);
     }
 
     /* =====================================================
-       Arrière-plan animé (étoiles + nuages)
+       Arrière-plan animé (effet subtil)
        ===================================================== */
     .background-animation {
       position: fixed;
@@ -64,63 +68,16 @@
       height: 100%;
       z-index: -1;
       overflow: hidden;
-      background-color: var(--deep-purple);
-    }
-
-    /* Étoiles scintillantes */
-    .background-animation::before,
-    .background-animation::after {
-      content: '';
-      position: absolute;
-      border-radius: 50%;
-      background-color: rgba(255, 255, 255, 0.8);
-      animation: twinkle 5s infinite alternate;
-    }
-
-    .background-animation::before {
-      width: 2px;
-      height: 2px;
-      box-shadow:
-        100px  50px 0 0 white,
-        200px 150px 0 0 white,
-        300px 250px 0 0 white,
-        400px  70px 0 0 white,
-        50px 300px 0 0 white,
-        350px 100px 0 0 white;
-      animation-delay: 0s;
-    }
-
-    .background-animation::after {
-      width: 3px;
-      height: 3px;
-      box-shadow:
-        150px 200px 0 0 white,
-        250px 300px 0 0 white,
-        50px 100px 0 0 white,
-        300px  10px 0 0 white,
-        450px 200px 0 0 white,
-        10px 250px 0 0 white;
-      animation-delay: 2s;
-    }
-
-    @keyframes twinkle {
-      0%   { opacity: 0.5; transform: scale(1); }
-      50%  { opacity: 1;   transform: scale(1.2); }
-      100% { opacity: 0.5; transform: scale(1); }
-    }
-
-    /* Nuages */
-    .background-animation .cloud {
-      position: absolute;
-      background: white;
-      border-radius: 50%;
       opacity: 0.1;
-      animation: moveClouds linear infinite;
+      background: 
+        radial-gradient(circle at 10% 20%, var(--light-blue), transparent 20%),
+        radial-gradient(circle at 90% 80%, var(--accent-blue), transparent 20%);
+      animation: subtleBackground 30s infinite alternate;
     }
 
-    @keyframes moveClouds {
-      0%   { transform: translateX(0) scale(var(--scale, 1)); }
-      100% { transform: translateX(calc(100vw + var(--width, 200px))) scale(var(--scale, 1)); }
+    @keyframes subtleBackground {
+      0% { background-position: 0% 0%; }
+      100% { background-position: 100% 100%; }
     }
 
     /* =====================================================
@@ -137,7 +94,7 @@
 
     hr {
       border: none;
-      border-top: 1px dashed rgba(255, 255, 255, 0.2);
+      border-top: 1px solid var(--border-light);
       margin: 40px auto;
       width: 80%;
     }
@@ -150,24 +107,24 @@
       justify-content: space-between;
       align-items: center;
       padding: 20px 40px;
-      background-color: rgba(0, 0, 0, 0.3);
+      background-color: rgba(255, 255, 255, 0.95);
       position: sticky;
       top: 0;
       z-index: 10;
-      backdrop-filter: blur(10px);
+      box-shadow: 0 2px 15px rgba(0, 0, 0, 0.1);
     }
 
     .logo {
       font-size: 1.8em;
       font-weight: 700;
-      color: var(--light-text);
+      color: var(--primary-blue);
       display: flex;
       align-items: center;
       gap: 10px;
     }
 
     .logo i {
-      color: var(--electric-blue);
+      color: var(--accent-blue);
       font-size: 1.5em;
     }
 
@@ -175,12 +132,12 @@
       display: none;
       font-size: 1.8rem;
       cursor: pointer;
-      color: var(--electric-blue);
+      color: var(--primary-blue);
     }
 
     /* Appliquer la couleur des icônes */
     .icon-color {
-      color: var(--electric-blue) !important;
+      color: var(--accent-blue) !important;
     }
 
     /* Navigation principale (desktop) */
@@ -193,7 +150,7 @@
     }
 
     nav ul li a {
-      color: var(--light-text);
+      color: var(--primary-blue);
       text-decoration: none;
       font-weight: 500;
       transition: color 0.3s ease;
@@ -208,7 +165,7 @@
       left: 0;
       width: 0;
       height: 2px;
-      background: var(--electric-blue);
+      background: var(--accent-blue);
       transition: width 0.3s ease;
     }
 
@@ -227,12 +184,12 @@
         right: 0;
         width: 100%;
         flex-direction: column;
-        background-color: rgba(0, 0, 0, 0.8);
+        background-color: rgba(255, 255, 255, 0.98);
         display: none;
         text-align: center;
         padding: 10px 0;
         gap: 15px;
-        backdrop-filter: blur(10px);
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
       }
       nav ul.active {
         display: flex;
@@ -248,14 +205,14 @@
     #hero {
       padding: 120px 0 100px;
       text-align: center;
-      color: var(--light-text);
+      color: var(--text-dark);
     }
 
     #hero h1 {
       font-size: 3.5rem;
       margin-bottom: 0.5em;
       line-height: 1.2;
-      text-shadow: 0 0 20px rgba(0, 240, 255, 0.3);
+      color: var(--primary-blue);
     }
 
     #hero .subtitle {
@@ -265,6 +222,7 @@
       max-width: 700px;
       margin-left: auto;
       margin-right: auto;
+      color: var(--text-medium);
     }
 
     /* Bouton « Nous rejoindre » */
@@ -273,21 +231,21 @@
       padding: 15px 40px;
       border-radius: 30px;
       text-decoration: none;
-      color: var(--light-text);
-      background: var(--violet-gradient);
+      color: var(--text-light);
+      background: var(--primary-blue);
       transition: all 0.4s ease;
       font-family: 'Playfair Display', serif;
       font-weight: 700;
       font-size: 1.1rem;
       border: none;
       cursor: pointer;
-      box-shadow: 0 4px 15px rgba(106, 17, 203, 0.4);
+      box-shadow: 0 4px 15px rgba(0, 119, 182, 0.3);
     }
 
     .primary-button:hover {
       transform: translateY(-3px);
-      box-shadow: 0 8px 25px rgba(106, 17, 203, 0.6);
-      background: linear-gradient(135deg, #2575fc 0%, #6a11cb 100%);
+      box-shadow: 0 8px 25px rgba(0, 119, 182, 0.4);
+      background: var(--button-hover);
     }
 
     /* =====================================================
@@ -300,7 +258,7 @@
     section h2 {
       font-size: 2.5rem;
       margin-bottom: 0.5em;
-      color: var(--light-text);
+      color: var(--primary-blue);
       position: relative;
       display: inline-block;
     }
@@ -312,7 +270,7 @@
       left: 0;
       width: 70px;
       height: 3px;
-      background: var(--electric-blue);
+      background: var(--accent-blue);
     }
 
     .text-content {
@@ -320,13 +278,14 @@
       margin: 0 auto;
       line-height: 1.8;
       text-align: justify;
-      color: var(--light-text);
+      color: var(--text-dark);
       font-size: 1.1rem;
     }
 
     .text-content p {
       margin-bottom: 1.5em;
       font-family: 'Roboto', sans-serif;
+      color: var(--text-medium);
     }
 
     /* =====================================================
@@ -334,7 +293,9 @@
        ===================================================== */
     #services {
       padding: 40px;
-      border-radius: 10px;
+      border-radius: 15px;
+      background-color: rgba(255, 255, 255, 0.6);
+      backdrop-filter: blur(5px);
     }
 
     .services-grid {
@@ -347,12 +308,11 @@
     .service-item {
       background: var(--card-bg);
       padding: 40px 30px;
-      border-radius: 10px;
+      border-radius: 15px;
       text-align: center;
-      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
       transition: all 0.4s ease;
-      backdrop-filter: blur(5px);
-      border: 1px solid rgba(0, 240, 255, 0.1);
+      border: 1px solid rgba(255, 255, 255, 0.5);
       display: flex;
       flex-direction: column;
       align-items: center;
@@ -360,32 +320,33 @@
 
     .service-item:hover {
       transform: translateY(-10px);
-      box-shadow: 0 15px 40px rgba(0, 240, 255, 0.2);
-      border-color: rgba(0, 240, 255, 0.3);
+      box-shadow: 0 15px 40px rgba(0, 119, 182, 0.1);
+      border-color: rgba(0, 180, 216, 0.3);
     }
 
     .service-item i {
       font-size: 3.5rem;
       margin-bottom: 20px;
-      color: var(--electric-blue);
+      color: var(--accent-blue);
       transition: transform 0.3s ease;
     }
 
     .service-item:hover i {
       transform: scale(1.1);
+      color: var(--primary-blue);
     }
 
     .service-item h3 {
       font-size: 1.5rem;
       margin-bottom: 15px;
-      color: var(--light-text);
+      color: var(--primary-blue);
       font-family: 'Playfair Display', serif;
     }
 
     .service-item p {
       font-size: 1rem;
       line-height: 1.7;
-      color: var(--light-text);
+      color: var(--text-medium);
       font-family: 'Roboto', sans-serif;
       flex-grow: 1;
     }
@@ -400,24 +361,24 @@
 
     .faq-item {
       margin-bottom: 20px;
-      border-radius: 8px;
+      border-radius: 15px;
       overflow: hidden;
       background: var(--card-bg);
-      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
-      border: 1px solid rgba(0, 240, 255, 0.1);
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.5);
       backdrop-filter: blur(5px);
       transition: all 0.3s ease;
     }
 
     .faq-item:hover {
-      border-color: rgba(0, 240, 255, 0.3);
+      border-color: rgba(0, 180, 216, 0.3);
     }
 
     .faq-question {
       width: 100%;
       padding: 20px;
       background-color: transparent;
-      color: var(--light-text);
+      color: var(--primary-blue);
       border: none;
       text-align: left;
       font-size: 1.1rem;
@@ -430,13 +391,13 @@
     }
 
     .faq-question:hover {
-      background-color: rgba(0, 240, 255, 0.05);
+      background-color: rgba(0, 180, 216, 0.05);
     }
 
     .toggle-icon {
       font-size: 1.2rem;
       transition: transform 0.3s ease;
-      color: var(--electric-blue);
+      color: var(--accent-blue);
     }
 
     .toggle-icon.rotated {
@@ -446,7 +407,7 @@
     .faq-answer {
       display: none;
       padding: 0 20px 20px;
-      color: var(--light-text);
+      color: var(--text-medium);
       font-family: 'Roboto', sans-serif;
       font-size: 1rem;
       line-height: 1.7;
@@ -466,7 +427,9 @@
       padding: 80px 0;
       margin-top: 60px;
       border-radius: 15px;
-      border: 1px solid rgba(0, 240, 255, 0.1);
+      border: 1px solid rgba(255, 255, 255, 0.5);
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+      backdrop-filter: blur(5px);
     }
 
     .contact-container {
@@ -480,12 +443,11 @@
     .contact-form {
       width: 100%;
       max-width: 600px;
-      background: rgba(12, 16, 33, 0.7);
+      background: rgba(255, 255, 255, 0.85);
       padding: 40px;
       border-radius: 15px;
-      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
-      border: 1px solid rgba(0, 240, 255, 0.1);
-      backdrop-filter: blur(5px);
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.5);
     }
 
     .form-group {
@@ -496,7 +458,7 @@
       display: block;
       margin-bottom: 8px;
       font-weight: 500;
-      color: var(--electric-blue);
+      color: var(--primary-blue);
     }
 
     .form-group input,
@@ -504,9 +466,9 @@
       width: 100%;
       padding: 15px;
       border-radius: 8px;
-      border: 1px solid rgba(0, 240, 255, 0.2);
-      background: rgba(26, 42, 74, 0.5);
-      color: var(--light-text);
+      border: 1px solid var(--border-light);
+      background: rgba(255, 255, 255, 0.9);
+      color: var(--text-dark);
       font-size: 1rem;
       transition: all 0.3s ease;
     }
@@ -514,8 +476,8 @@
     .form-group input:focus,
     .form-group textarea:focus {
       outline: none;
-      border-color: var(--electric-blue);
-      box-shadow: 0 0 0 3px rgba(0, 240, 255, 0.2);
+      border-color: var(--accent-blue);
+      box-shadow: 0 0 0 3px rgba(0, 180, 216, 0.1);
     }
 
     .form-group textarea {
@@ -527,14 +489,14 @@
        FOOTER
        ===================================================== */
     footer {
-      background-color: rgba(0, 0, 0, 0.3);
-      color: var(--light-text);
+      background-color: rgba(255, 255, 255, 0.95);
+      color: var(--text-medium);
       text-align: center;
       padding: 30px 0;
       margin-top: 80px;
       font-family: 'Roboto', sans-serif;
       font-size: 0.9rem;
-      backdrop-filter: blur(5px);
+      box-shadow: 0 -2px 15px rgba(0, 0, 0, 0.05);
     }
 
     .footer-content {
@@ -550,13 +512,13 @@
     }
 
     .social-icons a {
-      color: var(--light-text);
+      color: var(--primary-blue);
       font-size: 1.5rem;
       transition: color 0.3s ease, transform 0.3s ease;
     }
 
     .social-icons a:hover {
-      color: var(--electric-blue);
+      color: var(--accent-blue);
       transform: translateY(-5px);
     }
 
@@ -580,25 +542,26 @@
       justify-content: center;
       width: 50px;
       height: 50px;
-      background: var(--violet-gradient);
-      color: var(--light-text);
+      background: var(--primary-blue);
+      color: var(--text-light);
       border-radius: 50%;
       text-decoration: none;
       font-size: 1.2rem;
-      box-shadow: 0 5px 15px rgba(106, 17, 203, 0.4);
+      box-shadow: 0 5px 15px rgba(0, 119, 182, 0.3);
       transition: all 0.3s ease;
       position: relative;
     }
 
     .floating-buttons a:hover {
       transform: scale(1.1);
-      box-shadow: 0 8px 20px rgba(106, 17, 203, 0.6);
+      box-shadow: 0 8px 20px rgba(0, 119, 182, 0.4);
+      background: var(--button-hover);
     }
 
     .floating-buttons a .tooltip {
       visibility: hidden;
       width: 120px;
-      background-color: rgba(0, 0, 0, 0.8);
+      background-color: rgba(0, 119, 182, 0.9);
       color: #fff;
       text-align: center;
       border-radius: 6px;
@@ -627,10 +590,10 @@
         right: auto;
         transform: translateX(-50%);
         justify-content: space-around;
-        background-color: rgba(0, 0, 0, 0.6);
+        background-color: rgba(255, 255, 255, 0.95);
         padding: 15px 0;
         border-radius: 30px;
-        backdrop-filter: blur(5px);
+        box-shadow: 0 -2px 15px rgba(0, 0, 0, 0.1);
       }
       .floating-buttons a {
         width: 45px;
@@ -655,7 +618,7 @@
   </style>
 </head>
 <body>
-  <!-- Arrière-plan animé (étoiles + nuages générés par script) -->
+  <!-- Arrière-plan animé (effet subtil) -->
   <div class="background-animation"></div>
 
   <!-- ============================
@@ -907,7 +870,7 @@
       <div class="contact-container">
         <h2>Contactez-nous</h2>
         <div class="contact-form">
-          <form>
+          <form id="contact-form">
             <div class="form-group">
               <label for="name">Nom</label>
               <input type="text" id="name" name="name" placeholder="Votre nom" required>
@@ -1033,53 +996,45 @@
       });
 
       /* ———————————
-         3) Génération dynamique des nuages
+         3) Animation de soumission du formulaire
          ——————————— */
-      const backgroundAnimation = document.querySelector('.background-animation');
-      const numClouds = 7;
-
-      function createCloud() {
-        const cloud = document.createElement('div');
-        cloud.classList.add('cloud');
-
-        const size = Math.random() * 100 + 80;
-        cloud.style.width = `${size}px`;
-        cloud.style.height = `${size * 0.4}px`;
-
-        const topPosition = Math.random() * 80;
-        cloud.style.top = `${topPosition}%`;
-
-        const startLeft = -20 - Math.random() * 30;
-        cloud.style.left = `${startLeft}%`;
-
-        const duration = Math.random() * 60 + 40;
-        cloud.style.animationDuration = `${duration}s`;
-
-        const delay = Math.random() * 30;
-        cloud.style.animationDelay = `${delay}s`;
-
-        cloud.style.setProperty('--width', `${size}px`);
-        const scaleFactor = Math.random() * 0.4 + 0.8;
-        cloud.style.setProperty('--scale', scaleFactor);
-
-        backgroundAnimation.appendChild(cloud);
-      }
-
-      for (let i = 0; i < numClouds; i++) {
-        createCloud();
-      }
-
-      /* ———————————
-         4) Animation de soumission du formulaire
-         ——————————— */
-      const contactForm = document.querySelector('.contact-form form');
+      const contactForm = document.getElementById('contact-form');
       if (contactForm) {
         contactForm.addEventListener('submit', (e) => {
           e.preventDefault();
-          alert('Merci pour votre message ! Nous vous contacterons très bientôt.');
-          contactForm.reset();
+          // Afficher une animation de succès
+          const submitButton = contactForm.querySelector('button[type="submit"]');
+          const originalText = submitButton.innerHTML;
+          
+          submitButton.innerHTML = '<i class="fas fa-check"></i> Message envoyé';
+          submitButton.style.backgroundColor = '#28a745';
+          
+          setTimeout(() => {
+            submitButton.innerHTML = originalText;
+            submitButton.style.backgroundColor = '';
+            contactForm.reset();
+          }, 2000);
         });
       }
+
+      /* ———————————
+         4) Animation au défilement
+         ——————————— */
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.style.opacity = 1;
+            entry.target.style.transform = 'translateY(0)';
+          }
+        });
+      }, { threshold: 0.1 });
+
+      document.querySelectorAll('section, .service-item').forEach(section => {
+        section.style.opacity = 0;
+        section.style.transform = 'translateY(20px)';
+        section.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+        observer.observe(section);
+      });
     });
   </script>
 </body>
