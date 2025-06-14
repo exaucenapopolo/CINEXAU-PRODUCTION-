@@ -4,29 +4,658 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>CINEXAU PRODUCTION - Accompagnement artistique</title>
+  
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Roboto:wght@400;500&display=swap" rel="stylesheet" />
+  
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+  
+  <style>
+    /* =====================================================
+       Variables et polices
+       ===================================================== */
+    :root {
+      /* Nouvelle palette de couleurs professionnelle */
+      --deep-purple: #0c1021;        /* Fond principal */
+      --electric-blue: #00f0ff;      /* Couleur d'accent - icônes, titres */
+      --violet-gradient: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%);
+      --light-blue: #1a2a4a;         /* Cartes et sections */
+      --light-text: #ffffff;         /* Texte clair */
+      --dark-text: #333333;          /* Texte foncé (rare) */
+      --card-bg: rgba(26, 42, 74, 0.7); /* Fond des cartes */
+      --highlight-color: #00f0ff;    /* Mise en valeur */
+      --button-hover: #00c2ff;       /* Survol des boutons */
+      --floating-bg: #00f0ff;        /* Boutons flottants */
+      --floating-hover: #00c2ff;     /* Survol boutons flottants */
+      --success: #28a745;            /* Succès */
+    }
 
-  <!-- Google Fonts :
-       - Playfair Display (pour les titres)
-       - Roboto (pour le texte courant) -->
-  <link
-    href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Roboto:wght@400;500&display=swap"
-    rel="stylesheet"
-  />
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Roboto', sans-serif;
+      color: var(--light-text);
+      overflow-x: hidden;
+      position: relative;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      background: var(--deep-purple);
+    }
 
-  <!-- Feuille de style principale -->
-  <link rel="stylesheet" href="style.css" />
+    h1, h2, h3 {
+      font-family: 'Playfair Display', serif;
+      margin-bottom: 0.5em;
+    }
 
-  <!-- Font Awesome pour les icônes -->
-  <link
-    rel="stylesheet"
-    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
-    integrity="sha512-Fo3rlrQdP2XLuXE/..."
-    crossorigin="anonymous"
-    referrerpolicy="no-referrer"
-  />
+    .highlight-title {
+      color: var(--highlight-color);
+    }
+
+    /* =====================================================
+       Arrière-plan animé (étoiles + nuages)
+       ===================================================== */
+    .background-animation {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: -1;
+      overflow: hidden;
+      background-color: var(--deep-purple);
+    }
+
+    /* Étoiles scintillantes */
+    .background-animation::before,
+    .background-animation::after {
+      content: '';
+      position: absolute;
+      border-radius: 50%;
+      background-color: rgba(255, 255, 255, 0.8);
+      animation: twinkle 5s infinite alternate;
+    }
+
+    .background-animation::before {
+      width: 2px;
+      height: 2px;
+      box-shadow:
+        100px  50px 0 0 white,
+        200px 150px 0 0 white,
+        300px 250px 0 0 white,
+        400px  70px 0 0 white,
+        50px 300px 0 0 white,
+        350px 100px 0 0 white;
+      animation-delay: 0s;
+    }
+
+    .background-animation::after {
+      width: 3px;
+      height: 3px;
+      box-shadow:
+        150px 200px 0 0 white,
+        250px 300px 0 0 white,
+        50px 100px 0 0 white,
+        300px  10px 0 0 white,
+        450px 200px 0 0 white,
+        10px 250px 0 0 white;
+      animation-delay: 2s;
+    }
+
+    @keyframes twinkle {
+      0%   { opacity: 0.5; transform: scale(1); }
+      50%  { opacity: 1;   transform: scale(1.2); }
+      100% { opacity: 0.5; transform: scale(1); }
+    }
+
+    /* Nuages */
+    .background-animation .cloud {
+      position: absolute;
+      background: white;
+      border-radius: 50%;
+      opacity: 0.1;
+      animation: moveClouds linear infinite;
+    }
+
+    @keyframes moveClouds {
+      0%   { transform: translateX(0) scale(var(--scale, 1)); }
+      100% { transform: translateX(calc(100vw + var(--width, 200px))) scale(var(--scale, 1)); }
+    }
+
+    /* =====================================================
+       Conteneur global
+       ===================================================== */
+    .container {
+      width: 90%;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 20px 0;
+      position: relative;
+      z-index: 1;
+    }
+
+    hr {
+      border: none;
+      border-top: 1px dashed rgba(255, 255, 255, 0.2);
+      margin: 40px auto;
+      width: 80%;
+    }
+
+    /* =====================================================
+       HEADER / NAVIGATION
+       ===================================================== */
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 20px 40px;
+      background-color: rgba(0, 0, 0, 0.3);
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      backdrop-filter: blur(10px);
+    }
+
+    .logo {
+      font-size: 1.8em;
+      font-weight: 700;
+      color: var(--light-text);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .logo i {
+      color: var(--electric-blue);
+      font-size: 1.5em;
+    }
+
+    .hamburger-menu {
+      display: none;
+      font-size: 1.8rem;
+      cursor: pointer;
+      color: var(--electric-blue);
+    }
+
+    /* Appliquer la couleur des icônes */
+    .icon-color {
+      color: var(--electric-blue) !important;
+    }
+
+    /* Navigation principale (desktop) */
+    nav ul {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      gap: 25px;
+    }
+
+    nav ul li a {
+      color: var(--light-text);
+      text-decoration: none;
+      font-weight: 500;
+      transition: color 0.3s ease;
+      position: relative;
+      padding-bottom: 5px;
+    }
+
+    nav ul li a::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background: var(--electric-blue);
+      transition: width 0.3s ease;
+    }
+
+    nav ul li a:hover::after {
+      width: 100%;
+    }
+
+    /* Responsive : basculer la nav en mode hamburger */
+    @media (max-width: 768px) {
+      .hamburger-menu {
+        display: block;
+      }
+      nav ul {
+        position: absolute;
+        top: 60px;
+        right: 0;
+        width: 100%;
+        flex-direction: column;
+        background-color: rgba(0, 0, 0, 0.8);
+        display: none;
+        text-align: center;
+        padding: 10px 0;
+        gap: 15px;
+        backdrop-filter: blur(10px);
+      }
+      nav ul.active {
+        display: flex;
+      }
+      nav ul li {
+        margin: 0;
+      }
+    }
+
+    /* =====================================================
+       SECTION HÉROS
+       ===================================================== */
+    #hero {
+      padding: 120px 0 100px;
+      text-align: center;
+      color: var(--light-text);
+    }
+
+    #hero h1 {
+      font-size: 3.5rem;
+      margin-bottom: 0.5em;
+      line-height: 1.2;
+      text-shadow: 0 0 20px rgba(0, 240, 255, 0.3);
+    }
+
+    #hero .subtitle {
+      font-size: 1.5rem;
+      margin-bottom: 1.5em;
+      font-weight: 500;
+      max-width: 700px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    /* Bouton « Nous rejoindre » */
+    .primary-button {
+      display: inline-block;
+      padding: 15px 40px;
+      border-radius: 30px;
+      text-decoration: none;
+      color: var(--light-text);
+      background: var(--violet-gradient);
+      transition: all 0.4s ease;
+      font-family: 'Playfair Display', serif;
+      font-weight: 700;
+      font-size: 1.1rem;
+      border: none;
+      cursor: pointer;
+      box-shadow: 0 4px 15px rgba(106, 17, 203, 0.4);
+    }
+
+    .primary-button:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 25px rgba(106, 17, 203, 0.6);
+      background: linear-gradient(135deg, #2575fc 0%, #6a11cb 100%);
+    }
+
+    /* =====================================================
+       SECTIONS « À PROPOS » et « POURQUOI NOUS CHOISIR »
+       ===================================================== */
+    section {
+      padding: 60px 0;
+    }
+
+    section h2 {
+      font-size: 2.5rem;
+      margin-bottom: 0.5em;
+      color: var(--light-text);
+      position: relative;
+      display: inline-block;
+    }
+
+    section h2::after {
+      content: '';
+      position: absolute;
+      bottom: -10px;
+      left: 0;
+      width: 70px;
+      height: 3px;
+      background: var(--electric-blue);
+    }
+
+    .text-content {
+      max-width: 800px;
+      margin: 0 auto;
+      line-height: 1.8;
+      text-align: justify;
+      color: var(--light-text);
+      font-size: 1.1rem;
+    }
+
+    .text-content p {
+      margin-bottom: 1.5em;
+      font-family: 'Roboto', sans-serif;
+    }
+
+    /* =====================================================
+       SECTION « NOS SERVICES »
+       ===================================================== */
+    #services {
+      padding: 40px;
+      border-radius: 10px;
+    }
+
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 40px;
+      margin-top: 50px;
+    }
+
+    .service-item {
+      background: var(--card-bg);
+      padding: 40px 30px;
+      border-radius: 10px;
+      text-align: center;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+      transition: all 0.4s ease;
+      backdrop-filter: blur(5px);
+      border: 1px solid rgba(0, 240, 255, 0.1);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .service-item:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 15px 40px rgba(0, 240, 255, 0.2);
+      border-color: rgba(0, 240, 255, 0.3);
+    }
+
+    .service-item i {
+      font-size: 3.5rem;
+      margin-bottom: 20px;
+      color: var(--electric-blue);
+      transition: transform 0.3s ease;
+    }
+
+    .service-item:hover i {
+      transform: scale(1.1);
+    }
+
+    .service-item h3 {
+      font-size: 1.5rem;
+      margin-bottom: 15px;
+      color: var(--light-text);
+      font-family: 'Playfair Display', serif;
+    }
+
+    .service-item p {
+      font-size: 1rem;
+      line-height: 1.7;
+      color: var(--light-text);
+      font-family: 'Roboto', sans-serif;
+      flex-grow: 1;
+    }
+
+    /* =====================================================
+       SECTION « FAQ » (accordéon)
+       ===================================================== */
+    .faq-container {
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    .faq-item {
+      margin-bottom: 20px;
+      border-radius: 8px;
+      overflow: hidden;
+      background: var(--card-bg);
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+      border: 1px solid rgba(0, 240, 255, 0.1);
+      backdrop-filter: blur(5px);
+      transition: all 0.3s ease;
+    }
+
+    .faq-item:hover {
+      border-color: rgba(0, 240, 255, 0.3);
+    }
+
+    .faq-question {
+      width: 100%;
+      padding: 20px;
+      background-color: transparent;
+      color: var(--light-text);
+      border: none;
+      text-align: left;
+      font-size: 1.1rem;
+      font-family: 'Playfair Display', serif;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    .faq-question:hover {
+      background-color: rgba(0, 240, 255, 0.05);
+    }
+
+    .toggle-icon {
+      font-size: 1.2rem;
+      transition: transform 0.3s ease;
+      color: var(--electric-blue);
+    }
+
+    .toggle-icon.rotated {
+      transform: rotate(90deg);
+    }
+
+    .faq-answer {
+      display: none;
+      padding: 0 20px 20px;
+      color: var(--light-text);
+      font-family: 'Roboto', sans-serif;
+      font-size: 1rem;
+      line-height: 1.7;
+      animation: fadeIn 0.3s ease;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(-10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* =====================================================
+       SECTION CONTACT
+       ===================================================== */
+    #contact {
+      background: var(--card-bg);
+      padding: 80px 0;
+      margin-top: 60px;
+      border-radius: 15px;
+      border: 1px solid rgba(0, 240, 255, 0.1);
+    }
+
+    .contact-container {
+      max-width: 800px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .contact-form {
+      width: 100%;
+      max-width: 600px;
+      background: rgba(12, 16, 33, 0.7);
+      padding: 40px;
+      border-radius: 15px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+      border: 1px solid rgba(0, 240, 255, 0.1);
+      backdrop-filter: blur(5px);
+    }
+
+    .form-group {
+      margin-bottom: 25px;
+    }
+
+    .form-group label {
+      display: block;
+      margin-bottom: 8px;
+      font-weight: 500;
+      color: var(--electric-blue);
+    }
+
+    .form-group input,
+    .form-group textarea {
+      width: 100%;
+      padding: 15px;
+      border-radius: 8px;
+      border: 1px solid rgba(0, 240, 255, 0.2);
+      background: rgba(26, 42, 74, 0.5);
+      color: var(--light-text);
+      font-size: 1rem;
+      transition: all 0.3s ease;
+    }
+
+    .form-group input:focus,
+    .form-group textarea:focus {
+      outline: none;
+      border-color: var(--electric-blue);
+      box-shadow: 0 0 0 3px rgba(0, 240, 255, 0.2);
+    }
+
+    .form-group textarea {
+      min-height: 150px;
+      resize: vertical;
+    }
+
+    /* =====================================================
+       FOOTER
+       ===================================================== */
+    footer {
+      background-color: rgba(0, 0, 0, 0.3);
+      color: var(--light-text);
+      text-align: center;
+      padding: 30px 0;
+      margin-top: 80px;
+      font-family: 'Roboto', sans-serif;
+      font-size: 0.9rem;
+      backdrop-filter: blur(5px);
+    }
+
+    .footer-content {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 20px;
+    }
+
+    .social-icons {
+      display: flex;
+      gap: 20px;
+    }
+
+    .social-icons a {
+      color: var(--light-text);
+      font-size: 1.5rem;
+      transition: color 0.3s ease, transform 0.3s ease;
+    }
+
+    .social-icons a:hover {
+      color: var(--electric-blue);
+      transform: translateY(-5px);
+    }
+
+    /* =====================================================
+       Boutons flottants (hébergés en bas à droite)
+       ===================================================== */
+    .floating-buttons {
+      position: fixed;
+      top: 50%;
+      right: 20px;
+      transform: translateY(-50%);
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+      z-index: 20;
+    }
+
+    .floating-buttons a {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 50px;
+      height: 50px;
+      background: var(--violet-gradient);
+      color: var(--light-text);
+      border-radius: 50%;
+      text-decoration: none;
+      font-size: 1.2rem;
+      box-shadow: 0 5px 15px rgba(106, 17, 203, 0.4);
+      transition: all 0.3s ease;
+      position: relative;
+    }
+
+    .floating-buttons a:hover {
+      transform: scale(1.1);
+      box-shadow: 0 8px 20px rgba(106, 17, 203, 0.6);
+    }
+
+    .floating-buttons a .tooltip {
+      visibility: hidden;
+      width: 120px;
+      background-color: rgba(0, 0, 0, 0.8);
+      color: #fff;
+      text-align: center;
+      border-radius: 6px;
+      padding: 8px 0;
+      position: absolute;
+      z-index: 1;
+      right: 60px;
+      opacity: 0;
+      transition: opacity 0.3s;
+      font-size: 0.9rem;
+    }
+
+    .floating-buttons a:hover .tooltip {
+      visibility: visible;
+      opacity: 1;
+    }
+
+    /* Responsive pour les boutons flottants (<768px) */
+    @media (max-width: 768px) {
+      .floating-buttons {
+        flex-direction: row;
+        width: 90%;
+        left: 50%;
+        bottom: 20px;
+        top: auto;
+        right: auto;
+        transform: translateX(-50%);
+        justify-content: space-around;
+        background-color: rgba(0, 0, 0, 0.6);
+        padding: 15px 0;
+        border-radius: 30px;
+        backdrop-filter: blur(5px);
+      }
+      .floating-buttons a {
+        width: 45px;
+        height: 45px;
+        font-size: 1.1rem;
+      }
+      .floating-buttons a .tooltip {
+        display: none;
+      }
+    }
+
+    /* Animation générale */
+    @keyframes float {
+      0% { transform: translateY(0px); }
+      50% { transform: translateY(-10px); }
+      100% { transform: translateY(0px); }
+    }
+
+    .floating-element {
+      animation: float 4s ease-in-out infinite;
+    }
+  </style>
 </head>
 <body>
-  <!-- Arrière‑plan animé (étoiles + nuages générés par script.js) -->
+  <!-- Arrière-plan animé (étoiles + nuages générés par script) -->
   <div class="background-animation"></div>
 
   <!-- ============================
@@ -34,7 +663,7 @@
        ============================ -->
   <header>
     <div class="logo">
-      <i class="fas fa-compact-disc icon-color"></i>
+      <i class="fas fa-compact-disc floating-element"></i>
       CINEXAU PRODUCTION
     </div>
 
@@ -49,6 +678,7 @@
         <li><a href="#services">Services</a></li>
         <li><a href="#why-choose-us">Pourquoi nous choisir</a></li>
         <li><a href="#faq">FAQ</a></li>
+        <li><a href="#contact">Contact</a></li>
       </ul>
     </nav>
   </header>
@@ -59,9 +689,9 @@
   <main>
     <!-- —— Section Héros : titre + sous-titre + bouton —— -->
     <section id="hero" class="container">
-      <h1>Bienvenue sur <span class="highlight-title">CINEXAU PRODUCTION</span></h1>
-      <p class="subtitle">Accompagnement artistique & production musicale</p>
-      <a href="dashboard.html" class="primary-button">Nous rejoindre</a>
+      <h1>Transformez votre passion en <span class="highlight-title">succès musical</span></h1>
+      <p class="subtitle">Accompagnement artistique et production professionnelle pour les talents émergents</p>
+      <a href="#contact" class="primary-button">Nous rejoindre</a>
     </section>
 
     <hr />
@@ -96,7 +726,7 @@
       <h2>Nos <span class="highlight-title">Services</span></h2>
       <div class="services-grid">
         <div class="service-item">
-          <i class="fas fa-globe icon-color"></i>
+          <i class="fas fa-globe icon-color floating-element"></i>
           <h3>Distribution Digitale</h3>
           <p>
             Nous assurons la distribution de votre musique sur toutes les
@@ -108,7 +738,7 @@
         </div>
 
         <div class="service-item">
-          <i class="fas fa-microphone-alt icon-color"></i>
+          <i class="fas fa-microphone-alt icon-color floating-element"></i>
           <h3>Enregistrement &amp; Mixage</h3>
           <p>
             Profitez de nos studios équipés et de nos ingénieurs du son
@@ -119,7 +749,7 @@
         </div>
 
         <div class="service-item">
-          <i class="fas fa-users icon-color"></i>
+          <i class="fas fa-users icon-color floating-element"></i>
           <h3>Accompagnement Artistique</h3>
           <p>
             Un soutien personnalisé pour développer votre projet musical,
@@ -130,7 +760,7 @@
         </div>
 
         <div class="service-item">
-          <i class="fas fa-camera-retro icon-color"></i>
+          <i class="fas fa-camera-retro icon-color floating-element"></i>
           <h3>Production Audiovisuelle</h3>
           <p>
             Création de clips vidéo, de visuels promotionnels et de contenus
@@ -140,7 +770,7 @@
         </div>
 
         <div class="service-item">
-          <i class="fas fa-scroll icon-color"></i>
+          <i class="fas fa-scroll icon-color floating-element"></i>
           <h3>Gestion des Droits</h3>
           <p>
             Nous gérons la protection et l'administration de vos droits
@@ -150,7 +780,7 @@
         </div>
 
         <div class="service-item">
-          <i class="fas fa-project-diagram icon-color"></i>
+          <i class="fas fa-project-diagram icon-color floating-element"></i>
           <h3>Stratégie de Carrière</h3>
           <p>
             Développement d'un plan de carrière sur mesure, incluant le
@@ -271,6 +901,34 @@
         </div>
       </div>
     </section>
+
+    <!-- —— Section Contact —— -->
+    <section id="contact" class="container">
+      <div class="contact-container">
+        <h2>Contactez-nous</h2>
+        <div class="contact-form">
+          <form>
+            <div class="form-group">
+              <label for="name">Nom</label>
+              <input type="text" id="name" name="name" placeholder="Votre nom" required>
+            </div>
+            <div class="form-group">
+              <label for="email">Email</label>
+              <input type="email" id="email" name="email" placeholder="Votre email" required>
+            </div>
+            <div class="form-group">
+              <label for="subject">Sujet</label>
+              <input type="text" id="subject" name="subject" placeholder="Objet de votre message">
+            </div>
+            <div class="form-group">
+              <label for="message">Message</label>
+              <textarea id="message" name="message" placeholder="Décrivez votre projet ou posez votre question" required></textarea>
+            </div>
+            <button type="submit" class="primary-button">Envoyer</button>
+          </form>
+        </div>
+      </div>
+    </section>
   </main>
 
   <!-- ============================
@@ -278,7 +936,19 @@
        ============================ -->
   <footer>
     <div class="container">
-      <p>&copy; 2025 CINEXAU PRODUCTION. Tous droits réservés.</p>
+      <div class="footer-content">
+        <div class="logo">
+          <i class="fas fa-compact-disc"></i>
+          CINEXAU PRODUCTION
+        </div>
+        <div class="social-icons">
+          <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+          <a href="#" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
+          <a href="#" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+          <a href="#" aria-label="Spotify"><i class="fab fa-spotify"></i></a>
+        </div>
+        <p>&copy; 2025 CINEXAU PRODUCTION. Tous droits réservés.</p>
+      </div>
     </div>
   </footer>
 
@@ -302,7 +972,7 @@
       <i class="fas fa-comment-dots icon-color"></i>
       <span class="tooltip">FAQ</span>
     </a>
-    <a href="#contact-section-placeholder">
+    <a href="#contact">
       <i class="fas fa-envelope icon-color"></i>
       <span class="tooltip">Nous contacter</span>
     </a>
@@ -311,7 +981,6 @@
   <!-- ============================
        Scripts JS
        ============================ -->
-  <!-- 1) Accordéon FAQ + menu hamburger -->
   <script>
     document.addEventListener('DOMContentLoaded', () => {
       /* ———————————
@@ -362,10 +1031,56 @@
           navLinks.classList.remove('active');
         }
       });
+
+      /* ———————————
+         3) Génération dynamique des nuages
+         ——————————— */
+      const backgroundAnimation = document.querySelector('.background-animation');
+      const numClouds = 7;
+
+      function createCloud() {
+        const cloud = document.createElement('div');
+        cloud.classList.add('cloud');
+
+        const size = Math.random() * 100 + 80;
+        cloud.style.width = `${size}px`;
+        cloud.style.height = `${size * 0.4}px`;
+
+        const topPosition = Math.random() * 80;
+        cloud.style.top = `${topPosition}%`;
+
+        const startLeft = -20 - Math.random() * 30;
+        cloud.style.left = `${startLeft}%`;
+
+        const duration = Math.random() * 60 + 40;
+        cloud.style.animationDuration = `${duration}s`;
+
+        const delay = Math.random() * 30;
+        cloud.style.animationDelay = `${delay}s`;
+
+        cloud.style.setProperty('--width', `${size}px`);
+        const scaleFactor = Math.random() * 0.4 + 0.8;
+        cloud.style.setProperty('--scale', scaleFactor);
+
+        backgroundAnimation.appendChild(cloud);
+      }
+
+      for (let i = 0; i < numClouds; i++) {
+        createCloud();
+      }
+
+      /* ———————————
+         4) Animation de soumission du formulaire
+         ——————————— */
+      const contactForm = document.querySelector('.contact-form form');
+      if (contactForm) {
+        contactForm.addEventListener('submit', (e) => {
+          e.preventDefault();
+          alert('Merci pour votre message ! Nous vous contacterons très bientôt.');
+          contactForm.reset();
+        });
+      }
     });
   </script>
-
-  <!-- 2) Génération dynamique des nuages -->
-  <script src="script.js"></script>
 </body>
 </html>
