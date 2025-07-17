@@ -4,154 +4,483 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>CINEXAU PRODUCTION - Distribution musicale</title>
-
-  <!-- Google Fonts : Playfair Display (titres) & Roboto (texte) -->
-  <link
-    href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Roboto:wght@400;500&display=swap"
-    rel="stylesheet"
-  />
-
-  <!-- Feuille de style principale -->
-  <link rel="stylesheet" href="style.css" />
-
-  <!-- Font Awesome pour les icônes -->
-  <link
-    rel="stylesheet"
-    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
-    integrity="sha512-Fo3rlrQdP2XLuXE/..."
-    crossorigin="anonymous"
-    referrerpolicy="no-referrer"
-  />
-
-  <!-- Styles spécifiques à la distribution -->
+  
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Roboto:wght@400;500&display=swap" rel="stylesheet" />
+  
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+  
   <style>
-    .distribution-container {
-      max-width: 1000px;
-      margin: 0 auto;
+    /* =====================================================
+       Variables et polices
+       ===================================================== */
+    :root {
+      /* Nouvelle palette de couleurs claire et professionnelle */
+      --light-gradient: linear-gradient(135deg, #f0f9ff 0%, #e6f7ff 100%);
+      --primary-blue: #0077b6;      /* Bleu professionnel */
+      --accent-blue: #00b4d8;       /* Bleu d'accent */
+      --light-blue: #90e0ef;        /* Bleu clair */
+      --text-dark: #333333;         /* Texte sombre */
+      --text-medium: #555555;       /* Texte moyen */
+      --text-light: #ffffff;        /* Texte clair */
+      --card-bg: rgba(255, 255, 255, 0.85); /* Fond des cartes */
+      --highlight-color: #0077b6;   /* Mise en valeur */
+      --button-color: #0077b6;      /* Boutons */
+      --button-hover: #005f8a;      /* Survol des boutons */
+      --floating-bg: #0077b6;       /* Boutons flottants */
+      --floating-hover: #005f8a;    /* Survol boutons flottants */
+      --success: #28a745;           /* Succès */
+      --border-light: rgba(0, 0, 0, 0.1);
     }
-    
-    .distribution-header {
-      text-align: center;
-      margin-bottom: 40px;
+
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Roboto', sans-serif;
+      color: var(--text-dark);
+      overflow-x: hidden;
+      position: relative;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      background: var(--light-gradient);
     }
-    
-    .distribution-header i {
-      font-size: 4rem;
-      color: var(--icon-color);
-      margin-bottom: 20px;
-    }
-    
-    .form-container {
-      background-color: rgba(0, 0, 0, 0.4);
-      padding: 30px;
-      border-radius: 10px;
-      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
-    }
-    
-    .form-grid {
-      display: grid;
-      grid-template-columns: 1fr;
-      gap: 20px;
-    }
-    
-    @media (min-width: 768px) {
-      .form-grid {
-        grid-template-columns: 1fr 1fr;
-      }
-    }
-    
-    .form-group {
-      margin-bottom: 20px;
-    }
-    
-    .form-group label {
-      display: block;
-      margin-bottom: 8px;
-      font-weight: 500;
+
+    h1, h2, h3 {
       font-family: 'Playfair Display', serif;
+      margin-bottom: 0.5em;
+      color: var(--primary-blue);
+    }
+
+    .highlight-title {
+      color: var(--accent-blue);
+    }
+
+    /* =====================================================
+       Arrière-plan animé (effet subtil)
+       ===================================================== */
+    .background-animation {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: -1;
+      overflow: hidden;
+      opacity: 0.1;
+      background: 
+        radial-gradient(circle at 10% 20%, var(--light-blue), transparent 20%),
+        radial-gradient(circle at 90% 80%, var(--accent-blue), transparent 20%);
+      animation: subtleBackground 30s infinite alternate;
+    }
+
+    @keyframes subtleBackground {
+      0% { background-position: 0% 0%; }
+      100% { background-position: 100% 100%; }
+    }
+
+    /* =====================================================
+       Conteneur global
+       ===================================================== */
+    .container {
+      width: 90%;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 20px 0;
+      position: relative;
+      z-index: 1;
+    }
+
+    hr {
+      border: none;
+      border-top: 1px solid var(--border-light);
+      margin: 40px auto;
+      width: 80%;
+    }
+
+    /* =====================================================
+       HEADER / NAVIGATION
+       ===================================================== */
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 20px 40px;
+      background-color: rgba(255, 255, 255, 0.95);
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      box-shadow: 0 2px 15px rgba(0, 0, 0, 0.1);
+    }
+
+    .logo {
+      font-size: 1.8em;
+      font-weight: 700;
+      color: var(--primary-blue);
       display: flex;
       align-items: center;
       gap: 10px;
     }
-    
+
+    .logo i {
+      color: var(--accent-blue);
+      font-size: 1.5em;
+    }
+
+    .hamburger-menu {
+      display: none;
+      font-size: 1.8rem;
+      cursor: pointer;
+      color: var(--primary-blue);
+    }
+
+    /* Appliquer la couleur des icônes */
+    .icon-color {
+      color: var(--accent-blue) !important;
+    }
+
+    /* Navigation principale (desktop) */
+    nav ul {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      gap: 25px;
+    }
+
+    nav ul li a {
+      color: var(--primary-blue);
+      text-decoration: none;
+      font-weight: 500;
+      transition: color 0.3s ease;
+      position: relative;
+      padding-bottom: 5px;
+    }
+
+    nav ul li a::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background: var(--accent-blue);
+      transition: width 0.3s ease;
+    }
+
+    nav ul li a:hover::after {
+      width: 100%;
+    }
+
+    /* Responsive : basculer la nav en mode hamburger */
+    @media (max-width: 768px) {
+      .hamburger-menu {
+        display: block;
+      }
+      nav ul {
+        position: absolute;
+        top: 60px;
+        right: 0;
+        width: 100%;
+        flex-direction: column;
+        background-color: rgba(255, 255, 255, 0.98);
+        display: none;
+        text-align: center;
+        padding: 10px 0;
+        gap: 15px;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+      }
+      nav ul.active {
+        display: flex;
+      }
+      nav ul li {
+        margin: 0;
+      }
+    }
+
+    /* =====================================================
+       SECTION DISTRIBUTION
+       ===================================================== */
+    .distribution-header {
+      text-align: center;
+      padding: 80px 0 40px;
+    }
+
+    .distribution-header i {
+      font-size: 4rem;
+      color: var(--accent-blue);
+      margin-bottom: 20px;
+      animation: float 4s ease-in-out infinite;
+    }
+
+    .distribution-header h1 {
+      font-size: 2.8rem;
+      margin-bottom: 15px;
+    }
+
+    .distribution-header p {
+      font-size: 1.2rem;
+      max-width: 700px;
+      margin: 0 auto;
+      color: var(--text-medium);
+    }
+
+    /* Formulaire de distribution */
+    .distribution-container {
+      background: var(--card-bg);
+      padding: 40px;
+      border-radius: 15px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.5);
+      backdrop-filter: blur(5px);
+      margin-bottom: 60px;
+    }
+
+    .form-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 25px;
+    }
+
+    .form-group {
+      margin-bottom: 20px;
+    }
+
+    .form-group label {
+      display: block;
+      margin-bottom: 8px;
+      font-weight: 500;
+      color: var(--primary-blue);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
     .form-group input,
     .form-group textarea,
     .form-group select {
       width: 100%;
-      padding: 12px;
-      border: none;
-      border-radius: 5px;
-      background-color: rgba(255, 255, 255, 0.1);
-      color: var(--text-light);
-      font-family: 'Roboto', sans-serif;
+      padding: 15px;
+      border-radius: 8px;
+      border: 1px solid var(--border-light);
+      background: rgba(255, 255, 255, 0.9);
+      color: var(--text-dark);
+      font-size: 1rem;
+      transition: all 0.3s ease;
     }
-    
+
+    .form-group input:focus,
+    .form-group textarea:focus,
+    .form-group select:focus {
+      outline: none;
+      border-color: var(--accent-blue);
+      box-shadow: 0 0 0 3px rgba(0, 180, 216, 0.1);
+    }
+
     .form-group.full-width {
-      grid-column: span 2;
+      grid-column: 1 / -1;
     }
-    
+
     .form-group textarea {
-      min-height: 100px;
+      min-height: 120px;
       resize: vertical;
     }
-    
+
     .submit-btn {
       display: block;
       width: 100%;
       padding: 15px;
-      background-color: var(--button-color);
+      background-color: var(--primary-blue);
       color: white;
       border: none;
-      border-radius: 5px;
+      border-radius: 30px;
       font-size: 1.1rem;
       cursor: pointer;
       transition: background-color 0.3s;
-      font-family: 'Playfair Display', serif;
+      font-family: 'Roboto', sans-serif;
+      font-weight: 500;
       margin-top: 20px;
+      box-shadow: 0 4px 15px rgba(0, 119, 182, 0.3);
+      transition: all 0.3s ease;
     }
-    
+
     .submit-btn:hover {
-      background-color: var(--button-hover-color);
+      background-color: var(--button-hover);
+      transform: translateY(-3px);
+      box-shadow: 0 6px 20px rgba(0, 119, 182, 0.4);
     }
-    
+
+    /* Plateformes de distribution */
     .platforms-section {
-      margin-top: 50px;
       text-align: center;
+      margin-top: 60px;
     }
-    
+
     .platforms-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
-      gap: 20px;
+      grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+      gap: 25px;
       margin-top: 30px;
     }
-    
+
     .platform-card {
-      background-color: rgba(255, 255, 255, 0.05);
-      padding: 15px;
-      border-radius: 8px;
-      transition: transform 0.3s;
+      background-color: rgba(255, 255, 255, 0.8);
+      padding: 20px 15px;
+      border-radius: 15px;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+      transition: all 0.3s ease;
+      border: 1px solid rgba(255, 255, 255, 0.5);
     }
-    
+
     .platform-card:hover {
-      transform: translateY(-5px);
-      background-color: rgba(255, 255, 255, 0.1);
+      transform: translateY(-8px);
+      box-shadow: 0 12px 25px rgba(0, 119, 182, 0.15);
+      border-color: rgba(0, 180, 216, 0.3);
     }
-    
+
     .platform-card i {
       font-size: 2.5rem;
-      margin-bottom: 10px;
-      color: var(--icon-color);
+      margin-bottom: 15px;
+      color: var(--primary-blue);
     }
-    
+
     .platform-card p {
       margin: 0;
+      font-weight: 500;
+      color: var(--primary-blue);
+    }
+
+    /* =====================================================
+       FOOTER
+       ===================================================== */
+    footer {
+      background-color: rgba(255, 255, 255, 0.95);
+      color: var(--text-medium);
+      text-align: center;
+      padding: 30px 0;
+      margin-top: 80px;
+      font-family: 'Roboto', sans-serif;
       font-size: 0.9rem;
+      box-shadow: 0 -2px 15px rgba(0, 0, 0, 0.05);
+    }
+
+    .footer-content {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 20px;
+    }
+
+    .social-icons {
+      display: flex;
+      gap: 20px;
+    }
+
+    .social-icons a {
+      color: var(--primary-blue);
+      font-size: 1.5rem;
+      transition: color 0.3s ease, transform 0.3s ease;
+    }
+
+    .social-icons a:hover {
+      color: var(--accent-blue);
+      transform: translateY(-5px);
+    }
+
+    /* =====================================================
+       Boutons flottants (hébergés en bas à droite)
+       ===================================================== */
+    .floating-buttons {
+      position: fixed;
+      top: 50%;
+      right: 20px;
+      transform: translateY(-50%);
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+      z-index: 20;
+    }
+
+    .floating-buttons a {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 50px;
+      height: 50px;
+      background: var(--primary-blue);
+      color: var(--text-light);
+      border-radius: 50%;
+      text-decoration: none;
+      font-size: 1.2rem;
+      box-shadow: 0 5px 15px rgba(0, 119, 182, 0.3);
+      transition: all 0.3s ease;
+      position: relative;
+    }
+
+    .floating-buttons a:hover {
+      transform: scale(1.1);
+      box-shadow: 0 8px 20px rgba(0, 119, 182, 0.4);
+      background: var(--button-hover);
+    }
+
+    .floating-buttons a .tooltip {
+      visibility: hidden;
+      width: 120px;
+      background-color: rgba(0, 119, 182, 0.9);
+      color: #fff;
+      text-align: center;
+      border-radius: 6px;
+      padding: 8px 0;
+      position: absolute;
+      z-index: 1;
+      right: 60px;
+      opacity: 0;
+      transition: opacity 0.3s;
+      font-size: 0.9rem;
+    }
+
+    .floating-buttons a:hover .tooltip {
+      visibility: visible;
+      opacity: 1;
+    }
+
+    /* Responsive pour les boutons flottants (<768px) */
+    @media (max-width: 768px) {
+      .floating-buttons {
+        flex-direction: row;
+        width: 90%;
+        left: 50%;
+        bottom: 20px;
+        top: auto;
+        right: auto;
+        transform: translateX(-50%);
+        justify-content: space-around;
+        background-color: rgba(255, 255, 255, 0.95);
+        padding: 15px 0;
+        border-radius: 30px;
+        box-shadow: 0 -2px 15px rgba(0, 0, 0, 0.1);
+      }
+      .floating-buttons a {
+        width: 45px;
+        height: 45px;
+        font-size: 1.1rem;
+      }
+      .floating-buttons a .tooltip {
+        display: none;
+      }
+    }
+
+    /* Animation générale */
+    @keyframes float {
+      0% { transform: translateY(0px); }
+      50% { transform: translateY(-10px); }
+      100% { transform: translateY(0px); }
     }
   </style>
 </head>
 <body>
-  <!-- Arrière-plan animé (étoiles + nuages) -->
+  <!-- Arrière-plan animé (effet subtil) -->
   <div class="background-animation"></div>
 
   <!-- ============================
@@ -159,11 +488,10 @@
        ============================ -->
   <header>
     <div class="logo">
-      <i class="fas fa-compact-disc icon-color"></i>
+      <i class="fas fa-compact-disc"></i>
       CINEXAU PRODUCTION
     </div>
 
-    <!-- Icône hamburger pour le menu mobile -->
     <div class="hamburger-menu" id="hamburger-icon">
       <i class="fas fa-bars icon-color"></i>
     </div>
@@ -173,10 +501,9 @@
         <li><a href="index.html">Accueil</a></li>
         <li><a href="index.html#about-cinexau">À propos</a></li>
         <li><a href="index.html#services">Services</a></li>
-        <li><a href="index.html#why-choose-us">Pourquoi nous choisir</a></li>
-        <li><a href="index.html#faq">FAQ</a></li>
         <li><a href="dashboard.html">Tableau de bord</a></li>
-        <li><a href="decouvrir.html">Découvrir</a></li>
+        <li><a href="index.html#faq">FAQ</a></li>
+        <li><a href="index.html#contact">Contact</a></li>
       </ul>
     </nav>
   </header>
@@ -184,138 +511,141 @@
   <!-- ============================
        CONTENU PRINCIPAL
        ============================ -->
-  <main class="distribution-container">
-    <section class="distribution-header">
-      <i class="fas fa-globe"></i>
-      <h1>Distribuer ma musique</h1>
+  <main>
+    <!-- —— Section Distribution —— -->
+    <section class="distribution-header container">
+      <i class="fas fa-globe icon-color"></i>
+      <h1>Distribuer <span class="highlight-title">ma musique</span></h1>
       <p>Diffusez votre musique sur toutes les plateformes mondiales</p>
     </section>
 
-    <div class="form-container">
-      <form class="distribution-form">
-        <div class="form-grid">
-          <div class="form-group">
-            <label for="track-title">
-              <i class="fas fa-music icon-color"></i> Titre de la chanson
-            </label>
-            <input type="text" id="track-title" name="track-title" placeholder="Entrez le titre" required />
+    <div class="container">
+      <div class="distribution-container">
+        <form class="distribution-form">
+          <div class="form-grid">
+            <div class="form-group">
+              <label for="track-title">
+                <i class="fas fa-music icon-color"></i> Titre de la chanson
+              </label>
+              <input type="text" id="track-title" name="track-title" placeholder="Entrez le titre" required>
+            </div>
+            
+            <div class="form-group">
+              <label for="artist-name">
+                <i class="fas fa-user icon-color"></i> Nom de l'artiste
+              </label>
+              <input type="text" id="artist-name" name="artist-name" placeholder="Nom de l'artiste" required>
+            </div>
+            
+            <div class="form-group">
+              <label for="album-name">
+                <i class="fas fa-compact-disc icon-color"></i> Nom de l'album
+              </label>
+              <input type="text" id="album-name" name="album-name" placeholder="Nom de l'album (facultatif)">
+            </div>
+            
+            <div class="form-group">
+              <label for="release-date">
+                <i class="fas fa-calendar-alt icon-color"></i> Date de sortie
+              </label>
+              <input type="date" id="release-date" name="release-date" required>
+            </div>
+            
+            <div class="form-group">
+              <label for="genre">
+                <i class="fas fa-music icon-color"></i> Genre musical
+              </label>
+              <select id="genre" name="genre" required>
+                <option value="">Sélectionnez un genre</option>
+                <option value="pop">Pop</option>
+                <option value="hiphop">Hip-Hop/Rap</option>
+                <option value="rock">Rock</option>
+                <option value="electronic">Électronique</option>
+                <option value="rnb">R&B</option>
+                <option value="jazz">Jazz</option>
+                <option value="classique">Classique</option>
+                <option value="reggae">Reggae</option>
+                <option value="metal">Metal</option>
+                <option value="country">Country</option>
+                <option value="autre">Autre</option>
+              </select>
+            </div>
+            
+            <div class="form-group">
+              <label for="language">
+                <i class="fas fa-language icon-color"></i> Langue
+              </label>
+              <input type="text" id="language" name="language" placeholder="Ex : Français, Anglais…" required>
+            </div>
+            
+            <div class="form-group full-width">
+              <label for="cover-art">
+                <i class="fas fa-image icon-color"></i> Pochette d'album
+              </label>
+              <input type="file" id="cover-art" name="cover-art" accept="image/*" required>
+              <small>Format recommandé : JPG ou PNG, min. 1400x1400 px</small>
+            </div>
+            
+            <div class="form-group full-width">
+              <label for="audio-file">
+                <i class="fas fa-file-audio icon-color"></i> Fichier audio
+              </label>
+              <input type="file" id="audio-file" name="audio-file" accept="audio/*" required>
+              <small>Formats acceptés : WAV, FLAC, AIFF, MP3 (qualité maximale)</small>
+            </div>
+            
+            <div class="form-group full-width">
+              <label for="distribution-territory">
+                <i class="fas fa-globe-americas icon-color"></i> Territoires de distribution
+              </label>
+              <textarea id="distribution-territory" name="distribution-territory" placeholder="Liste des pays ou 'Monde entier'">Monde entier</textarea>
+            </div>
           </div>
           
-          <div class="form-group">
-            <label for="artist-name">
-              <i class="fas fa-user icon-color"></i> Nom de l'artiste
-            </label>
-            <input type="text" id="artist-name" name="artist-name" placeholder="Nom de l'artiste" required />
-          </div>
-          
-          <div class="form-group">
-            <label for="album-name">
-              <i class="fas fa-compact-disc icon-color"></i> Nom de l'album
-            </label>
-            <input type="text" id="album-name" name="album-name" placeholder="Nom de l'album (facultatif)" />
-          </div>
-          
-          <div class="form-group">
-            <label for="release-date">
-              <i class="fas fa-calendar-alt icon-color"></i> Date de sortie
-            </label>
-            <input type="date" id="release-date" name="release-date" required />
-          </div>
-          
-          <div class="form-group">
-            <label for="genre">
-              <i class="fas fa-music icon-color"></i> Genre musical
-            </label>
-            <select id="genre" name="genre" required>
-              <option value="">Sélectionnez un genre</option>
-              <option value="pop">Pop</option>
-              <option value="hiphop">Hip-Hop/Rap</option>
-              <option value="rock">Rock</option>
-              <option value="electronic">Électronique</option>
-              <option value="rnb">R&B</option>
-              <option value="jazz">Jazz</option>
-              <option value="classique">Classique</option>
-              <option value="reggae">Reggae</option>
-              <option value="metal">Metal</option>
-              <option value="country">Country</option>
-              <option value="autre">Autre</option>
-            </select>
-          </div>
-          
-          <div class="form-group">
-            <label for="language">
-              <i class="fas fa-language icon-color"></i> Langue
-            </label>
-            <input type="text" id="language" name="language" placeholder="Ex : Français, Anglais…" required />
-          </div>
-          
-          <div class="form-group full-width">
-            <label for="cover-art">
-              <i class="fas fa-image icon-color"></i> Pochette d'album
-            </label>
-            <input type="file" id="cover-art" name="cover-art" accept="image/*" required />
-            <small>Format recommandé : JPG ou PNG, min. 1400x1400 px</small>
-          </div>
-          
-          <div class="form-group full-width">
-            <label for="audio-file">
-              <i class="fas fa-file-audio icon-color"></i> Fichier audio
-            </label>
-            <input type="file" id="audio-file" name="audio-file" accept="audio/*" required />
-            <small>Formats acceptés : WAV, FLAC, AIFF, MP3 (qualité maximale)</small>
-          </div>
-          
-          <div class="form-group full-width">
-            <label for="distribution-territory">
-              <i class="fas fa-globe-americas icon-color"></i> Territoires de distribution
-            </label>
-            <textarea id="distribution-territory" name="distribution-territory" placeholder="Liste des pays ou 'Monde entier'">Monde entier</textarea>
-          </div>
-        </div>
-        
-        <button type="submit" class="submit-btn">Distribuer ma musique</button>
-      </form>
-    </div>
-    
-    <section class="platforms-section">
-      <h2>Plateformes de distribution</h2>
-      <p>Votre musique sera disponible sur toutes ces plateformes et bien d'autres</p>
-      
-      <div class="platforms-grid">
-        <div class="platform-card">
-          <i class="fab fa-spotify"></i>
-          <p>Spotify</p>
-        </div>
-        <div class="platform-card">
-          <i class="fab fa-apple"></i>
-          <p>Apple Music</p>
-        </div>
-        <div class="platform-card">
-          <i class="fab fa-youtube"></i>
-          <p>YouTube Music</p>
-        </div>
-        <div class="platform-card">
-          <i class="fab fa-deezer"></i>
-          <p>Deezer</p>
-        </div>
-        <div class="platform-card">
-          <i class="fab fa-amazon"></i>
-          <p>Amazon Music</p>
-        </div>
-        <div class="platform-card">
-          <i class="fas fa-music"></i>
-          <p>Tidal</p>
-        </div>
-        <div class="platform-card">
-          <i class="fab fa-soundcloud"></i>
-          <p>SoundCloud</p>
-        </div>
-        <div class="platform-card">
-          <i class="fas fa-headphones-alt"></i>
-          <p>Pandora</p>
-        </div>
+          <button type="submit" class="submit-btn">Distribuer ma musique</button>
+        </form>
       </div>
-    </section>
+      
+      <section class="platforms-section">
+        <h2>Plateformes de <span class="highlight-title">distribution</span></h2>
+        <p>Votre musique sera disponible sur toutes ces plateformes et bien d'autres</p>
+        
+        <div class="platforms-grid">
+          <div class="platform-card">
+            <i class="fab fa-spotify"></i>
+            <p>Spotify</p>
+          </div>
+          <div class="platform-card">
+            <i class="fab fa-apple"></i>
+            <p>Apple Music</p>
+          </div>
+          <div class="platform-card">
+            <i class="fab fa-youtube"></i>
+            <p>YouTube Music</p>
+          </div>
+          <div class="platform-card">
+            <i class="fab fa-deezer"></i>
+            <p>Deezer</p>
+          </div>
+          <div class="platform-card">
+            <i class="fab fa-amazon"></i>
+            <p>Amazon Music</p>
+          </div>
+          <div class="platform-card">
+            <i class="fas fa-music"></i>
+            <p>Tidal</p>
+          </div>
+          <div class="platform-card">
+            <i class="fab fa-soundcloud"></i>
+            <p>SoundCloud</p>
+          </div>
+          <div class="platform-card">
+            <i class="fas fa-headphones-alt"></i>
+            <p>Pandora</p>
+          </div>
+        </div>
+      </section>
+    </div>
   </main>
 
   <!-- ============================
@@ -323,7 +653,19 @@
        ============================ -->
   <footer>
     <div class="container">
-      <p>&copy; 2025 CINEXAU PRODUCTION. Tous droits réservés. Propulsé par SOCIAL BOOST HORIZON</p>
+      <div class="footer-content">
+        <div class="logo">
+          <i class="fas fa-compact-disc"></i>
+          CINEXAU PRODUCTION
+        </div>
+        <div class="social-icons">
+          <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+          <a href="#" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
+          <a href="#" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+          <a href="#" aria-label="Spotify"><i class="fab fa-spotify"></i></a>
+        </div>
+        <p>&copy; 2025 CINEXAU PRODUCTION. Tous droits réservés. Propulsé par SOCIAL BOOST HORIZON</p>
+      </div>
     </div>
   </footer>
 
@@ -347,80 +689,81 @@
       <i class="fas fa-comment-dots icon-color"></i>
       <span class="tooltip">FAQ</span>
     </a>
-    <a href="index.html#contact-section-placeholder">
+    <a href="index.html#contact">
       <i class="fas fa-envelope icon-color"></i>
       <span class="tooltip">Nous contacter</span>
     </a>
   </div>
 
   <!-- ============================
-       Script JS
+       Scripts JS
        ============================ -->
-  <script src="script.js"></script>
-  
-  <!-- Script spécifique à la distribution -->
   <script>
     document.addEventListener('DOMContentLoaded', () => {
-      // Menu hamburger
+      /* ———————————
+         1) Hamburger menu (mobile)
+         ——————————— */
       const hamburgerIcon = document.getElementById('hamburger-icon');
       const navLinks = document.getElementById('nav-links');
-      
-      if (hamburgerIcon && navLinks) {
-        hamburgerIcon.addEventListener('click', () => {
-          navLinks.classList.toggle('active');
-        });
-        
-        document.addEventListener('click', (event) => {
-          if (!navLinks.contains(event.target) && !hamburgerIcon.contains(event.target)) {
-            navLinks.classList.remove('active');
+
+      hamburgerIcon.addEventListener('click', () => {
+        navLinks.classList.toggle('active');
+      });
+
+      document.addEventListener('click', (event) => {
+        if (
+          !navLinks.contains(event.target) &&
+          !hamburgerIcon.contains(event.target)
+        ) {
+          navLinks.classList.remove('active');
+        }
+      });
+
+      /* ———————————
+         2) Animation au défilement
+         ——————————— */
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.style.opacity = 1;
+            entry.target.style.transform = 'translateY(0)';
           }
         });
-      }
-      
-      // Génération des nuages d'arrière-plan
-      const backgroundAnimation = document.querySelector('.background-animation');
-      const numClouds = 5;
-      
-      function createCloud() {
-        const cloud = document.createElement('div');
-        cloud.classList.add('cloud');
-        
-        const size = Math.random() * 100 + 80;
-        cloud.style.width = `${size}px`;
-        cloud.style.height = `${size * 0.4}px`;
-        
-        const topPosition = Math.random() * 80;
-        cloud.style.top = `${topPosition}%`;
-        
-        const startLeft = -20 - Math.random() * 30;
-        cloud.style.left = `${startLeft}%`;
-        
-        const duration = Math.random() * 60 + 40;
-        cloud.style.animationDuration = `${duration}s`;
-        
-        const delay = Math.random() * 30;
-        cloud.style.animationDelay = `${delay}s`;
-        
-        cloud.style.setProperty('--width', `${size}px`);
-        const scaleFactor = Math.random() * 0.4 + 0.8;
-        cloud.style.setProperty('--scale', scaleFactor);
-        
-        backgroundAnimation.appendChild(cloud);
-      }
-      
-      for (let i = 0; i < numClouds; i++) {
-        createCloud();
-      }
-      
-      // Gestion du formulaire de distribution
+      }, { threshold: 0.1 });
+
+      document.querySelectorAll('.distribution-header, .distribution-container, .platforms-section').forEach(section => {
+        section.style.opacity = 0;
+        section.style.transform = 'translateY(20px)';
+        section.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+        observer.observe(section);
+      });
+
+      /* ———————————
+         3) Gestion du formulaire
+         ——————————— */
       const distributionForm = document.querySelector('.distribution-form');
       if (distributionForm) {
         distributionForm.addEventListener('submit', (e) => {
           e.preventDefault();
           
-          // Ici on pourrait ajouter la logique de soumission du formulaire
-          alert('Votre demande de distribution a été enregistrée avec succès ! Notre équipe va traiter votre demande dans les plus brefs délais.');
-          distributionForm.reset();
+          const submitButton = distributionForm.querySelector('button[type="submit"]');
+          const originalText = submitButton.innerHTML;
+          
+          submitButton.innerHTML = '<i class="fas fa-check"></i> Envoi en cours...';
+          submitButton.disabled = true;
+          
+          // Simulation d'envoi
+          setTimeout(() => {
+            submitButton.innerHTML = '<i class="fas fa-check"></i> Distribué avec succès !';
+            submitButton.style.backgroundColor = '#28a745';
+            
+            setTimeout(() => {
+              submitButton.innerHTML = originalText;
+              submitButton.style.backgroundColor = '';
+              submitButton.disabled = false;
+              distributionForm.reset();
+            }, 2000);
+          }, 1500);
         });
       }
     });
