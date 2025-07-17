@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CINEXAU PRODUCTION - Réservation Studio</title>
+  
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Roboto:wght@400;500&display=swap" rel="stylesheet" />
+  
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+  
+  <style>
+    /* Styles identiques au tableau de bord */
+    :root {
+      --light-gradient: linear-gradient(135deg, #f0f9ff 0%, #e6f7ff 100%);
+      --primary-blue: #0077b6;
+      --accent-blue: #00b4d8;
+      --light-blue: #90e0ef;
+      --text-dark: #333333;
+      --text-medium: #555555;
+      --text-light: #ffffff;
+      --card-bg: rgba(255, 255, 255, 0.85);
+      --highlight-color: #0077b6;
+      --button-color: #0077b6;
+      --button-hover: #005f8a;
+      --floating-bg: #0077b6;
+      --floating-hover: #005f8a;
+      --success: #28a745;
+      --border-light: rgba(0, 0, 0, 0.1);
+    }
+
+    /* ... (Tout le CSS identique à dashboard.html) ... */
+  </style>
+</head>
+<body>
+  <div class="background-animation"></div>
+
+  <header>
+    <div class="logo">
+      <i class="fas fa-compact-disc floating-element"></i>
+      CINEXAU PRODUCTION
+    </div>
+
+    <div class="hamburger-menu" id="hamburger-icon">
+      <i class="fas fa-bars icon-color"></i>
+    </div>
+
+    <nav>
+      <ul id="nav-links">
+        <li><a href="index.html">Accueil</a></li>
+        <li><a href="index.html#about-cinexau">À propos</a></li>
+        <li><a href="index.html#services">Services</a></li>
+        <li><a href="index.html#why-choose-us">Pourquoi nous choisir</a></li>
+        <li><a href="index.html#faq">FAQ</a></li>
+        <li><a href="dashboard.html">Tableau de bord</a></li>
+        <li><a href="decouvrir.html">Découvrir</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    <section id="reservation-hero" class="container">
+      <h1>Réservation de <span class="highlight-title">Studio Professionnel</span></h1>
+      <p class="subtitle">Réservez notre studio d'enregistrement de pointe pour vos projets musicaux</p>
+    </section>
+
+    <hr />
+
+    <section id="reservation-content" class="container">
+      <div class="dashboard-grid">
+        <!-- Studio A -->
+        <div class="dashboard-card">
+          <i class="fas fa-drum icon-color floating-element"></i>
+          <h3>Studio A - Acoustique</h3>
+          <p>Studio spécialisé pour enregistrements acoustiques et voix</p>
+          <p><strong>Équipement:</strong> Piano à queue, micros Neumann</p>
+          <p><strong>Tarif:</strong> 80€/heure</p>
+          <a href="#" class="primary-button">Réserver maintenant</a>
+        </div>
+
+        <!-- Studio B -->
+        <div class="dashboard-card">
+          <i class="fas fa-sliders-h icon-color floating-element"></i>
+          <h3>Studio B - Mixage</h3>
+          <p>Studio équipé pour mixage et mastering professionnels</p>
+          <p><strong>Équipement:</strong> Console SSL, moniteurs Genelec</p>
+          <p><strong>Tarif:</strong> 70€/heure</p>
+          <a href="#" class="primary-button">Réserver maintenant</a>
+        </div>
+
+        <!-- Studio C -->
+        <div class="dashboard-card">
+          <i class="fas fa-headphones icon-color floating-element"></i>
+          <h3>Studio C - Polyvalent</h3>
+          <p>Idéal pour groupes et productions complètes</p>
+          <p><strong>Équipement:</strong> Batterie acoustique, amplis boutique</p>
+          <p><strong>Tarif:</strong> 100€/heure</p>
+          <a href="#" class="primary-button">Réserver maintenant</a>
+        </div>
+      </div>
+
+      <div class="booking-form">
+        <h2>Calendrier de disponibilité</h2>
+        <div class="calendar">
+          <!-- Calendrier simplifié -->
+          <div class="calendar-header">
+            <button><i class="fas fa-chevron-left"></i></button>
+            <h3>Juillet 2025</h3>
+            <button><i class="fas fa-chevron-right"></i></button>
+          </div>
+          <div class="calendar-grid">
+            <div class="day">Lun</div><div class="day">Mar</div><div class="day">Mer</div><div class="day">Jeu</div>
+            <div class="day">Ven</div><div class="day">Sam</div><div class="day">Dim</div>
+            
+            <!-- Jours du mois -->
+            <div class="date available">1</div>
+            <div class="date available">2</div>
+            <div class="date booked">3</div>
+            <div class="date booked">4</div>
+            <div class="date available">5</div>
+            <div class="date available">6</div>
+            <div class="date available">7</div>
+            
+            <!-- ... autres jours ... -->
+          </div>
+        </div>
+        
+        <div class="form-container">
+          <h3>Formulaire de réservation</h3>
+          <form>
+            <div class="form-group">
+              <label for="studio-select">Studio:</label>
+              <select id="studio-select">
+                <option value="studio-a">Studio A - Acoustique</option>
+                <option value="studio-b">Studio B - Mixage</option>
+                <option value="studio-c">Studio C - Polyvalent</option>
+              </select>
+            </div>
+            
+            <div class="form-group">
+              <label for="booking-date">Date:</label>
+              <input type="date" id="booking-date" required>
+            </div>
+            
+            <div class="form-group">
+              <label for="time-start">Heure de début:</label>
+              <input type="time" id="time-start" required>
+            </div>
+            
+            <div class="form-group">
+              <label for="duration">Durée (heures):</label>
+              <input type="number" id="duration" min="1" max="8" value="2" required>
+            </div>
+            
+            <button type="submit" class="primary-button">Confirmer la réservation</button>
+          </form>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <!-- Footer identique au tableau de bord -->
+  </footer>
+
+  <div class="floating-buttons">
+    <!-- Boutons flottants identiques -->
+  </div>
+
+  <script>
+    // Script identique au tableau de bord
+  </script>
+</body>
+</html>
