@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>CINEXAU PRODUCTION - Dashboard</title>
+  <title>CINEXAU PRODUCTION - Tableau de bord</title>
 
   <!-- Google Fonts : Playfair Display (titres) & Roboto (texte) -->
   <link
@@ -11,7 +11,7 @@
     rel="stylesheet"
   />
 
-  <!-- Feuille de style principale (identique à index.html) -->
+  <!-- Feuille de style principale -->
   <link rel="stylesheet" href="style.css" />
 
   <!-- Font Awesome pour les icônes -->
@@ -23,71 +23,75 @@
     referrerpolicy="no-referrer"
   />
 
-  <!-- Styles supplémentaires pour le scroll horizontal des services -->
+  <!-- Styles spécifiques au tableau de bord -->
   <style>
-    /* Conteneur scrollable horizontal */
-    .services-scroll {
-      display: flex;
-      gap: 20px;
-      overflow-x: auto;
-      padding-bottom: 10px;
-      /* Masquer les barres de défilement pour un rendu épuré */
-      scrollbar-width: none;          /* Firefox */
-      -ms-overflow-style: none;       /* IE 10+ */
+    .dashboard-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 25px;
+      margin-top: 30px;
     }
-    .services-scroll::-webkit-scrollbar {
-      display: none;                  /* Chrome, Safari, Opera */
-    }
-
-    /* Chaque carte doit garder une largeur fixe (et ne pas se rétrécir) */
-    .dashboard-service {
-      flex: 0 0 280px; /* 280px = largeur min dans services-grid initial */
-    }
-
-    /* La fiche détaillée (au clic) */
-    .service-detail-card {
+    
+    .dashboard-card {
       background-color: rgba(0, 0, 0, 0.4);
+      border-radius: 10px;
       padding: 25px;
-      border-radius: 8px;
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
-      color: var(--text-light);
-      font-family: 'Roboto', sans-serif;
-    }
-    .service-detail-card h3 {
-      font-family: 'Playfair Display', serif;
-      color: var(--highlight-color);
+      text-align: center;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
       display: flex;
+      flex-direction: column;
       align-items: center;
-      gap: 10px;
+      height: 100%;
+    }
+    
+    .dashboard-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4);
+      background-color: rgba(0, 0, 0, 0.5);
+    }
+    
+    .dashboard-card i {
+      font-size: 3rem;
       margin-bottom: 20px;
+      color: var(--icon-color);
     }
-    .service-detail-card label {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      font-weight: 500;
-      font-family: 'Playfair Display', serif;
-    }
-    .service-detail-card input,
-    .service-detail-card textarea {
-      border: none;
-      border-radius: 4px;
-      background-color: rgba(255, 255, 255, 0.1);
-      color: var(--text-light);
-      outline: none;
-      font-family: 'Roboto', sans-serif;
-    }
-    .service-detail-card input::placeholder,
-    .service-detail-card textarea::placeholder {
-      color: #ccc;
-    }
-    .service-detail-card .form-group {
+    
+    .dashboard-card h3 {
+      font-size: 1.4rem;
       margin-bottom: 15px;
     }
-    .service-detail-card .form-group input,
-    .service-detail-card .form-group textarea {
-      width: 100%;
-      padding: 8px;
+    
+    .dashboard-card a {
+      display: inline-block;
+      margin-top: auto;
+      padding: 10px 20px;
+      background-color: var(--button-color);
+      color: white;
+      border-radius: 5px;
+      text-decoration: none;
+      transition: background-color 0.3s;
+      font-family: 'Playfair Display', serif;
+    }
+    
+    .dashboard-card a:hover {
+      background-color: var(--button-hover-color);
+    }
+    
+    .welcome-section {
+      text-align: center;
+      padding: 40px 0;
+    }
+    
+    .welcome-section h1 {
+      font-size: 2.5rem;
+      margin-bottom: 15px;
+    }
+    
+    .welcome-section p {
+      font-size: 1.2rem;
+      max-width: 700px;
+      margin: 0 auto 30px;
     }
   </style>
 </head>
@@ -116,7 +120,7 @@
         <li><a href="index.html#services">Services</a></li>
         <li><a href="index.html#why-choose-us">Pourquoi nous choisir</a></li>
         <li><a href="index.html#faq">FAQ</a></li>
-        <li><a href="#" class="active-link">Dashboard</a></li>
+        <li><a href="#" class="active-link">Tableau de bord</a></li>
         <li><a href="decouvrir.html">Découvrir</a></li>
       </ul>
     </nav>
@@ -126,77 +130,64 @@
        CONTENU PRINCIPAL DU DASHBOARD
        ============================ -->
   <main>
-    <!-- —— Section Héros (titre + sous-titre + bouton) —— -->
-    <section id="dashboard-hero" class="container">
-      <h1>Tableau de bord</h1>
-      <p class="subtitle">Bienvenue dans votre espace administrateur</p>
-      <a href="#" class="primary-button">Créer un nouveau projet</a>
-      </a>
-  </section>
+    <!-- —— Section Bienvenue —— -->
+    <section class="welcome-section container">
+      <h1>Bienvenue sur votre tableau de bord</h1>
+      <p>Que voulez-vous faire aujourd'hui ?</p>
+    </section>
 
     <hr />
 
-    <!-- —— Section « Services Disponibles » —— -->
+    <!-- —— Section Services —— -->
     <section id="dashboard-services" class="container">
-      <h2>Services Disponibles</h2>
-      <p class="text-content">
-        Faites glisser horizontalement pour découvrir tous les services. Cliquez sur l’un d’eux pour afficher le formulaire en bas.
-      </p>
-
-      <!-- Conteneur à scroll horizontal -->
-      <div class="services-scroll">
+      <div class="dashboard-grid">
         <!-- Service : Distribution Digitale -->
-        <div class="dashboard-service" data-service="distribution">
-          <div class="service-header service-item">
-            <i class="fas fa-globe icon-color"></i>
-            <h3>Distribution Digitale</h3>
-          </div>
+        <div class="dashboard-card">
+          <i class="fas fa-globe icon-color"></i>
+          <h3>Distribuer ma musique</h3>
+          <p>Diffusez votre musique sur toutes les plateformes</p>
+          <a href="distribution.html">Accéder</a>
         </div>
 
         <!-- Service : Réservation Studio -->
-        <div class="dashboard-service" data-service="reservation">
-          <div class="service-header service-item">
-            <i class="fas fa-microphone-alt icon-color"></i>
-            <h3>Réservation Studio</h3>
-          </div>
+        <div class="dashboard-card">
+          <i class="fas fa-microphone-alt icon-color"></i>
+          <h3>Réservation Studio</h3>
+          <p>Réservez notre studio professionnel</p>
+          <a href="reservation.html">Accéder</a>
         </div>
 
         <!-- Service : Accompagnement Artistique -->
-        <div class="dashboard-service" data-service="accompagnement">
-          <div class="service-header service-item">
-            <i class="fas fa-users icon-color"></i>
-            <h3>Accompagnement Artistique</h3>
-          </div>
+        <div class="dashboard-card">
+          <i class="fas fa-users icon-color"></i>
+          <h3>Accompagnement Artistique</h3>
+          <p>Boostez votre carrière avec nos experts</p>
+          <a href="accompagnement.html">Accéder</a>
         </div>
 
         <!-- Service : Production Audiovisuelle -->
-        <div class="dashboard-service" data-service="audiovisuel">
-          <div class="service-header service-item">
-            <i class="fas fa-camera-retro icon-color"></i>
-            <h3>Production Audiovisuelle</h3>
-          </div>
+        <div class="dashboard-card">
+          <i class="fas fa-camera-retro icon-color"></i>
+          <h3>Production Vidéo</h3>
+          <p>Créez des clips et contenus visuels</p>
+          <a href="production.html">Accéder</a>
         </div>
 
         <!-- Service : Gestion des Droits -->
-        <div class="dashboard-service" data-service="droits">
-          <div class="service-header service-item">
-            <i class="fas fa-scroll icon-color"></i>
-            <h3>Gestion des Droits</h3>
-          </div>
+        <div class="dashboard-card">
+          <i class="fas fa-scroll icon-color"></i>
+          <h3>Gestion des Droits</h3>
+          <p>Protégez et gérez vos droits d'auteur</p>
+          <a href="droits.html">Accéder</a>
         </div>
 
         <!-- Service : Stratégie de Carrière -->
-        <div class="dashboard-service" data-service="carriere">
-          <div class="service-header service-item">
-            <i class="fas fa-project-diagram icon-color"></i>
-            <h3>Stratégie de Carrière</h3>
-          </div>
+        <div class="dashboard-card">
+          <i class="fas fa-project-diagram icon-color"></i>
+          <h3>Stratégie de Carrière</h3>
+          <p>Planifiez le développement de votre carrière</p>
+          <a href="strategie.html">Accéder</a>
         </div>
-      </div>
-
-      <!-- Conteneur pour la fiche détaillée -->
-      <div id="service-detail-container" class="container" style="margin-top: 40px;">
-        <!-- Injecté dynamiquement par script.js -->
       </div>
     </section>
   </main>
@@ -206,12 +197,12 @@
        ============================ -->
   <footer>
     <div class="container">
-      <p>&copy; 2025 CINEXAU PRODUCTION. Tous droits réservés. Propulser par SOCIAL BOOST HORIZON</p>
+      <p>&copy; 2025 CINEXAU PRODUCTION. Tous droits réservés. Propulsé par SOCIAL BOOST HORIZON</p>
     </div>
   </footer>
 
   <!-- ============================
-       Boutons flottants (identiques à index.html)
+       Boutons flottants
        ============================ -->
   <div class="floating-buttons">
     <a href="index.html#hero">
@@ -237,8 +228,64 @@
   </div>
 
   <!-- ============================
-       Script JS mis à jour
+       Script JS
        ============================ -->
   <script src="script.js"></script>
+  
+  <!-- Script spécifique au tableau de bord -->
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      // Menu hamburger
+      const hamburgerIcon = document.getElementById('hamburger-icon');
+      const navLinks = document.getElementById('nav-links');
+      
+      if (hamburgerIcon && navLinks) {
+        hamburgerIcon.addEventListener('click', () => {
+          navLinks.classList.toggle('active');
+        });
+        
+        document.addEventListener('click', (event) => {
+          if (!navLinks.contains(event.target) && !hamburgerIcon.contains(event.target)) {
+            navLinks.classList.remove('active');
+          }
+        });
+      }
+      
+      // Génération des nuages d'arrière-plan
+      const backgroundAnimation = document.querySelector('.background-animation');
+      const numClouds = 5;
+      
+      function createCloud() {
+        const cloud = document.createElement('div');
+        cloud.classList.add('cloud');
+        
+        const size = Math.random() * 100 + 80;
+        cloud.style.width = `${size}px`;
+        cloud.style.height = `${size * 0.4}px`;
+        
+        const topPosition = Math.random() * 80;
+        cloud.style.top = `${topPosition}%`;
+        
+        const startLeft = -20 - Math.random() * 30;
+        cloud.style.left = `${startLeft}%`;
+        
+        const duration = Math.random() * 60 + 40;
+        cloud.style.animationDuration = `${duration}s`;
+        
+        const delay = Math.random() * 30;
+        cloud.style.animationDelay = `${delay}s`;
+        
+        cloud.style.setProperty('--width', `${size}px`);
+        const scaleFactor = Math.random() * 0.4 + 0.8;
+        cloud.style.setProperty('--scale', scaleFactor);
+        
+        backgroundAnimation.appendChild(cloud);
+      }
+      
+      for (let i = 0; i < numClouds; i++) {
+        createCloud();
+      }
+    });
+  </script>
 </body>
 </html>
