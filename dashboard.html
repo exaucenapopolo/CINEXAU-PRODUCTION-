@@ -4,99 +4,467 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>CINEXAU PRODUCTION - Tableau de bord</title>
-
-  <!-- Google Fonts : Playfair Display (titres) & Roboto (texte) -->
-  <link
-    href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Roboto:wght@400;500&display=swap"
-    rel="stylesheet"
-  />
-
-  <!-- Feuille de style principale -->
-  <link rel="stylesheet" href="style.css" />
-
-  <!-- Font Awesome pour les icônes -->
-  <link
-    rel="stylesheet"
-    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
-    integrity="sha512-Fo3rlrQdP2XLuXE/..."
-    crossorigin="anonymous"
-    referrerpolicy="no-referrer"
-  />
-
-  <!-- Styles spécifiques au tableau de bord -->
+  
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Roboto:wght@400;500&display=swap" rel="stylesheet" />
+  
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+  
   <style>
+    /* =====================================================
+       Variables et polices
+       ===================================================== */
+    :root {
+      /* Nouvelle palette de couleurs claire et professionnelle */
+      --light-gradient: linear-gradient(135deg, #f0f9ff 0%, #e6f7ff 100%);
+      --primary-blue: #0077b6;      /* Bleu professionnel */
+      --accent-blue: #00b4d8;       /* Bleu d'accent */
+      --light-blue: #90e0ef;        /* Bleu clair */
+      --text-dark: #333333;         /* Texte sombre */
+      --text-medium: #555555;       /* Texte moyen */
+      --text-light: #ffffff;        /* Texte clair */
+      --card-bg: rgba(255, 255, 255, 0.85); /* Fond des cartes */
+      --highlight-color: #0077b6;   /* Mise en valeur */
+      --button-color: #0077b6;      /* Boutons */
+      --button-hover: #005f8a;      /* Survol des boutons */
+      --floating-bg: #0077b6;       /* Boutons flottants */
+      --floating-hover: #005f8a;    /* Survol boutons flottants */
+      --success: #28a745;           /* Succès */
+      --border-light: rgba(0, 0, 0, 0.1);
+    }
+
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Roboto', sans-serif;
+      color: var(--text-dark);
+      overflow-x: hidden;
+      position: relative;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      background: var(--light-gradient);
+    }
+
+    h1, h2, h3 {
+      font-family: 'Playfair Display', serif;
+      margin-bottom: 0.5em;
+      color: var(--primary-blue);
+    }
+
+    .highlight-title {
+      color: var(--accent-blue);
+    }
+
+    /* =====================================================
+       Arrière-plan animé (effet subtil)
+       ===================================================== */
+    .background-animation {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: -1;
+      overflow: hidden;
+      opacity: 0.1;
+      background: 
+        radial-gradient(circle at 10% 20%, var(--light-blue), transparent 20%),
+        radial-gradient(circle at 90% 80%, var(--accent-blue), transparent 20%);
+      animation: subtleBackground 30s infinite alternate;
+    }
+
+    @keyframes subtleBackground {
+      0% { background-position: 0% 0%; }
+      100% { background-position: 100% 100%; }
+    }
+
+    /* =====================================================
+       Conteneur global
+       ===================================================== */
+    .container {
+      width: 90%;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 20px 0;
+      position: relative;
+      z-index: 1;
+    }
+
+    hr {
+      border: none;
+      border-top: 1px solid var(--border-light);
+      margin: 40px auto;
+      width: 80%;
+    }
+
+    /* =====================================================
+       HEADER / NAVIGATION
+       ===================================================== */
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 20px 40px;
+      background-color: rgba(255, 255, 255, 0.95);
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      box-shadow: 0 2px 15px rgba(0, 0, 0, 0.1);
+    }
+
+    .logo {
+      font-size: 1.8em;
+      font-weight: 700;
+      color: var(--primary-blue);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .logo i {
+      color: var(--accent-blue);
+      font-size: 1.5em;
+    }
+
+    .hamburger-menu {
+      display: none;
+      font-size: 1.8rem;
+      cursor: pointer;
+      color: var(--primary-blue);
+    }
+
+    /* Appliquer la couleur des icônes */
+    .icon-color {
+      color: var(--accent-blue) !important;
+    }
+
+    /* Navigation principale (desktop) */
+    nav ul {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      gap: 25px;
+    }
+
+    nav ul li a {
+      color: var(--primary-blue);
+      text-decoration: none;
+      font-weight: 500;
+      transition: color 0.3s ease;
+      position: relative;
+      padding-bottom: 5px;
+    }
+
+    nav ul li a::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background: var(--accent-blue);
+      transition: width 0.3s ease;
+    }
+
+    nav ul li a:hover::after {
+      width: 100%;
+    }
+
+    /* Responsive : basculer la nav en mode hamburger */
+    @media (max-width: 768px) {
+      .hamburger-menu {
+        display: block;
+      }
+      nav ul {
+        position: absolute;
+        top: 60px;
+        right: 0;
+        width: 100%;
+        flex-direction: column;
+        background-color: rgba(255, 255, 255, 0.98);
+        display: none;
+        text-align: center;
+        padding: 10px 0;
+        gap: 15px;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+      }
+      nav ul.active {
+        display: flex;
+      }
+      nav ul li {
+        margin: 0;
+      }
+    }
+
+    /* =====================================================
+       SECTION HÉROS
+       ===================================================== */
+    #dashboard-hero {
+      padding: 100px 0 60px;
+      text-align: center;
+      color: var(--text-dark);
+    }
+
+    #dashboard-hero h1 {
+      font-size: 3.5rem;
+      margin-bottom: 0.5em;
+      line-height: 1.2;
+      color: var(--primary-blue);
+    }
+
+    #dashboard-hero .subtitle {
+      font-size: 1.5rem;
+      margin-bottom: 1.5em;
+      font-weight: 500;
+      max-width: 700px;
+      margin-left: auto;
+      margin-right: auto;
+      color: var(--text-medium);
+    }
+
+    /* Bouton */
+    .primary-button {
+      display: inline-block;
+      padding: 15px 40px;
+      border-radius: 30px;
+      text-decoration: none;
+      color: var(--text-light);
+      background: var(--primary-blue);
+      transition: all 0.4s ease;
+      font-family: 'Playfair Display', serif;
+      font-weight: 700;
+      font-size: 1.1rem;
+      border: none;
+      cursor: pointer;
+      box-shadow: 0 4px 15px rgba(0, 119, 182, 0.3);
+    }
+
+    .primary-button:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 25px rgba(0, 119, 182, 0.4);
+      background: var(--button-hover);
+    }
+
+    /* =====================================================
+       SECTION SERVICES DASHBOARD
+       ===================================================== */
+    #dashboard-services {
+      padding: 40px;
+      border-radius: 15px;
+      background-color: rgba(255, 255, 255, 0.6);
+      backdrop-filter: blur(5px);
+      margin-bottom: 60px;
+    }
+
     .dashboard-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      gap: 25px;
-      margin-top: 30px;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 30px;
+      margin-top: 40px;
     }
-    
+
     .dashboard-card {
-      background-color: rgba(0, 0, 0, 0.4);
-      border-radius: 10px;
-      padding: 25px;
+      background: var(--card-bg);
+      padding: 30px;
+      border-radius: 15px;
       text-align: center;
-      transition: all 0.3s ease;
-      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+      transition: all 0.4s ease;
+      border: 1px solid rgba(255, 255, 255, 0.5);
       display: flex;
       flex-direction: column;
       align-items: center;
       height: 100%;
     }
-    
+
     .dashboard-card:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4);
-      background-color: rgba(0, 0, 0, 0.5);
+      transform: translateY(-10px);
+      box-shadow: 0 15px 40px rgba(0, 119, 182, 0.1);
+      border-color: rgba(0, 180, 216, 0.3);
     }
-    
+
     .dashboard-card i {
       font-size: 3rem;
       margin-bottom: 20px;
-      color: var(--icon-color);
+      color: var(--accent-blue);
+      transition: transform 0.3s ease;
     }
-    
+
+    .dashboard-card:hover i {
+      transform: scale(1.1);
+      color: var(--primary-blue);
+    }
+
     .dashboard-card h3 {
       font-size: 1.4rem;
       margin-bottom: 15px;
-    }
-    
-    .dashboard-card a {
-      display: inline-block;
-      margin-top: auto;
-      padding: 10px 20px;
-      background-color: var(--button-color);
-      color: white;
-      border-radius: 5px;
-      text-decoration: none;
-      transition: background-color 0.3s;
+      color: var(--primary-blue);
       font-family: 'Playfair Display', serif;
     }
-    
+
+    .dashboard-card p {
+      font-size: 0.95rem;
+      line-height: 1.7;
+      color: var(--text-medium);
+      font-family: 'Roboto', sans-serif;
+      flex-grow: 1;
+      margin-bottom: 20px;
+    }
+
+    .dashboard-card a {
+      display: inline-block;
+      padding: 10px 25px;
+      background-color: var(--primary-blue);
+      color: white;
+      border-radius: 30px;
+      text-decoration: none;
+      transition: all 0.3s ease;
+      font-family: 'Roboto', sans-serif;
+      font-weight: 500;
+    }
+
     .dashboard-card a:hover {
-      background-color: var(--button-hover-color);
+      background-color: var(--button-hover);
+      transform: translateY(-3px);
     }
-    
-    .welcome-section {
+
+    /* =====================================================
+       FOOTER
+       ===================================================== */
+    footer {
+      background-color: rgba(255, 255, 255, 0.95);
+      color: var(--text-medium);
       text-align: center;
-      padding: 40px 0;
+      padding: 30px 0;
+      margin-top: 80px;
+      font-family: 'Roboto', sans-serif;
+      font-size: 0.9rem;
+      box-shadow: 0 -2px 15px rgba(0, 0, 0, 0.05);
     }
-    
-    .welcome-section h1 {
-      font-size: 2.5rem;
-      margin-bottom: 15px;
+
+    .footer-content {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 20px;
     }
-    
-    .welcome-section p {
+
+    .social-icons {
+      display: flex;
+      gap: 20px;
+    }
+
+    .social-icons a {
+      color: var(--primary-blue);
+      font-size: 1.5rem;
+      transition: color 0.3s ease, transform 0.3s ease;
+    }
+
+    .social-icons a:hover {
+      color: var(--accent-blue);
+      transform: translateY(-5px);
+    }
+
+    /* =====================================================
+       Boutons flottants (hébergés en bas à droite)
+       ===================================================== */
+    .floating-buttons {
+      position: fixed;
+      top: 50%;
+      right: 20px;
+      transform: translateY(-50%);
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+      z-index: 20;
+    }
+
+    .floating-buttons a {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 50px;
+      height: 50px;
+      background: var(--primary-blue);
+      color: var(--text-light);
+      border-radius: 50%;
+      text-decoration: none;
       font-size: 1.2rem;
-      max-width: 700px;
-      margin: 0 auto 30px;
+      box-shadow: 0 5px 15px rgba(0, 119, 182, 0.3);
+      transition: all 0.3s ease;
+      position: relative;
+    }
+
+    .floating-buttons a:hover {
+      transform: scale(1.1);
+      box-shadow: 0 8px 20px rgba(0, 119, 182, 0.4);
+      background: var(--button-hover);
+    }
+
+    .floating-buttons a .tooltip {
+      visibility: hidden;
+      width: 120px;
+      background-color: rgba(0, 119, 182, 0.9);
+      color: #fff;
+      text-align: center;
+      border-radius: 6px;
+      padding: 8px 0;
+      position: absolute;
+      z-index: 1;
+      right: 60px;
+      opacity: 0;
+      transition: opacity 0.3s;
+      font-size: 0.9rem;
+    }
+
+    .floating-buttons a:hover .tooltip {
+      visibility: visible;
+      opacity: 1;
+    }
+
+    /* Responsive pour les boutons flottants (<768px) */
+    @media (max-width: 768px) {
+      .floating-buttons {
+        flex-direction: row;
+        width: 90%;
+        left: 50%;
+        bottom: 20px;
+        top: auto;
+        right: auto;
+        transform: translateX(-50%);
+        justify-content: space-around;
+        background-color: rgba(255, 255, 255, 0.95);
+        padding: 15px 0;
+        border-radius: 30px;
+        box-shadow: 0 -2px 15px rgba(0, 0, 0, 0.1);
+      }
+      .floating-buttons a {
+        width: 45px;
+        height: 45px;
+        font-size: 1.1rem;
+      }
+      .floating-buttons a .tooltip {
+        display: none;
+      }
+    }
+
+    /* Animation générale */
+    @keyframes float {
+      0% { transform: translateY(0px); }
+      50% { transform: translateY(-10px); }
+      100% { transform: translateY(0px); }
+    }
+
+    .floating-element {
+      animation: float 4s ease-in-out infinite;
     }
   </style>
 </head>
 <body>
-  <!-- Arrière-plan animé (étoiles + nuages) -->
+  <!-- Arrière-plan animé (effet subtil) -->
   <div class="background-animation"></div>
 
   <!-- ============================
@@ -104,11 +472,10 @@
        ============================ -->
   <header>
     <div class="logo">
-      <i class="fas fa-compact-disc icon-color"></i>
+      <i class="fas fa-compact-disc floating-element"></i>
       CINEXAU PRODUCTION
     </div>
 
-    <!-- Icône hamburger pour le menu mobile -->
     <div class="hamburger-menu" id="hamburger-icon">
       <i class="fas fa-bars icon-color"></i>
     </div>
@@ -120,20 +487,20 @@
         <li><a href="index.html#services">Services</a></li>
         <li><a href="index.html#why-choose-us">Pourquoi nous choisir</a></li>
         <li><a href="index.html#faq">FAQ</a></li>
-        <li><a href="#" class="active-link">Tableau de bord</a></li>
+        <li><a href="#" class="active">Tableau de bord</a></li>
         <li><a href="decouvrir.html">Découvrir</a></li>
       </ul>
     </nav>
   </header>
 
   <!-- ============================
-       CONTENU PRINCIPAL DU DASHBOARD
+       CONTENU PRINCIPAL
        ============================ -->
   <main>
     <!-- —— Section Bienvenue —— -->
-    <section class="welcome-section container">
-      <h1>Bienvenue sur votre tableau de bord</h1>
-      <p>Que voulez-vous faire aujourd'hui ?</p>
+    <section id="dashboard-hero" class="container">
+      <h1>Bienvenue sur votre <span class="highlight-title">Tableau de bord</span></h1>
+      <p class="subtitle">Que voulez-vous faire aujourd'hui ?</p>
     </section>
 
     <hr />
@@ -143,50 +510,50 @@
       <div class="dashboard-grid">
         <!-- Service : Distribution Digitale -->
         <div class="dashboard-card">
-          <i class="fas fa-globe icon-color"></i>
+          <i class="fas fa-globe icon-color floating-element"></i>
           <h3>Distribuer ma musique</h3>
-          <p>Diffusez votre musique sur toutes les plateformes</p>
+          <p>Diffusez votre musique sur toutes les plateformes mondiales</p>
           <a href="distribution.html">Accéder</a>
         </div>
 
         <!-- Service : Réservation Studio -->
         <div class="dashboard-card">
-          <i class="fas fa-microphone-alt icon-color"></i>
+          <i class="fas fa-microphone-alt icon-color floating-element"></i>
           <h3>Réservation Studio</h3>
-          <p>Réservez notre studio professionnel</p>
-          <a href="reservation.html">Accéder</a>
+          <p>Réservez notre studio professionnel pour vos enregistrements</p>
+          <a href="reservation.html">Réserver</a>
         </div>
 
         <!-- Service : Accompagnement Artistique -->
         <div class="dashboard-card">
-          <i class="fas fa-users icon-color"></i>
+          <i class="fas fa-users icon-color floating-element"></i>
           <h3>Accompagnement Artistique</h3>
-          <p>Boostez votre carrière avec nos experts</p>
-          <a href="accompagnement.html">Accéder</a>
+          <p>Boostez votre carrière avec nos experts et mentors</p>
+          <a href="accompagnement.html">Démarrer</a>
         </div>
 
         <!-- Service : Production Audiovisuelle -->
         <div class="dashboard-card">
-          <i class="fas fa-camera-retro icon-color"></i>
+          <i class="fas fa-camera-retro icon-color floating-element"></i>
           <h3>Production Vidéo</h3>
-          <p>Créez des clips et contenus visuels</p>
-          <a href="production.html">Accéder</a>
+          <p>Créez des clips et contenus visuels professionnels</p>
+          <a href="production.html">Commencer</a>
         </div>
 
         <!-- Service : Gestion des Droits -->
         <div class="dashboard-card">
-          <i class="fas fa-scroll icon-color"></i>
+          <i class="fas fa-scroll icon-color floating-element"></i>
           <h3>Gestion des Droits</h3>
-          <p>Protégez et gérez vos droits d'auteur</p>
-          <a href="droits.html">Accéder</a>
+          <p>Protégez et gérez vos droits d'auteur efficacement</p>
+          <a href="droits.html">Gérer</a>
         </div>
 
         <!-- Service : Stratégie de Carrière -->
         <div class="dashboard-card">
-          <i class="fas fa-project-diagram icon-color"></i>
+          <i class="fas fa-project-diagram icon-color floating-element"></i>
           <h3>Stratégie de Carrière</h3>
-          <p>Planifiez le développement de votre carrière</p>
-          <a href="strategie.html">Accéder</a>
+          <p>Planifiez le développement de votre carrière musicale</p>
+          <a href="strategie.html">Planifier</a>
         </div>
       </div>
     </section>
@@ -197,7 +564,19 @@
        ============================ -->
   <footer>
     <div class="container">
-      <p>&copy; 2025 CINEXAU PRODUCTION. Tous droits réservés. Propulsé par SOCIAL BOOST HORIZON</p>
+      <div class="footer-content">
+        <div class="logo">
+          <i class="fas fa-compact-disc"></i>
+          CINEXAU PRODUCTION
+        </div>
+        <div class="social-icons">
+          <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+          <a href="#" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
+          <a href="#" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+          <a href="#" aria-label="Spotify"><i class="fab fa-spotify"></i></a>
+        </div>
+        <p>&copy; 2025 CINEXAU PRODUCTION. Tous droits réservés. Propulsé par SOCIAL BOOST HORIZON</p>
+      </div>
     </div>
   </footer>
 
@@ -213,78 +592,62 @@
       <i class="fas fa-tools icon-color"></i>
       <span class="tooltip">Services</span>
     </a>
-    <a href="index.html#why-choose-us">
-      <i class="fas fa-question-circle icon-color"></i>
-      <span class="tooltip">Pourquoi nous choisir</span>
+    <a href="dashboard.html">
+      <i class="fas fa-tachometer-alt icon-color"></i>
+      <span class="tooltip">Tableau de bord</span>
     </a>
     <a href="index.html#faq">
       <i class="fas fa-comment-dots icon-color"></i>
       <span class="tooltip">FAQ</span>
     </a>
-    <a href="index.html#contact-section-placeholder">
+    <a href="index.html#contact">
       <i class="fas fa-envelope icon-color"></i>
       <span class="tooltip">Nous contacter</span>
     </a>
   </div>
 
   <!-- ============================
-       Script JS
+       Scripts JS
        ============================ -->
-  <script src="script.js"></script>
-  
-  <!-- Script spécifique au tableau de bord -->
   <script>
     document.addEventListener('DOMContentLoaded', () => {
-      // Menu hamburger
+      /* ———————————
+         1) Hamburger menu (mobile)
+         ——————————— */
       const hamburgerIcon = document.getElementById('hamburger-icon');
       const navLinks = document.getElementById('nav-links');
-      
-      if (hamburgerIcon && navLinks) {
-        hamburgerIcon.addEventListener('click', () => {
-          navLinks.classList.toggle('active');
-        });
-        
-        document.addEventListener('click', (event) => {
-          if (!navLinks.contains(event.target) && !hamburgerIcon.contains(event.target)) {
-            navLinks.classList.remove('active');
+
+      hamburgerIcon.addEventListener('click', () => {
+        navLinks.classList.toggle('active');
+      });
+
+      document.addEventListener('click', (event) => {
+        if (
+          !navLinks.contains(event.target) &&
+          !hamburgerIcon.contains(event.target)
+        ) {
+          navLinks.classList.remove('active');
+        }
+      });
+
+      /* ———————————
+         2) Animation au défilement
+         ——————————— */
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.style.opacity = 1;
+            entry.target.style.transform = 'translateY(0)';
           }
         });
-      }
-      
-      // Génération des nuages d'arrière-plan
-      const backgroundAnimation = document.querySelector('.background-animation');
-      const numClouds = 5;
-      
-      function createCloud() {
-        const cloud = document.createElement('div');
-        cloud.classList.add('cloud');
-        
-        const size = Math.random() * 100 + 80;
-        cloud.style.width = `${size}px`;
-        cloud.style.height = `${size * 0.4}px`;
-        
-        const topPosition = Math.random() * 80;
-        cloud.style.top = `${topPosition}%`;
-        
-        const startLeft = -20 - Math.random() * 30;
-        cloud.style.left = `${startLeft}%`;
-        
-        const duration = Math.random() * 60 + 40;
-        cloud.style.animationDuration = `${duration}s`;
-        
-        const delay = Math.random() * 30;
-        cloud.style.animationDelay = `${delay}s`;
-        
-        cloud.style.setProperty('--width', `${size}px`);
-        const scaleFactor = Math.random() * 0.4 + 0.8;
-        cloud.style.setProperty('--scale', scaleFactor);
-        
-        backgroundAnimation.appendChild(cloud);
-      }
-      
-      for (let i = 0; i < numClouds; i++) {
-        createCloud();
-      }
+      }, { threshold: 0.1 });
+
+      document.querySelectorAll('section, .dashboard-card').forEach(section => {
+        section.style.opacity = 0;
+        section.style.transform = 'translateY(20px)';
+        section.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+        observer.observe(section);
+      });
     });
   </script>
 </body>
