@@ -269,7 +269,7 @@
       createUserWithEmailAndPassword(auth, email, password)
         .then((userCredential) => {
           showAlert('success', 'Compte créé avec succès ! Redirection...');
-          setTimeout(() => { window.location.href = 'index.html'; }, 2000);
+          setTimeout(() => { window.location.href = 'dasboard.html'; }, 2000);
         })
         .catch((error) => {
           let errorMsg = "Une erreur est survenue.";
@@ -284,7 +284,7 @@
       signInWithPopup(auth, googleProvider)
         .then((result) => {
           showAlert('success', 'Connexion Google réussie !');
-          setTimeout(() => { window.location.href = 'index.html'; }, 1500);
+          setTimeout(() => { window.location.href = 'dasboard.html'; }, 1500);
         })
         .catch((error) => {
           showAlert('error', 'Échec de l\'authentification Google.');
