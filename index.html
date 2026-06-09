@@ -16,21 +16,18 @@
        Variables et polices
        ===================================================== */
     :root {
-      /* Nouvelle palette de couleurs claire et professionnelle */
       --light-gradient: linear-gradient(135deg, #f0f9ff 0%, #e6f7ff 100%);
-      --primary-blue: #0077b6;      /* Bleu professionnel */
-      --accent-blue: #00b4d8;       /* Bleu d'accent */
-      --light-blue: #90e0ef;        /* Bleu clair */
-      --text-dark: #333333;         /* Texte sombre */
-      --text-medium: #555555;       /* Texte moyen */
-      --text-light: #ffffff;        /* Texte clair */
-      --card-bg: rgba(255, 255, 255, 0.85); /* Fond des cartes */
-      --highlight-color: #0077b6;   /* Mise en valeur */
-      --button-color: #0077b6;      /* Boutons */
-      --button-hover: #005f8a;      /* Survol des boutons */
-      --floating-bg: #0077b6;       /* Boutons flottants */
-      --floating-hover: #005f8a;    /* Survol boutons flottants */
-      --success: #28a745;           /* Succès */
+      --primary-blue: #0077b6;      
+      --accent-blue: #00b4d8;       
+      --light-blue: #90e0ef;        
+      --text-dark: #333333;         
+      --text-medium: #555555;       
+      --text-light: #ffffff;        
+      --card-bg: rgba(255, 255, 255, 0.85); 
+      --highlight-color: #0077b6;   
+      --button-color: #0077b6;      
+      --button-hover: #005f8a;      
+      --success: #28a745;           
       --border-light: rgba(0, 0, 0, 0.1);
     }
 
@@ -45,6 +42,7 @@
       display: flex;
       flex-direction: column;
       background: var(--light-gradient);
+      font-size: 0.95rem; /* Taille de police globale légèrement réduite */
     }
 
     h1, h2, h3 {
@@ -58,7 +56,7 @@
     }
 
     /* =====================================================
-       Arrière-plan animé (effet subtil)
+       Arrière-plan animé
        ===================================================== */
     .background-animation {
       position: fixed;
@@ -80,14 +78,11 @@
       100% { background-position: 100% 100%; }
     }
 
-    /* =====================================================
-       Conteneur global
-       ===================================================== */
     .container {
       width: 90%;
       max-width: 1200px;
       margin: 0 auto;
-      padding: 20px 0;
+      padding: 15px 0;
       position: relative;
       z-index: 1;
     }
@@ -95,7 +90,7 @@
     hr {
       border: none;
       border-top: 1px solid var(--border-light);
-      margin: 40px auto;
+      margin: 30px auto;
       width: 80%;
     }
 
@@ -106,53 +101,54 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
-      padding: 20px 40px;
+      padding: 10px 40px;
       background-color: rgba(255, 255, 255, 0.95);
       position: sticky;
       top: 0;
       z-index: 10;
-      box-shadow: 0 2px 15px rgba(0, 0, 0, 0.1);
+      box-shadow: 0 2px 15px rgba(0, 0, 0, 0.08);
     }
 
-    .logo {
-      font-size: 1.8em;
-      font-weight: 700;
-      color: var(--primary-blue);
+    .logo-container a {
       display: flex;
       align-items: center;
-      gap: 10px;
     }
 
-    .logo i {
-      color: var(--accent-blue);
-      font-size: 1.5em;
+    .project-logo {
+      height: 45px; /* Taille optimisée et professionnelle */
+      width: auto;
+      object-fit: contain;
+      transition: transform 0.3s ease;
+    }
+
+    .project-logo:hover {
+      transform: scale(1.03);
     }
 
     .hamburger-menu {
       display: none;
-      font-size: 1.8rem;
+      font-size: 1.5rem;
       cursor: pointer;
       color: var(--primary-blue);
     }
 
-    /* Appliquer la couleur des icônes */
     .icon-color {
       color: var(--accent-blue) !important;
     }
 
-    /* Navigation principale (desktop) */
     nav ul {
       list-style: none;
       margin: 0;
       padding: 0;
       display: flex;
-      gap: 25px;
+      gap: 20px;
     }
 
     nav ul li a {
       color: var(--primary-blue);
       text-decoration: none;
       font-weight: 500;
+      font-size: 0.9rem;
       transition: color 0.3s ease;
       position: relative;
       padding-bottom: 5px;
@@ -173,91 +169,160 @@
       width: 100%;
     }
 
-    /* Responsive : basculer la nav en mode hamburger */
     @media (max-width: 768px) {
       .hamburger-menu {
         display: block;
       }
       nav ul {
         position: absolute;
-        top: 60px;
+        top: 65px;
         right: 0;
         width: 100%;
         flex-direction: column;
         background-color: rgba(255, 255, 255, 0.98);
         display: none;
         text-align: center;
-        padding: 10px 0;
-        gap: 15px;
+        padding: 15px 0;
+        gap: 12px;
         box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
       }
       nav ul.active {
         display: flex;
       }
-      nav ul li {
-        margin: 0;
-      }
     }
 
     /* =====================================================
-       SECTION HÉROS
+       SECTION HÉROS (Avec zone d'illustration numérique)
        ===================================================== */
     #hero {
-      padding: 120px 0 100px;
-      text-align: center;
-      color: var(--text-dark);
+      padding: 60px 0;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 30px;
+    }
+
+    .hero-content {
+      flex: 1;
+      text-align: left;
     }
 
     #hero h1 {
-      font-size: 3.5rem;
-      margin-bottom: 0.5em;
-      line-height: 1.2;
+      font-size: 2.4rem; /* Taille réduite pour grands écrans */
+      margin-bottom: 0.4em;
+      line-height: 1.25;
       color: var(--primary-blue);
     }
 
     #hero .subtitle {
-      font-size: 1.5rem;
+      font-size: 1.1rem; /* Taille réduite */
       margin-bottom: 1.5em;
-      font-weight: 500;
-      max-width: 700px;
-      margin-left: auto;
-      margin-right: auto;
+      font-weight: 400;
+      max-width: 600px;
       color: var(--text-medium);
     }
 
-    /* Bouton « Nous rejoindre » */
+    /* Illustration interactive */
+    .hero-illustration {
+      flex: 1;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      position: relative;
+    }
+
+    .illustration-box {
+      width: 320px;
+      height: 220px;
+      background: rgba(255, 255, 255, 0.6);
+      border-radius: 20px;
+      border: 1px solid rgba(255, 255, 255, 0.7);
+      box-shadow: 0 15px 35px rgba(0, 119, 182, 0.08);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 8px;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .backdrop-glow {
+      position: absolute;
+      width: 130px;
+      height: 130px;
+      background: var(--light-blue);
+      filter: blur(40px);
+      border-radius: 50%;
+      z-index: 0;
+    }
+
+    .wave-bar {
+      width: 8px;
+      height: 40px;
+      background: linear-gradient(to top, var(--primary-blue), var(--accent-blue));
+      border-radius: 4px;
+      animation: soundWave 1.4s ease-in-out infinite alternate;
+      z-index: 1;
+    }
+
+    .wave-bar:nth-child(2) { animation-delay: 0.2s; height: 70px; }
+    .wave-bar:nth-child(3) { animation-delay: 0.4s; height: 110px; }
+    .wave-bar:nth-child(4) { animation-delay: 0.6s; height: 50px; }
+    .wave-bar:nth-child(5) { animation-delay: 0.1s; height: 95px; }
+    .wave-bar:nth-child(6) { animation-delay: 0.5s; height: 35px; }
+    .wave-bar:nth-child(7) { animation-delay: 0.3s; height: 80px; }
+
+    @keyframes soundWave {
+      0% { transform: scaleY(0.3); }
+      100% { transform: scaleY(1.1); }
+    }
+
+    @media (max-width: 850px) {
+      #hero {
+        flex-direction: column;
+        text-align: center;
+        padding: 40px 0;
+      }
+      .hero-content {
+        text-align: center;
+      }
+      .hero-illustration {
+        margin-top: 20px;
+      }
+    }
+
     .primary-button {
       display: inline-block;
-      padding: 15px 40px;
-      border-radius: 30px;
+      padding: 12px 30px;
+      border-radius: 25px;
       text-decoration: none;
       color: var(--text-light);
       background: var(--primary-blue);
-      transition: all 0.4s ease;
+      transition: all 0.3s ease;
       font-family: 'Playfair Display', serif;
       font-weight: 700;
-      font-size: 1.1rem;
+      font-size: 0.95rem;
       border: none;
       cursor: pointer;
-      box-shadow: 0 4px 15px rgba(0, 119, 182, 0.3);
+      box-shadow: 0 4px 12px rgba(0, 119, 182, 0.2);
     }
 
     .primary-button:hover {
-      transform: translateY(-3px);
-      box-shadow: 0 8px 25px rgba(0, 119, 182, 0.4);
+      transform: translateY(-2px);
+      box-shadow: 0 6px 18px rgba(0, 119, 182, 0.3);
       background: var(--button-hover);
     }
 
     /* =====================================================
-       SECTIONS « À PROPOS » et « POURQUOI NOUS CHOISIR »
+       SECTIONS DE CONTENU Général
        ===================================================== */
     section {
-      padding: 60px 0;
+      padding: 40px 0;
     }
 
     section h2 {
-      font-size: 2.5rem;
-      margin-bottom: 0.5em;
+      font-size: 1.8rem; /* Réduit */
+      margin-bottom: 0.6em;
       color: var(--primary-blue);
       position: relative;
       display: inline-block;
@@ -266,9 +331,9 @@
     section h2::after {
       content: '';
       position: absolute;
-      bottom: -10px;
+      bottom: -6px;
       left: 0;
-      width: 70px;
+      width: 50px;
       height: 3px;
       background: var(--accent-blue);
     }
@@ -276,83 +341,98 @@
     .text-content {
       max-width: 800px;
       margin: 0 auto;
-      line-height: 1.8;
+      line-height: 1.7;
       text-align: justify;
-      color: var(--text-dark);
-      font-size: 1.1rem;
+      font-size: 0.95rem;
     }
 
     .text-content p {
-      margin-bottom: 1.5em;
-      font-family: 'Roboto', sans-serif;
+      margin-bottom: 1.2em;
       color: var(--text-medium);
     }
 
     /* =====================================================
-       SECTION « NOS SERVICES »
+       SECTION « NOS SERVICES » (Grille de cartes)
        ===================================================== */
     #services {
-      padding: 40px;
+      padding: 30px;
       border-radius: 15px;
-      background-color: rgba(255, 255, 255, 0.6);
+      background-color: rgba(255, 255, 255, 0.5);
       backdrop-filter: blur(5px);
     }
 
     .services-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      gap: 40px;
-      margin-top: 50px;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 25px;
+      margin-top: 35px;
     }
 
     .service-item {
       background: var(--card-bg);
-      padding: 40px 30px;
-      border-radius: 15px;
+      padding: 25px 20px;
+      border-radius: 12px;
       text-align: center;
-      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
-      transition: all 0.4s ease;
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.04);
+      transition: all 0.3s ease;
       border: 1px solid rgba(255, 255, 255, 0.5);
       display: flex;
       flex-direction: column;
       align-items: center;
+      text-decoration: none;
+      color: inherit;
     }
 
     .service-item:hover {
-      transform: translateY(-10px);
-      box-shadow: 0 15px 40px rgba(0, 119, 182, 0.1);
+      transform: translateY(-5px);
+      box-shadow: 0 10px 25px rgba(0, 119, 182, 0.08);
       border-color: rgba(0, 180, 216, 0.3);
     }
 
+    /* Style spécifique pour la carte cliquable ZoneMusik */
+    .service-link-card {
+      border: 1px dashed var(--accent-blue);
+      background: linear-gradient(180deg, rgba(255,255,255,0.9) 0%, rgba(230,247,255,0.6) 100%);
+    }
+    
+    .service-link-card .badge-link {
+      margin-top: 10px;
+      font-size: 0.8rem;
+      color: var(--primary-blue);
+      font-weight: 500;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
     .service-item i {
-      font-size: 3.5rem;
-      margin-bottom: 20px;
+      font-size: 2.4rem; /* Taille d'icône réduite */
+      margin-bottom: 15px;
       color: var(--accent-blue);
       transition: transform 0.3s ease;
     }
 
     .service-item:hover i {
-      transform: scale(1.1);
+      transform: scale(1.08);
       color: var(--primary-blue);
     }
 
     .service-item h3 {
-      font-size: 1.5rem;
-      margin-bottom: 15px;
+      font-size: 1.15rem; /* Taille réduite */
+      margin-bottom: 10px;
       color: var(--primary-blue);
       font-family: 'Playfair Display', serif;
     }
 
     .service-item p {
-      font-size: 1rem;
-      line-height: 1.7;
+      font-size: 0.88rem; /* Taille réduite */
+      line-height: 1.6;
       color: var(--text-medium);
-      font-family: 'Roboto', sans-serif;
+      margin: 0;
       flex-grow: 1;
     }
 
     /* =====================================================
-       SECTION « FAQ » (accordéon)
+       SECTION « FAQ » (Accordéon)
        ===================================================== */
     .faq-container {
       max-width: 800px;
@@ -360,42 +440,37 @@
     }
 
     .faq-item {
-      margin-bottom: 20px;
-      border-radius: 15px;
+      margin-bottom: 15px;
+      border-radius: 12px;
       overflow: hidden;
       background: var(--card-bg);
-      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.03);
       border: 1px solid rgba(255, 255, 255, 0.5);
       backdrop-filter: blur(5px);
       transition: all 0.3s ease;
     }
 
-    .faq-item:hover {
-      border-color: rgba(0, 180, 216, 0.3);
-    }
-
     .faq-question {
       width: 100%;
-      padding: 20px;
+      padding: 15px 20px;
       background-color: transparent;
       color: var(--primary-blue);
       border: none;
       text-align: left;
-      font-size: 1.1rem;
+      font-size: 1rem;
       font-family: 'Playfair Display', serif;
       display: flex;
       justify-content: space-between;
       align-items: center;
       cursor: pointer;
-      transition: background-color 0.3s ease;
     }
 
     .faq-question:hover {
-      background-color: rgba(0, 180, 216, 0.05);
+      background-color: rgba(0, 180, 216, 0.03);
     }
 
     .toggle-icon {
-      font-size: 1.2rem;
+      font-size: 1rem;
       transition: transform 0.3s ease;
       color: var(--accent-blue);
     }
@@ -406,30 +481,28 @@
 
     .faq-answer {
       display: none;
-      padding: 0 20px 20px;
+      padding: 0 20px 15px;
       color: var(--text-medium);
-      font-family: 'Roboto', sans-serif;
-      font-size: 1rem;
-      line-height: 1.7;
+      font-size: 0.88rem;
+      line-height: 1.6;
       animation: fadeIn 0.3s ease;
     }
 
     @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(-10px); }
+      from { opacity: 0; transform: translateY(-5px); }
       to { opacity: 1; transform: translateY(0); }
     }
 
     /* =====================================================
-       SECTION CONTACT
+       SECTION CONTACT & COORDONNÉES
        ===================================================== */
     #contact {
       background: var(--card-bg);
-      padding: 80px 0;
-      margin-top: 60px;
+      padding: 50px 0;
+      margin-top: 40px;
       border-radius: 15px;
       border: 1px solid rgba(255, 255, 255, 0.5);
-      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
-      backdrop-filter: blur(5px);
+      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.04);
     }
 
     .contact-container {
@@ -440,48 +513,61 @@
       align-items: center;
     }
 
+    .contact-info-block {
+      margin-bottom: 25px;
+      text-align: center;
+      font-size: 1rem;
+      color: var(--primary-blue);
+      font-weight: 500;
+    }
+
+    .contact-info-block i {
+      margin-right: 8px;
+      color: var(--accent-blue);
+    }
+
     .contact-form {
       width: 100%;
       max-width: 600px;
       background: rgba(255, 255, 255, 0.85);
-      padding: 40px;
-      border-radius: 15px;
-      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+      padding: 30px;
+      border-radius: 12px;
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.03);
       border: 1px solid rgba(255, 255, 255, 0.5);
     }
 
     .form-group {
-      margin-bottom: 25px;
+      margin-bottom: 18px;
     }
 
     .form-group label {
       display: block;
-      margin-bottom: 8px;
+      margin-bottom: 6px;
       font-weight: 500;
+      font-size: 0.88rem;
       color: var(--primary-blue);
     }
 
     .form-group input,
     .form-group textarea {
       width: 100%;
-      padding: 15px;
-      border-radius: 8px;
+      padding: 12px;
+      border-radius: 6px;
       border: 1px solid var(--border-light);
       background: rgba(255, 255, 255, 0.9);
       color: var(--text-dark);
-      font-size: 1rem;
-      transition: all 0.3s ease;
+      font-size: 0.9rem;
+      box-sizing: border-box;
     }
 
     .form-group input:focus,
     .form-group textarea:focus {
       outline: none;
       border-color: var(--accent-blue);
-      box-shadow: 0 0 0 3px rgba(0, 180, 216, 0.1);
     }
 
     .form-group textarea {
-      min-height: 150px;
+      min-height: 110px;
       resize: vertical;
     }
 
@@ -492,142 +578,71 @@
       background-color: rgba(255, 255, 255, 0.95);
       color: var(--text-medium);
       text-align: center;
-      padding: 30px 0;
-      margin-top: 80px;
-      font-family: 'Roboto', sans-serif;
-      font-size: 0.9rem;
-      box-shadow: 0 -2px 15px rgba(0, 0, 0, 0.05);
+      padding: 25px 0;
+      margin-top: 60px;
+      font-size: 0.85rem;
+      box-shadow: 0 -2px 15px rgba(0, 0, 0, 0.03);
     }
 
     .footer-content {
       display: flex;
       flex-direction: column;
       align-items: center;
-      gap: 20px;
+      gap: 15px;
+    }
+
+    .footer-logo-container {
+      display: flex;
+      align-items: center;
+    }
+
+    .footer-logo {
+      height: 38px;
+      width: auto;
+    }
+
+    .footer-phone {
+      color: var(--text-medium);
+      font-weight: 500;
+      text-decoration: none;
     }
 
     .social-icons {
       display: flex;
-      gap: 20px;
+      gap: 15px;
     }
 
     .social-icons a {
       color: var(--primary-blue);
-      font-size: 1.5rem;
-      transition: color 0.3s ease, transform 0.3s ease;
+      font-size: 1.3rem;
+      transition: all 0.3s ease;
     }
 
     .social-icons a:hover {
       color: var(--accent-blue);
-      transform: translateY(-5px);
+      transform: translateY(-3px);
     }
 
-    /* =====================================================
-       Boutons flottants (hébergés en bas à droite)
-       ===================================================== */
-    .floating-buttons {
-      position: fixed;
-      top: 50%;
-      right: 20px;
-      transform: translateY(-50%);
-      display: flex;
-      flex-direction: column;
-      gap: 15px;
-      z-index: 20;
-    }
-
-    .floating-buttons a {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      width: 50px;
-      height: 50px;
-      background: var(--primary-blue);
-      color: var(--text-light);
-      border-radius: 50%;
-      text-decoration: none;
-      font-size: 1.2rem;
-      box-shadow: 0 5px 15px rgba(0, 119, 182, 0.3);
-      transition: all 0.3s ease;
-      position: relative;
-    }
-
-    .floating-buttons a:hover {
-      transform: scale(1.1);
-      box-shadow: 0 8px 20px rgba(0, 119, 182, 0.4);
-      background: var(--button-hover);
-    }
-
-    .floating-buttons a .tooltip {
-      visibility: hidden;
-      width: 120px;
-      background-color: rgba(0, 119, 182, 0.9);
-      color: #fff;
-      text-align: center;
-      border-radius: 6px;
-      padding: 8px 0;
-      position: absolute;
-      z-index: 1;
-      right: 60px;
+    /* Animation générale au scroll */
+    .reveal {
       opacity: 0;
-      transition: opacity 0.3s;
-      font-size: 0.9rem;
-    }
-
-    .floating-buttons a:hover .tooltip {
-      visibility: visible;
-      opacity: 1;
-    }
-
-    /* Responsive pour les boutons flottants (<768px) */
-    @media (max-width: 768px) {
-      .floating-buttons {
-        flex-direction: row;
-        width: 90%;
-        left: 50%;
-        bottom: 20px;
-        top: auto;
-        right: auto;
-        transform: translateX(-50%);
-        justify-content: space-around;
-        background-color: rgba(255, 255, 255, 0.95);
-        padding: 15px 0;
-        border-radius: 30px;
-        box-shadow: 0 -2px 15px rgba(0, 0, 0, 0.1);
-      }
-      .floating-buttons a {
-        width: 45px;
-        height: 45px;
-        font-size: 1.1rem;
-      }
-      .floating-buttons a .tooltip {
-        display: none;
-      }
-    }
-
-    /* Animation générale */
-    @keyframes float {
-      0% { transform: translateY(0px); }
-      50% { transform: translateY(-10px); }
-      100% { transform: translateY(0px); }
-    }
-
-    .floating-element {
-      animation: float 4s ease-in-out infinite;
+      transform: translateY(15px);
+      transition: opacity 0.5s ease, transform 0.5s ease;
     }
   </style>
 </head>
 <body>
-  <!-- Arrière-plan animé (effet subtil) -->
+
   <div class="background-animation"></div>
 
   <!-- ============================
        HEADER / NAVIGATION
        ============================ -->
   <header>
-    <div class="logo">
-      <i class="fas fa-compact-disc floating-element"></i>
-      CINEXAU PRODUCTION
+    <div class="logo-container">
+      <a href="#hero">
+        <img src="https://raw.githubusercontent.com/exaucenapopolo/CINEXAU-MUSIC-HOUSE/refs/heads/main/logo%20cinexau.jpg" alt="Logo Cinexau" class="project-logo" />
+      </a>
     </div>
 
     <div class="hamburger-menu" id="hamburger-icon">
@@ -637,7 +652,7 @@
     <nav>
       <ul id="nav-links">
         <li><a href="#hero">Accueil</a></li>
-        <li><a href="#about-cinexau">À propos</a></li>
+        <li><a href="about.html">À propos</a></li>
         <li><a href="dashboard.html">Services</a></li>
         <li><a href="#why-choose-us">Pourquoi nous choisir</a></li>
         <li><a href="#faq">FAQ</a></li>
@@ -650,18 +665,33 @@
        CONTENU PRINCIPAL
        ============================ -->
   <main>
-    <!-- —— Section Héros : titre + sous-titre + bouton —— -->
+    
+    <!-- Section Héros : Titre, sous-titre et illustration dynamique -->
     <section id="hero" class="container">
-      <h1>Transformez votre passion en <span class="highlight-title">succès musical</span></h1>
-      <p class="subtitle">Accompagnement artistique et production professionnelle pour les talents émergents</p>
-      <a href="dashboard.html" class="primary-button">Nous rejoindre</a>
+      <div class="hero-content">
+        <h1>Transformez votre passion en <span class="highlight-title">succès musical</span></h1>
+        <p class="subtitle">Accompagnement artistique et production professionnelle pour les talents émergents</p>
+        <a href="login.html" class="primary-button">Nous rejoindre</a>
+      </div>
+      <div class="hero-illustration">
+        <div class="illustration-box">
+          <div class="backdrop-glow"></div>
+          <div class="wave-bar"></div>
+          <div class="wave-bar"></div>
+          <div class="wave-bar"></div>
+          <div class="wave-bar"></div>
+          <div class="wave-bar"></div>
+          <div class="wave-bar"></div>
+          <div class="wave-bar"></div>
+        </div>
+      </div>
     </section>
 
     <hr />
 
-    <!-- —— Section « À propos CINEXAU PRODUCTION » —— -->
-    <section id="about-cinexau" class="container">
-      <h2>Qu'est-ce que <span class="highlight-title">CINEXAU PRODUCTION</span> ?</h2>
+    <!-- Section « À propos » -->
+    <section id="about-cinexau" class="container reveal">
+      <h2>Qu'est-ce que <span class="highlight-title">CINEXAU PRODUCTION</span> ?</h2>
       <div class="text-content">
         <p>
           CINEXAU PRODUCTION est un label de production musicale dédié à la
@@ -684,56 +714,95 @@
 
     <hr />
 
-    <!-- —— Section « Nos Services » —— -->
-    <section id="services" class="container">
+    <!-- Section « Nos Services » -->
+    <section id="services" class="container reveal">
       <h2>Nos <span class="highlight-title">Services</span></h2>
       <div class="services-grid">
+        
+        <!-- Service 1 -->
         <div class="service-item">
-          <i class="fas fa-globe icon-color floating-element"></i>
+          <i class="fas fa-globe icon-color"></i>
           <h3>Distribution Digitale</h3>
           <p>
             Nous assurons la distribution de votre musique sur toutes les
             plateformes de streaming et de téléchargement mondiales (Spotify,
             Apple Music, Deezer, YouTube Music, etc.), maximisant ainsi votre
-            portée et vos revenus. Nous gérons également les droits d'auteur
-            et les redevances.
+            portée et vos revenus. Nous gérons également les droits d'auteur.
           </p>
         </div>
 
+        <!-- Service 2 -->
         <div class="service-item">
-          <i class="fas fa-microphone-alt icon-color floating-element"></i>
+          <i class="fas fa-microphone-alt icon-color"></i>
           <h3>Enregistrement &amp; Mixage</h3>
           <p>
             Profitez de nos studios équipés et de nos ingénieurs du son
             expérimentés pour enregistrer vos titres. Nous offrons des services
-            de mixage et de mastering professionnels pour garantir un son de
-            haute qualité qui se démarque.
+            de mixage et de mastering professionnels pour garantir un son de haute qualité.
           </p>
         </div>
 
+        <!-- Service 3 -->
         <div class="service-item">
-          <i class="fas fa-users icon-color floating-element"></i>
+          <i class="fas fa-users icon-color"></i>
           <h3>Accompagnement Artistique</h3>
           <p>
             Un soutien personnalisé pour développer votre projet musical,
             votre image de marque, votre stratégie de communication et votre
-            présence sur les réseaux sociaux. Nous vous aidons à bâtir une
-            carrière solide et durable.
+            présence sur les réseaux sociaux. Nous vous aidons à bâtir une carrière durable.
           </p>
         </div>
 
+        <!-- Service 4 (Nouveau : Création Chansons IA) -->
         <div class="service-item">
-          <i class="fas fa-camera-retro icon-color floating-element"></i>
+          <i class="fas fa-robot icon-color"></i>
+          <h3>Création de Chansons IA</h3>
+          <p>
+            Explorez les frontières technologiques grâce à la création complète et sur mesure de chansons personnalisées structurées par nos intelligences artificielles dédiées.
+          </p>
+        </div>
+
+        <!-- Service 5 (Nouveau : Modification Chansons IA) -->
+        <div class="service-item">
+          <i class="fas fa-sliders-h icon-color"></i>
+          <h3>Modification Vocale IA</h3>
+          <p>
+            Transformez vos maquettes simplement : il vous suffit d'envoyer un extrait de voix de 30 secondes minimum pour générer une chanson complète basée fidèlement sur votre timbre vocal.
+          </p>
+        </div>
+
+        <!-- Service 6 (Nouveau : Clips Vidéo IA) -->
+        <div class="service-item">
+          <i class="fas fa-film icon-color"></i>
+          <h3>Génération de Clips IA</h3>
+          <p>
+            Donnez vie à vos morceaux avec des clips vidéo cinématiques entièrement créés par IA, tout en préservant à la perfection l'identité visuelle et la cohérence des mêmes personnages.
+          </p>
+        </div>
+
+        <!-- Service 7 (Nouveau/Spécifique : Battles Artistes pointant vers ZoneMusik) -->
+        <a href="https://zonemusik.netlify.app/" target="_blank" class="service-item service-link-card">
+          <i class="fas fa-bolt icon-color"></i>
+          <h3>Battles entre Artistes</h3>
+          <p>
+            Rejoignez l'arène, défiez d'autres talents de la communauté et propulsez votre visibilité. Cliquez pour organiser et participer aux battles officielles sur notre plateforme dédiée.
+          </p>
+          <span class="badge-link">Ouvrir le site <i class="fas fa-external-link-alt"></i></span>
+        </a>
+
+        <!-- Service 8 -->
+        <div class="service-item">
+          <i class="fas fa-camera-retro icon-color"></i>
           <h3>Production Audiovisuelle</h3>
           <p>
-            Création de clips vidéo, de visuels promotionnels et de contenus
-            multimédias professionnels pour accompagner la sortie de vos titres
-            et renforcer votre identité artistique.
+            Création de clips vidéo traditionnels, de visuels promotionnels et de contenus
+            multimédias professionnels pour accompagner la sortie de vos titres et renforcer votre identité.
           </p>
         </div>
 
+        <!-- Service 9 -->
         <div class="service-item">
-          <i class="fas fa-scroll icon-color floating-element"></i>
+          <i class="fas fa-scroll icon-color"></i>
           <h3>Gestion des Droits</h3>
           <p>
             Nous gérons la protection et l'administration de vos droits
@@ -742,13 +811,14 @@
           </p>
         </div>
 
+        <!-- Service 10 -->
         <div class="service-item">
-          <i class="fas fa-project-diagram icon-color floating-element"></i>
+          <i class="fas fa-project-diagram icon-color"></i>
           <h3>Stratégie de Carrière</h3>
           <p>
             Développement d'un plan de carrière sur mesure, incluant le
             positionnement artistique, la planification des sorties, et les
-            opportunités de collaboration et de développement.
+            opportunités de collaboration.
           </p>
         </div>
       </div>
@@ -756,12 +826,12 @@
 
     <hr />
 
-    <!-- —— Section « Pourquoi nous choisir » —— -->
-    <section id="why-choose-us" class="container">
-      <h2>Pourquoi choisir <span class="highlight-title">CINEXAU PRODUCTION</span> ?</h2>
+    <!-- Section « Pourquoi nous choisir » -->
+    <section id="why-choose-us" class="container reveal">
+      <h2>Pourquoi choisir <span class="highlight-title">CINEXAU PRODUCTION</span> ?</h2>
       <div class="text-content">
         <p>
-          Chez CINEXAU PRODUCTION, nous ne sommes pas qu'un simple label ; nous
+          Chez CINEXAU PRODUCTION, nous ne sommes pas qu'un simple label ; nous
           sommes des partenaires dédiés à votre succès. Notre approche
           personnalisée assure que chaque artiste reçoit l'attention et les
           ressources nécessaires pour atteindre son plein potentiel. Nous
@@ -781,13 +851,13 @@
 
     <hr />
 
-    <!-- —— Section « FAQ » avec accordéon corrigé —— -->
-    <section id="faq" class="container">
+    <!-- Section « FAQ » -->
+    <section id="faq" class="container reveal">
       <h2>Questions Fréquemment Posées</h2>
       <div class="faq-container">
         <div class="faq-item">
           <button class="faq-question">
-            <span>Comment puis-je soumettre ma musique à CINEXAU PRODUCTION ?</span>
+            <span>Comment puis-je soumettre ma musique à CINEXAU PRODUCTION ?</span>
             <i class="fas fa-chevron-right toggle-icon"></i>
           </button>
           <div class="faq-answer">
@@ -795,80 +865,78 @@
               Nous acceptons les soumissions via notre page de contact. Veuillez
               inclure des liens vers vos morceaux (SoundCloud, YouTube, etc.) et
               une brève présentation de votre projet artistique. Nous écoutons
-              attentivement chaque soumission et vous recontacterons si votre
-              profil correspond à nos critères.
+              attentivement chaque soumission.
             </p>
           </div>
         </div>
 
         <div class="faq-item">
           <button class="faq-question">
-            <span>Quels genres musicaux accompagnez-vous ?</span>
+            <span>Quels genres musicaux accompagnez-vous ?</span>
             <i class="fas fa-chevron-right toggle-icon"></i>
           </button>
           <div class="faq-answer">
             <p>
-              CINEXAU PRODUCTION est ouvert à tous les genres musicaux, du R&amp;B
+              CINEXAU PRODUCTION est ouvert à tous les genres musicaux, du R&amp;B
               au Hip-hop, en passant par l'Afrobeat, la pop, le rock et bien
-              d'autres. Notre priorité est le talent et l'originalité, quelle
-              que soit la couleur musicale.
+              d'autres. Notre priorité est le talent et l'originalité.
             </p>
           </div>
         </div>
 
         <div class="faq-item">
           <button class="faq-question">
-            <span>Offrez-vous un accompagnement pour les artistes débutants ?</span>
+            <span>Offrez-vous un accompagnement pour les artistes débutants ?</span>
             <i class="fas fa-chevron-right toggle-icon"></i>
           </button>
           <div class="faq-answer">
             <p>
-              Absolument ! Notre mission principale est d'accompagner les jeunes
+              Absolument ! Notre mission principale est d'accompagner les jeunes
               artistes, qu'ils soient débutants ou en développement. Nous
-              adaptons nos services à votre niveau et à vos besoins spécifiques
-              pour vous aider à progresser.
+              adaptons nos services à votre niveau et à vos besoins spécifiques.
             </p>
           </div>
         </div>
 
         <div class="faq-item">
           <button class="faq-question">
-            <span>Comment sont gérés les droits d'auteur et les redevances ?</span>
+            <span>Comment sont gérés les droits d'auteur et les redevances ?</span>
             <i class="fas fa-chevron-right toggle-icon"></i>
           </button>
           <div class="faq-answer">
             <p>
               Nous nous occupons de l'enregistrement de vos œuvres auprès des
-              sociétés de gestion des droits (comme la SACEM) et assurons le
-              suivi de toutes les redevances générées par la distribution de
-              votre musique. Nous sommes transparents sur la répartition des
-              revenus et vous fournissons des rapports détaillés.
+              sociétés de gestion des droits (comme la SACEM) et assurons le
+              suivi de toutes les redevances générées par la distribution.
             </p>
           </div>
         </div>
 
         <div class="faq-item">
           <button class="faq-question">
-            <span>Puis-je garder le contrôle créatif sur ma musique ?</span>
+            <span>Puis-je garder le contrôle créatif sur ma musique ?</span>
             <i class="fas fa-chevron-right toggle-icon"></i>
           </button>
           <div class="faq-answer">
             <p>
               Oui, votre liberté artistique est primordiale pour nous. Nous sommes
               là pour vous guider et vous conseiller, mais la vision créative de
-              votre musique reste entre vos mains. Nous collaborons étroitement
-              avec vous pour réaliser votre vision tout en l’optimisant pour le
-              marché.
+              votre musique reste entre vos mains.
             </p>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- —— Section Contact —— -->
-    <section id="contact" class="container">
+    <!-- Section Contact -->
+    <section id="contact" class="container reveal">
       <div class="contact-container">
         <h2>Contactez-nous</h2>
+        
+        <div class="contact-info-block">
+          <p><i class="fas fa-phone-alt"></i> <a href="tel:+237652205768" style="color: inherit; text-decoration: none;">+237 652 20 57 68</a></p>
+        </div>
+
         <div class="contact-form">
           <form id="contact-form">
             <div class="form-group">
@@ -900,9 +968,11 @@
   <footer>
     <div class="container">
       <div class="footer-content">
-        <div class="logo">
-          <i class="fas fa-compact-disc"></i>
-          CINEXAU PRODUCTION
+        <div class="footer-logo-container">
+          <img src="https://raw.githubusercontent.com/exaucenapopolo/CINEXAU-MUSIC-HOUSE/refs/heads/main/logo%20cinexau.jpg" alt="Logo Cinexau" class="footer-logo" />
+        </div>
+        <div>
+          <a href="tel:+237652205768" class="footer-phone"><i class="fas fa-phone-alt"></i> +237 652 20 57 68</a>
         </div>
         <div class="social-icons">
           <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
@@ -910,39 +980,13 @@
           <a href="#" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
           <a href="#" aria-label="Spotify"><i class="fab fa-spotify"></i></a>
         </div>
-        <p>&copy; 2025 CINEXAU PRODUCTION. Tous droits réservés.</p>
+        <p>&copy; 2026 CINEXAU PRODUCTION. Tous droits réservés.</p>
       </div>
     </div>
   </footer>
 
   <!-- ============================
-       Boutons flottants
-       ============================ -->
-  <div class="floating-buttons">
-    <a href="#hero">
-      <i class="fas fa-home icon-color"></i>
-      <span class="tooltip">Accueil</span>
-    </a>
-    <a href="#services">
-      <i class="fas fa-tools icon-color"></i>
-      <span class="tooltip">Services</span>
-    </a>
-    <a href="#why-choose-us">
-      <i class="fas fa-question-circle icon-color"></i>
-      <span class="tooltip">Pourquoi nous choisir</span>
-    </a>
-    <a href="#faq">
-      <i class="fas fa-comment-dots icon-color"></i>
-      <span class="tooltip">FAQ</span>
-    </a>
-    <a href="#contact">
-      <i class="fas fa-envelope icon-color"></i>
-      <span class="tooltip">Nous contacter</span>
-    </a>
-  </div>
-
-  <!-- ============================
-       Scripts JS
+       Scripts JS (Sans boutons flottants)
        ============================ -->
   <script>
     document.addEventListener('DOMContentLoaded', () => {
@@ -957,7 +1001,6 @@
         const icon = item.querySelector('.toggle-icon');
 
         questionBtn.addEventListener('click', () => {
-          /* Fermer toutes les autres réponses ouvertes */
           faqItems.forEach((other) => {
             if (other !== item) {
               other.querySelector('.faq-answer').style.display = 'none';
@@ -965,7 +1008,6 @@
             }
           });
 
-          /* Basculer l’affichage de la réponse courante */
           if (answerDiv.style.display === 'block') {
             answerDiv.style.display = 'none';
             icon.classList.remove('rotated');
@@ -977,7 +1019,7 @@
       });
 
       /* ———————————
-         2) Hamburger menu (mobile)
+         2) Menu Hamburger Mobile
          ——————————— */
       const hamburgerIcon = document.getElementById('hamburger-icon');
       const navLinks = document.getElementById('nav-links');
@@ -996,13 +1038,12 @@
       });
 
       /* ———————————
-         3) Animation de soumission du formulaire
+         3) Soumission Formulaire Contact
          ——————————— */
       const contactForm = document.getElementById('contact-form');
       if (contactForm) {
         contactForm.addEventListener('submit', (e) => {
           e.preventDefault();
-          // Afficher une animation de succès
           const submitButton = contactForm.querySelector('button[type="submit"]');
           const originalText = submitButton.innerHTML;
           
@@ -1018,7 +1059,7 @@
       }
 
       /* ———————————
-         4) Animation au défilement
+         4) Animation d'affichage progressif au Scroll
          ——————————— */
       const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
@@ -1027,13 +1068,11 @@
             entry.target.style.transform = 'translateY(0)';
           }
         });
-      }, { threshold: 0.1 });
+      }, { threshold: 0.05 });
 
-      document.querySelectorAll('section, .service-item').forEach(section => {
-        section.style.opacity = 0;
-        section.style.transform = 'translateY(20px)';
-        section.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
-        observer.observe(section);
+      document.querySelectorAll('.reveal, .service-item').forEach(element => {
+        element.classList.add('reveal');
+        observer.observe(element);
       });
     });
   </script>
