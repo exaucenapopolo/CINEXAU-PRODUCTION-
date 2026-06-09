@@ -291,7 +291,7 @@
       signInWithEmailAndPassword(auth, email, password)
         .then((userCredential) => {
           showAlert('success', 'Connexion réussie ! Redirection...');
-          setTimeout(() => { window.location.href = 'dasboard.html'; }, 1500);
+          setTimeout(() => { window.location.href = 'dashboard.html'; }, 1500);
         })
         .catch((error) => {
           let errorMsg = "Email ou mot de passe incorrect.";
@@ -306,7 +306,7 @@
       signInWithPopup(auth, googleProvider)
         .then((result) => {
           showAlert('success', 'Connexion Google réussie !');
-          setTimeout(() => { window.location.href = 'dasboard.html'; }, 1500);
+          setTimeout(() => { window.location.href = 'dashboard.html'; }, 1500);
         })
         .catch((error) => {
           showAlert('error', 'Échec de la connexion avec Google.');
