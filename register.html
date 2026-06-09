@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <title>Inscription - CINEXAU MUSIC HOUSE</title>
+  
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Roboto:wght@400;500;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+  
+  <style>
+    :root {
+      --light-gradient: linear-gradient(135deg, #f0f9ff 0%, #e6f7ff 100%);
+      --primary-blue: #0077b6;
+      --accent-blue: #00b4d8;
+      --light-blue: #90e0ef;
+      --text-dark: #1e2a3a;
+      --text-medium: #2c3e4e;
+      --card-bg: rgba(255, 255, 255, 0.92);
+      --success: #28a745;
+      --error: #dc3545;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: 'Roboto', sans-serif;
+      color: var(--text-dark);
+      background: var(--light-gradient);
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 20px;
+    }
+
+    .auth-container {
+      background: var(--card-bg);
+      backdrop-filter: blur(8px);
+      width: 100%;
+      max-width: 450px;
+      padding: 40px 30px;
+      border-radius: 28px;
+      box-shadow: 0 15px 35px rgba(0, 119, 182, 0.1);
+      border: 1px solid rgba(255, 255, 255, 0.7);
+      text-align: center;
+    }
+
+    .logo img {
+      height: 55px;
+      width: auto;
+      margin-bottom: 20px;
+    }
+
+    h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: 2rem;
+      color: var(--primary-blue);
+      margin-bottom: 10px;
+    }
+
+    .subtitle {
+      font-size: 0.95rem;
+      color: var(--text-medium);
+      margin-bottom: 30px;
+    }
+
+    .form-group {
+      margin-bottom: 20px;
+      text-align: left;
+    }
+
+    .form-group label {
+      font-weight: 500;
+      color: var(--primary-blue);
+      margin-bottom: 8px;
+      display: block;
+      font-size: 0.9rem;
+    }
+
+    .form-group input {
+      width: 100%;
+      padding: 14px 16px;
+      border-radius: 14px;
+      border: 1px solid #dce4ec;
+      background: white;
+      font-size: 0.95rem;
+      transition: 0.3s;
+    }
+
+    .form-group input:focus {
+      border-color: var(--accent-blue);
+      outline: none;
+      box-shadow: 0 0 0 3px rgba(0, 180, 216, 0.15);
+    }
+
+    .primary-button {
+      width: 100%;
+      font-size: 1.05rem;
+      font-weight: 700;
+      padding: 14px;
+      color: #ffffff;
+      background: linear-gradient(135deg, var(--primary-blue) 0%, var(--accent-blue) 100%);
+      border: none;
+      border-radius: 50px;
+      box-shadow: 0 6px 15px rgba(0, 119, 182, 0.2);
+      cursor: pointer;
+      transition: all 0.3s ease;
+      margin-top: 10px;
+    }
+
+    .primary-button:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 20px rgba(0, 119, 182, 0.35);
+    }
+
+    .divider {
+      margin: 25px 0;
+      position: relative;
+      color: #a0aec0;
+      font-size: 0.85rem;
+    }
+
+    .divider::before, .divider::after {
+      content: "";
+      position: absolute;
+      top: 50%;
+      width: 40%;
+      height: 1px;
+      background: #e2e8f0;
+    }
+    .divider::before { left: 0; }
+    .divider::after { right: 0; }
+
+    .google-button {
+      width: 100%;
+      padding: 12px;
+      background: white;
+      border: 1px solid #e2e8f0;
+      border-radius: 50px;
+      font-weight: 500;
+      color: var(--text-medium);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 10px;
+      cursor: pointer;
+      transition: background 0.2s, transform 0.2s;
+      font-size: 0.95rem;
+    }
+
+    .google-button:hover {
+      background: #f7fafc;
+      transform: translateY(-1px);
+    }
+
+    .google-button img {
+      width: 20px;
+      height: 20px;
+    }
+
+    .switch-auth {
+      margin-top: 25px;
+      font-size: 0.9rem;
+      color: var(--text-medium);
+    }
+
+    .switch-auth a {
+      color: var(--primary-blue);
+      text-decoration: none;
+      font-weight: 700;
+    }
+
+    .switch-auth a:hover {
+      text-decoration: underline;
+    }
+
+    /* Messages d'alerte */
+    .alert {
+      padding: 12px;
+      border-radius: 12px;
+      margin-bottom: 20px;
+      font-size: 0.9rem;
+      display: none;
+    }
+    .alert-error { background: #ffebee; color: var(--error); border: 1px solid #ffcdd2; }
+    .alert-success { background: #e8f5e9; color: var(--success); border: 1px solid #c8e6c9; }
+  </style>
+</head>
+<body>
+
+  <div class="auth-container">
+    <div class="logo">
+      <img src="https://raw.githubusercontent.com/exaucenapopolo/CINEXAU-MUSIC-HOUSE/refs/heads/main/logo%20cinexau.jpg" alt="Logo">
+    </div>
+    <h2>Créer un compte</h2>
+    <p class="subtitle">Rejoignez l'aventure CINEXAU MUSIC HOUSE</p>
+
+    <!-- Zones de notifications -->
+    <div id="alert-error" class="alert alert-error"></div>
+    <div id="alert-success" class="alert alert-success"></div>
+
+    <form id="register-form">
+      <div class="form-group">
+        <label for="email">Adresse Email</label>
+        <input type="email" id="email" placeholder="exemple@domaine.com" required>
+      </div>
+      <div class="form-group">
+        <label for="password">Mot de passe</label>
+        <input type="password" id="password" placeholder="Minimum 6 caractères" required>
+      </div>
+      <button type="submit" class="primary-button">S'inscrire</button>
+    </form>
+
+    <div class="divider">ou</div>
+
+    <button id="google-btn" class="google-button">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/c/c1/Google_%22G%22_logo.svg" alt="Google">
+      S'inscrire avec Google
+    </button>
+
+    <div class="switch-auth">
+      Déjà membre ? <a href="login.html">Se connecter</a>
+    </div>
+  </div>
+
+  <!-- SCRIPT FIREBASE CONFIG & AUTH -->
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
+    import { getAuth, createUserWithEmailAndPassword, signInWithPopup, GoogleAuthProvider } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js";
+
+    // Ta configuration Firebase transmise
+    const firebaseConfig = {
+      apiKey: "AIzaSyDpvdfugex1MtpC6jOyTOIyZzY2kgcgHnk",
+      authDomain: "cinexau-903a6.firebaseapp.com",
+      projectId: "cinexau-903a6",
+      storageBucket: "cinexau-903a6.firebasestorage.app",
+      messagingSenderId: "247230931008",
+      appId: "1:247230931008:web:89824e9a4a257bd831ffa5",
+      measurementId: "G-ZR6NMYVYS3"
+    };
+
+    // Initialisation
+    const app = initializeApp(firebaseConfig);
+    const auth = getAuth(app);
+    const googleProvider = new GoogleAuthProvider();
+
+    const errBox = document.getElementById('alert-error');
+    const succBox = document.getElementById('alert-success');
+
+    function showAlert(type, message) {
+      errBox.style.display = 'none';
+      succBox.style.display = 'none';
+      if (type === 'error') {
+        errBox.innerText = message;
+        errBox.style.display = 'block';
+      } else {
+        succBox.innerText = message;
+        succBox.style.display = 'block';
+      }
+    }
+
+    // 1) INSCRIPTION STANDARD (EMAIL / MOT DE PASSE)
+    document.getElementById('register-form').addEventListener('submit', (e) => {
+      e.preventDefault();
+      const email = document.getElementById('email').value;
+      const password = document.getElementById('password').value;
+
+      createUserWithEmailAndPassword(auth, email, password)
+        .then((userCredential) => {
+          showAlert('success', 'Compte créé avec succès ! Redirection...');
+          setTimeout(() => { window.location.href = 'index.html'; }, 2000);
+        })
+        .catch((error) => {
+          let errorMsg = "Une erreur est survenue.";
+          if (error.code === 'auth/email-already-in-use') errorMsg = "Cet email est déjà utilisé.";
+          if (error.code === 'auth/weak-password') errorMsg = "Le mot de passe doit faire au moins 6 caractères.";
+          showAlert('error', errorMsg);
+        });
+    });
+
+    // 2) INSCRIPTION VIA GOOGLE POPUP
+    document.getElementById('google-btn').addEventListener('click', () => {
+      signInWithPopup(auth, googleProvider)
+        .then((result) => {
+          showAlert('success', 'Connexion Google réussie !');
+          setTimeout(() => { window.location.href = 'index.html'; }, 1500);
+        })
+        .catch((error) => {
+          showAlert('error', 'Échec de l\'authentification Google.');
+        });
+    });
+  </script>
+</body>
+</html>
