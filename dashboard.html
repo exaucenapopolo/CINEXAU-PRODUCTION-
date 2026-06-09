@@ -2,162 +2,119 @@
 <html lang="fr">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>CINEXAU PRODUCTION - Tableau de bord</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <title>Tableau de bord - CINEXAU MUSIC HOUSE</title>
   
-  <!-- Google Fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Roboto:wght@400;500&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Roboto:wght@400;500;700&display=swap" rel="stylesheet" />
   
-  <!-- Font Awesome -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
   
   <style>
     /* =====================================================
-       Variables et polices
+       VARIABLES + RESET + DESIGN SYSTEM
        ===================================================== */
     :root {
-      /* Nouvelle palette de couleurs claire et professionnelle */
       --light-gradient: linear-gradient(135deg, #f0f9ff 0%, #e6f7ff 100%);
-      --primary-blue: #0077b6;      /* Bleu professionnel */
-      --accent-blue: #00b4d8;       /* Bleu d'accent */
-      --light-blue: #90e0ef;        /* Bleu clair */
-      --text-dark: #333333;         /* Texte sombre */
-      --text-medium: #555555;       /* Texte moyen */
-      --text-light: #ffffff;        /* Texte clair */
-      --card-bg: rgba(255, 255, 255, 0.85); /* Fond des cartes */
-      --highlight-color: #0077b6;   /* Mise en valeur */
-      --button-color: #0077b6;      /* Boutons */
-      --button-hover: #005f8a;      /* Survol des boutons */
-      --floating-bg: #0077b6;       /* Boutons flottants */
-      --floating-hover: #005f8a;    /* Survol boutons flottants */
-      --success: #28a745;           /* Succès */
-      --border-light: rgba(0, 0, 0, 0.1);
+      --primary-blue: #0077b6;
+      --accent-blue: #00b4d8;
+      --light-blue: #90e0ef;
+      --text-dark: #1e2a3a;
+      --text-medium: #2c3e4e;
+      --text-light: #ffffff;
+      --card-bg: rgba(255, 255, 255, 0.88);
+      --border-light: rgba(0, 0, 0, 0.06);
+      --success: #28a745;
+      --error: #dc3545;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
     }
 
     body {
-      margin: 0;
-      padding: 0;
       font-family: 'Roboto', sans-serif;
       color: var(--text-dark);
       overflow-x: hidden;
-      position: relative;
+      background: var(--light-gradient);
+      line-height: 1.5;
       min-height: 100vh;
       display: flex;
       flex-direction: column;
-      background: var(--light-gradient);
     }
 
     h1, h2, h3 {
       font-family: 'Playfair Display', serif;
-      margin-bottom: 0.5em;
-      color: var(--primary-blue);
+      font-weight: 700;
+      letter-spacing: -0.01em;
     }
 
-    .highlight-title {
-      color: var(--accent-blue);
-    }
-
-    /* =====================================================
-       Arrière-plan animé (effet subtil)
-       ===================================================== */
-    .background-animation {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      z-index: -1;
-      overflow: hidden;
-      opacity: 0.1;
-      background: 
-        radial-gradient(circle at 10% 20%, var(--light-blue), transparent 20%),
-        radial-gradient(circle at 90% 80%, var(--accent-blue), transparent 20%);
-      animation: subtleBackground 30s infinite alternate;
-    }
-
-    @keyframes subtleBackground {
-      0% { background-position: 0% 0%; }
-      100% { background-position: 100% 100%; }
+    h1 { font-size: 2.6rem; margin-bottom: 0.5rem; }
+    h2 { font-size: 1.85rem; margin-bottom: 1.5rem; color: var(--primary-blue); text-align: center; }
+    h3 { font-size: 1.25rem; margin-bottom: 0.5rem; color: var(--text-dark); }
+    
+    .subtitle {
+      font-size: 1.15rem;
+      font-weight: 500;
+      color: var(--text-medium);
+      max-width: 600px;
+      margin: 0 auto 20px auto;
     }
 
     /* =====================================================
-       Conteneur global
-       ===================================================== */
-    .container {
-      width: 90%;
-      max-width: 1200px;
-      margin: 0 auto;
-      padding: 20px 0;
-      position: relative;
-      z-index: 1;
-    }
-
-    hr {
-      border: none;
-      border-top: 1px solid var(--border-light);
-      margin: 40px auto;
-      width: 80%;
-    }
-
-    /* =====================================================
-       HEADER / NAVIGATION
+       HEADER / NAVIGATION & ACCÈS PROFILE
        ===================================================== */
     header {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      padding: 20px 40px;
-      background-color: rgba(255, 255, 255, 0.95);
+      padding: 15px 40px;
+      background-color: rgba(255, 255, 255, 0.96);
+      backdrop-filter: blur(10px);
       position: sticky;
       top: 0;
-      z-index: 10;
-      box-shadow: 0 2px 15px rgba(0, 0, 0, 0.1);
+      z-index: 100;
+      box-shadow: 0 2px 12px rgba(0, 0, 0, 0.05);
     }
 
     .logo {
-      font-size: 1.8em;
-      font-weight: 700;
-      color: var(--primary-blue);
       display: flex;
       align-items: center;
-      gap: 10px;
+    }
+    .logo img {
+      height: 46px;
+      width: auto;
+      transition: transform 0.2s ease;
+    }
+    .logo img:hover { transform: scale(1.02); }
+
+    .main-nav {
+      flex-grow: 1;
+      display: flex;
+      justify-content: flex-end;
+      align-items: center;
     }
 
-    .logo i {
-      color: var(--accent-blue);
-      font-size: 1.5em;
-    }
-
-    .hamburger-menu {
-      display: none;
-      font-size: 1.8rem;
-      cursor: pointer;
-      color: var(--primary-blue);
-    }
-
-    /* Appliquer la couleur des icônes */
-    .icon-color {
-      color: var(--accent-blue) !important;
-    }
-
-    /* Navigation principale (desktop) */
     nav ul {
       list-style: none;
-      margin: 0;
-      padding: 0;
       display: flex;
-      gap: 25px;
+      align-items: center;
+      gap: 24px;
     }
 
     nav ul li a {
-      color: var(--primary-blue);
+      color: var(--text-medium);
       text-decoration: none;
       font-weight: 500;
-      transition: color 0.3s ease;
+      font-size: 0.95rem;
+      transition: color 0.2s;
       position: relative;
-      padding-bottom: 5px;
+      padding-bottom: 4px;
     }
-
+    nav ul li a:hover, nav ul li a.active {
+      color: var(--primary-blue);
+    }
     nav ul li a::after {
       content: '';
       position: absolute;
@@ -166,489 +123,524 @@
       width: 0;
       height: 2px;
       background: var(--accent-blue);
-      transition: width 0.3s ease;
+      transition: width 0.25s;
+    }
+    nav ul li a:hover::after, nav ul li a.active::after { width: 100%; }
+
+    .user-profile-menu {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding-left: 20px;
+      border-left: 1px solid var(--border-light);
+      margin-left: 10px;
     }
 
-    nav ul li a:hover::after {
-      width: 100%;
+    .user-avatar {
+      width: 35px;
+      height: 35px;
+      background: var(--primary-blue);
+      color: #fff;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: bold;
+      font-size: 0.95rem;
     }
 
-    /* Responsive : basculer la nav en mode hamburger */
-    @media (max-width: 768px) {
-      .hamburger-menu {
-        display: block;
-      }
-      nav ul {
-        position: absolute;
-        top: 60px;
-        right: 0;
-        width: 100%;
-        flex-direction: column;
-        background-color: rgba(255, 255, 255, 0.98);
-        display: none;
-        text-align: center;
-        padding: 10px 0;
-        gap: 15px;
-        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-      }
-      nav ul.active {
-        display: flex;
-      }
-      nav ul li {
-        margin: 0;
-      }
+    .logout-button {
+      background: none;
+      border: none;
+      color: var(--error);
+      font-size: 1.1rem;
+      cursor: pointer;
+      transition: transform 0.2s;
     }
+    .logout-button:hover { transform: scale(1.1); }
 
-    /* =====================================================
-       SECTION HÉROS
-       ===================================================== */
-    #dashboard-hero {
-      padding: 100px 0 60px;
-      text-align: center;
-      color: var(--text-dark);
-    }
-
-    #dashboard-hero h1 {
-      font-size: 3.5rem;
-      margin-bottom: 0.5em;
-      line-height: 1.2;
+    .hamburger-menu {
+      display: none;
+      font-size: 1.6rem;
+      cursor: pointer;
       color: var(--primary-blue);
     }
 
-    #dashboard-hero .subtitle {
-      font-size: 1.5rem;
-      margin-bottom: 1.5em;
-      font-weight: 500;
-      max-width: 700px;
-      margin-left: auto;
-      margin-right: auto;
-      color: var(--text-medium);
-    }
-
-    /* Bouton */
-    .primary-button {
-      display: inline-block;
-      padding: 15px 40px;
-      border-radius: 30px;
-      text-decoration: none;
-      color: var(--text-light);
-      background: var(--primary-blue);
-      transition: all 0.4s ease;
-      font-family: 'Playfair Display', serif;
-      font-weight: 700;
-      font-size: 1.1rem;
-      border: none;
-      cursor: pointer;
-      box-shadow: 0 4px 15px rgba(0, 119, 182, 0.3);
-    }
-
-    .primary-button:hover {
-      transform: translateY(-3px);
-      box-shadow: 0 8px 25px rgba(0, 119, 182, 0.4);
-      background: var(--button-hover);
+    @media (max-width: 992px) {
+      header { padding: 12px 24px; }
+      .hamburger-menu { display: block; margin-left: auto; }
+      .main-nav {
+        position: absolute;
+        top: 100%;
+        left: 0;
+        width: 100%;
+        background: rgba(255, 255, 255, 0.98);
+        box-shadow: 0 12px 20px rgba(0,0,0,0.05);
+        display: none;
+      }
+      .main-nav.active { display: block; }
+      nav ul {
+        flex-direction: column;
+        padding: 20px 0;
+        gap: 16px;
+      }
+      .user-profile-menu {
+        border-left: none;
+        padding-left: 0;
+        margin-left: 0;
+        justify-content: center;
+        padding-top: 10px;
+        border-top: 1px solid var(--border-light);
+        width: 80%;
+        margin: 0 auto;
+      }
     }
 
     /* =====================================================
-       SECTION SERVICES DASHBOARD
+       CONTENEURS ET SECTIONS
        ===================================================== */
-    #dashboard-services {
-      padding: 40px;
-      border-radius: 15px;
-      background-color: rgba(255, 255, 255, 0.6);
-      backdrop-filter: blur(5px);
-      margin-bottom: 60px;
+    .container {
+      width: 90%;
+      max-width: 1250px;
+      margin: 0 auto;
+      padding: 10px 0;
     }
 
-    .dashboard-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 30px;
-      margin-top: 40px;
-    }
+    main { flex-grow: 1; }
 
-    .dashboard-card {
-      background: var(--card-bg);
-      padding: 30px;
-      border-radius: 15px;
+    #dashboard-hero {
       text-align: center;
-      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
-      transition: all 0.4s ease;
-      border: 1px solid rgba(255, 255, 255, 0.5);
+      padding: 50px 0 30px 0;
+      position: relative;
+    }
+
+    .welcome-card {
+      background: rgba(255, 255, 255, 0.6);
+      backdrop-filter: blur(8px);
+      border-radius: 24px;
+      padding: 30px;
+      border: 1px solid rgba(255,255,255,0.5);
+      display: inline-block;
+      width: 100%;
+      max-width: 800px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.02);
+    }
+
+    .user-highlight {
+      background: linear-gradient(120deg, var(--primary-blue), var(--accent-blue));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      font-weight: 700;
+    }
+
+    .category-section {
+      margin-bottom: 45px;
+    }
+
+    .category-title {
+      position: relative;
+      display: inline-block;
+      margin-bottom: 25px;
+      font-size: 1.4rem;
+      color: var(--text-medium);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+    .category-title::after {
+      content: '';
+      position: absolute;
+      bottom: -6px;
+      left: 0;
+      width: 40px;
+      height: 3px;
+      background: var(--accent-blue);
+      border-radius: 2px;
+    }
+
+    /* =====================================================
+       GRILLE DE SERVICES PROFESSIONNELLE
+       ===================================================== */
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 24px;
+    }
+
+    .service-link-wrapper {
+      text-decoration: none;
+      color: inherit;
+      display: block;
+      border-radius: 20px;
+      outline: none;
+    }
+
+    .service-item {
+      background: var(--card-bg);
+      padding: 28px 22px;
+      border-radius: 20px;
+      text-align: left;
+      transition: all 0.3s cubic-bezier(0.2, 0.8, 0.2, 1);
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.02);
+      border: 1px solid rgba(255, 255, 255, 0.7);
+      backdrop-filter: blur(5px);
+      height: 100%;
       display: flex;
       flex-direction: column;
+    }
+
+    .service-link-wrapper:hover .service-item {
+      transform: translateY(-5px);
+      box-shadow: 0 15px 30px rgba(0, 119, 182, 0.12);
+      border-color: rgba(0, 180, 216, 0.25);
+      background: rgba(255, 255, 255, 0.96);
+    }
+
+    .icon-wrapper {
+      width: 50px;
+      height: 50px;
+      border-radius: 14px;
+      background: rgba(0, 180, 216, 0.08);
+      display: flex;
       align-items: center;
-      height: 100%;
-    }
-
-    .dashboard-card:hover {
-      transform: translateY(-10px);
-      box-shadow: 0 15px 40px rgba(0, 119, 182, 0.1);
-      border-color: rgba(0, 180, 216, 0.3);
-    }
-
-    .dashboard-card i {
-      font-size: 3rem;
-      margin-bottom: 20px;
-      color: var(--accent-blue);
-      transition: transform 0.3s ease;
-    }
-
-    .dashboard-card:hover i {
-      transform: scale(1.1);
-      color: var(--primary-blue);
-    }
-
-    .dashboard-card h3 {
-      font-size: 1.4rem;
-      margin-bottom: 15px;
-      color: var(--primary-blue);
-      font-family: 'Playfair Display', serif;
-    }
-
-    .dashboard-card p {
-      font-size: 0.95rem;
-      line-height: 1.7;
-      color: var(--text-medium);
-      font-family: 'Roboto', sans-serif;
-      flex-grow: 1;
-      margin-bottom: 20px;
-    }
-
-    .dashboard-card a {
-      display: inline-block;
-      padding: 10px 25px;
-      background-color: var(--primary-blue);
-      color: white;
-      border-radius: 30px;
-      text-decoration: none;
+      justify-content: center;
+      margin-bottom: 16px;
       transition: all 0.3s ease;
-      font-family: 'Roboto', sans-serif;
-      font-weight: 500;
+    }
+    .service-link-wrapper:hover .icon-wrapper {
+      background: var(--primary-blue);
     }
 
-    .dashboard-card a:hover {
-      background-color: var(--button-hover);
-      transform: translateY(-3px);
+    .icon-wrapper i {
+      font-size: 1.5rem;
+      color: var(--accent-blue);
+      transition: color 0.3s ease;
+    }
+    .service-link-wrapper:hover .icon-wrapper i {
+      color: #fff;
+    }
+
+    .service-item p {
+      font-size: 0.9rem;
+      line-height: 1.5;
+      color: var(--text-medium);
+      margin-top: 6px;
+      flex-grow: 1;
+    }
+
+    .action-tag {
+      margin-top: 14px;
+      font-size: 0.82rem;
+      font-weight: 700;
+      color: var(--primary-blue);
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .action-tag i {
+      transition: transform 0.2s ease;
+    }
+    .service-link-wrapper:hover .action-tag i {
+      transform: translateX(3px);
+    }
+
+    /* Badge Spécial Partenaire / Externe */
+    .partner-card {
+      border-color: rgba(0, 180, 216, 0.3);
+      background: rgba(0, 180, 216, 0.02);
+    }
+
+    /* =====================================================
+       BACKGROUND ANIMATION
+       ===================================================== */
+    .background-animation {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: -2;
+      opacity: 0.2;
+      background: 
+        radial-gradient(circle at 15% 15%, var(--light-blue), transparent 25%),
+        radial-gradient(circle at 80% 80%, var(--accent-blue), transparent 30%);
     }
 
     /* =====================================================
        FOOTER
        ===================================================== */
     footer {
-      background-color: rgba(255, 255, 255, 0.95);
-      color: var(--text-medium);
+      background: rgba(255, 255, 255, 0.96);
+      padding: 25px 0;
+      margin-top: 50px;
       text-align: center;
-      padding: 30px 0;
-      margin-top: 80px;
-      font-family: 'Roboto', sans-serif;
-      font-size: 0.9rem;
-      box-shadow: 0 -2px 15px rgba(0, 0, 0, 0.05);
+      font-size: 0.85rem;
+      box-shadow: 0 -2px 12px rgba(0,0,0,0.03);
     }
-
     .footer-content {
       display: flex;
       flex-direction: column;
       align-items: center;
-      gap: 20px;
+      gap: 12px;
     }
+    .social-icons { display: flex; gap: 18px; }
+    .social-icons a { color: var(--primary-blue); font-size: 1.2rem; transition: 0.2s; }
+    .social-icons a:hover { color: var(--accent-blue); transform: translateY(-2px); }
 
-    .social-icons {
-      display: flex;
-      gap: 20px;
-    }
-
-    .social-icons a {
-      color: var(--primary-blue);
-      font-size: 1.5rem;
-      transition: color 0.3s ease, transform 0.3s ease;
-    }
-
-    .social-icons a:hover {
-      color: var(--accent-blue);
-      transform: translateY(-5px);
-    }
-
-    /* =====================================================
-       Boutons flottants (hébergés en bas à droite)
-       ===================================================== */
-    .floating-buttons {
-      position: fixed;
-      top: 50%;
-      right: 20px;
-      transform: translateY(-50%);
-      display: flex;
-      flex-direction: column;
-      gap: 15px;
-      z-index: 20;
-    }
-
-    .floating-buttons a {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      width: 50px;
-      height: 50px;
-      background: var(--primary-blue);
-      color: var(--text-light);
-      border-radius: 50%;
-      text-decoration: none;
-      font-size: 1.2rem;
-      box-shadow: 0 5px 15px rgba(0, 119, 182, 0.3);
-      transition: all 0.3s ease;
-      position: relative;
-    }
-
-    .floating-buttons a:hover {
-      transform: scale(1.1);
-      box-shadow: 0 8px 20px rgba(0, 119, 182, 0.4);
-      background: var(--button-hover);
-    }
-
-    .floating-buttons a .tooltip {
-      visibility: hidden;
-      width: 120px;
-      background-color: rgba(0, 119, 182, 0.9);
-      color: #fff;
-      text-align: center;
-      border-radius: 6px;
-      padding: 8px 0;
-      position: absolute;
-      z-index: 1;
-      right: 60px;
+    /* Animation d'apparition globale scriptée */
+    .fade-in-section {
       opacity: 0;
-      transition: opacity 0.3s;
-      font-size: 0.9rem;
-    }
-
-    .floating-buttons a:hover .tooltip {
-      visibility: visible;
-      opacity: 1;
-    }
-
-    /* Responsive pour les boutons flottants (<768px) */
-    @media (max-width: 768px) {
-      .floating-buttons {
-        flex-direction: row;
-        width: 90%;
-        left: 50%;
-        bottom: 20px;
-        top: auto;
-        right: auto;
-        transform: translateX(-50%);
-        justify-content: space-around;
-        background-color: rgba(255, 255, 255, 0.95);
-        padding: 15px 0;
-        border-radius: 30px;
-        box-shadow: 0 -2px 15px rgba(0, 0, 0, 0.1);
-      }
-      .floating-buttons a {
-        width: 45px;
-        height: 45px;
-        font-size: 1.1rem;
-      }
-      .floating-buttons a .tooltip {
-        display: none;
-      }
-    }
-
-    /* Animation générale */
-    @keyframes float {
-      0% { transform: translateY(0px); }
-      50% { transform: translateY(-10px); }
-      100% { transform: translateY(0px); }
-    }
-
-    .floating-element {
-      animation: float 4s ease-in-out infinite;
+      transform: translateY(15px);
+      transition: opacity 0.5s ease, transform 0.5s ease;
     }
   </style>
 </head>
 <body>
-  <!-- Arrière-plan animé (effet subtil) -->
   <div class="background-animation"></div>
 
-  <!-- ============================
-       HEADER / NAVIGATION
-       ============================ -->
   <header>
     <div class="logo">
-      <i class="fas fa-compact-disc floating-element"></i>
-      CINEXAU PRODUCTION
+      <img src="https://raw.githubusercontent.com/exaucenapopolo/CINEXAU-MUSIC-HOUSE/refs/heads/main/logo%20cinexau.jpg" alt="CINEXAU Logo">
     </div>
-
-    <div class="hamburger-menu" id="hamburger-icon">
-      <i class="fas fa-bars icon-color"></i>
-    </div>
-
-    <nav>
+    
+    <nav class="main-nav" id="main-nav">
       <ul id="nav-links">
         <li><a href="index.html">Accueil</a></li>
         <li><a href="index.html#about-cinexau">À propos</a></li>
-        <li><a href="index.html#services">Services</a></li>
-        <li><a href="index.html#why-choose-us">Pourquoi nous choisir</a></li>
-        <li><a href="index.html#faq">FAQ</a></li>
         <li><a href="#" class="active">Tableau de bord</a></li>
-        <li><a href="decouvrir.html">Découvrir</a></li>
+        <li><a href="index.html#faq">FAQ</a></li>
+        <li><a href="index.html#contact">Contact</a></li>
+        <li class="user-profile-menu">
+          <div class="user-avatar" id="avatar-letters">--</div>
+          <button class="logout-button" id="logout-btn" title="Déconnexion">
+            <i class="fas fa-sign-out-alt"></i>
+          </button>
+        </li>
       </ul>
     </nav>
+
+    <div class="hamburger-menu" id="hamburger-icon">
+      <i class="fas fa-bars"></i>
+    </div>
   </header>
 
-  <!-- ============================
-       CONTENU PRINCIPAL
-       ============================ -->
-  <main>
-    <!-- —— Section Bienvenue —— -->
-    <section id="dashboard-hero" class="container">
-      <h1>Bienvenue sur votre <span class="highlight-title">Tableau de bord</span></h1>
-      <p class="subtitle">Que voulez-vous faire aujourd'hui ?</p>
-    </section>
-
-    <hr />
-
-    <!-- —— Section Services —— -->
-    <section id="dashboard-services" class="container">
-      <div class="dashboard-grid">
-        <!-- Service : Distribution Digitale -->
-        <div class="dashboard-card">
-          <i class="fas fa-globe icon-color floating-element"></i>
-          <h3>Distribuer ma musique</h3>
-          <p>Diffusez votre musique sur toutes les plateformes mondiales</p>
-          <a href="distribution.html">Accéder</a>
-        </div>
-
-        <!-- Service : Réservation Studio -->
-        <div class="dashboard-card">
-          <i class="fas fa-microphone-alt icon-color floating-element"></i>
-          <h3>Réservation Studio</h3>
-          <p>Réservez notre studio professionnel pour vos enregistrements</p>
-          <a href="reservation.html">Réserver</a>
-        </div>
-
-        <!-- Service : Accompagnement Artistique -->
-        <div class="dashboard-card">
-          <i class="fas fa-users icon-color floating-element"></i>
-          <h3>Accompagnement Artistique</h3>
-          <p>Boostez votre carrière avec nos experts et mentors</p>
-          <a href="accompagnement.html">Démarrer</a>
-        </div>
-
-        <!-- Service : Production Audiovisuelle -->
-        <div class="dashboard-card">
-          <i class="fas fa-camera-retro icon-color floating-element"></i>
-          <h3>Production Vidéo</h3>
-          <p>Créez des clips et contenus visuels professionnels</p>
-          <a href="production.html">Commencer</a>
-        </div>
-
-        <!-- Service : Gestion des Droits -->
-        <div class="dashboard-card">
-          <i class="fas fa-scroll icon-color floating-element"></i>
-          <h3>Gestion des Droits</h3>
-          <p>Protégez et gérez vos droits d'auteur efficacement</p>
-          <a href="droits.html">Gérer</a>
-        </div>
-
-        <!-- Service : Stratégie de Carrière -->
-        <div class="dashboard-card">
-          <i class="fas fa-project-diagram icon-color floating-element"></i>
-          <h3>Stratégie de Carrière</h3>
-          <p>Planifiez le développement de votre carrière musicale</p>
-          <a href="strategie.html">Planifier</a>
-        </div>
+  <main class="container">
+    
+    <section id="dashboard-hero">
+      <div class="welcome-card">
+        <h1>Bonjour, <span id="user-display-name" class="user-highlight">Artiste</span> !</h1>
+        <p class="subtitle">Bienvenue sur votre espace de gestion créatif. Propulsez vos morceaux et configurez vos outils.</p>
       </div>
     </section>
+
+    <section class="category-section fade-in-section">
+      <h2 class="category-title">Production & Distribution</h2>
+      <div class="services-grid">
+        
+        <a href="distribution.html" class="service-link-wrapper">
+          <div class="service-item">
+            <div class="icon-wrapper"><i class="fas fa-globe"></i></div>
+            <h3>Distribution Digitale</h3>
+            <p>Diffusez vos sorties sur Spotify, Apple Music, Deezer et YouTube de manière automatisée.</p>
+            <div class="action-tag">Distribuer <i class="fas fa-chevron-right"></i></div>
+          </div>
+        </a>
+
+        <a href="mixage.html" class="service-link-wrapper">
+          <div class="service-item">
+            <div class="icon-wrapper"><i class="fas fa-microphone-alt"></i></div>
+            <h3>Enregistrement & Mixage</h3>
+            <p>Planifiez vos sessions de studio physique ou soumettez vos pistes pour un mastering pro d'ingénieur.</p>
+            <div class="action-tag">Réserver un studio <i class="fas fa-chevron-right"></i></div>
+          </div>
+        </a>
+
+        <a href="audiovisuel.html" class="service-link-wrapper">
+          <div class="service-item">
+            <div class="icon-wrapper"><i class="fas fa-camera-retro"></i></div>
+            <h3>Production Audiovisuelle</h3>
+            <p>Commandez des tournages de clips vidéo, séances photo et formats courts pour vos réseaux sociaux.</p>
+            <div class="action-tag">Lancer un projet <i class="fas fa-chevron-right"></i></div>
+          </div>
+        </a>
+
+        <a href="droits.html" class="service-link-wrapper">
+          <div class="service-item">
+            <div class="icon-wrapper"><i class="fas fa-scroll"></i></div>
+            <h3>Gestion des Droits</h3>
+            <p>Sécurisez vos morceaux, administrez vos déclarations SACEM et suivez vos redevances associées.</p>
+            <div class="action-tag">Gérer mes droits <i class="fas fa-chevron-right"></i></div>
+          </div>
+        </a>
+
+      </div>
+    </section>
+
+    <section class="category-section fade-in-section">
+      <h2 class="category-title">Services Technologiques & IA</h2>
+      <div class="services-grid">
+
+        <a href="ia-creation.html" class="service-link-wrapper">
+          <div class="service-item">
+            <div class="icon-wrapper"><i class="fas fa-magic"></i></div>
+            <h3>Chansons IA</h3>
+            <p>Générez des maquettes musicales complètes à partir de structures textuelles et de prompts d'ambiance.</p>
+            <div class="action-tag">Générer un morceau <i class="fas fa-chevron-right"></i></div>
+          </div>
+        </a>
+
+        <a href="ia-voix.html" class="service-link-wrapper">
+          <div class="service-item">
+            <div class="icon-wrapper"><i class="fas fa-robot"></i></div>
+            <h3>Modification Vocale IA</h3>
+            <p>Téléversez 30 secondes de voix témoin pour cloner proprement votre timbre sur d'autres pistes de chant.</p>
+            <div class="action-tag">Transformer ma voix <i class="fas fa-chevron-right"></i></div>
+          </div>
+        </a>
+
+        <a href="ia-video.html" class="service-link-wrapper">
+          <div class="service-item">
+            <div class="icon-wrapper"><i class="fas fa-video"></i></div>
+            <h3>Clips Vidéo IA</h3>
+            <p>Générez des visuels narratifs rythmés basés sur les fréquences et l'univers thématique de votre musique.</p>
+            <div class="action-tag">Créer un clip IA <i class="fas fa-chevron-right"></i></div>
+          </div>
+        </a>
+
+      </div>
+    </section>
+
+    <section class="category-section fade-in-section">
+      <h2 class="category-title">Carrière & Communauté</h2>
+      <div class="services-grid">
+
+        <a href="accompagnement.html" class="service-link-wrapper">
+          <div class="service-item">
+            <div class="icon-wrapper"><i class="fas fa-users"></i></div>
+            <h3>Accompagnement Artistique</h3>
+            <p>Bénéficiez d'un suivi régulier sur votre image de marque, votre communication graphique et vos releases.</p>
+            <div class="action-tag">Prendre rendez-vous <i class="fas fa-chevron-right"></i></div>
+          </div>
+        </a>
+
+        <a href="strategie.html" class="service-link-wrapper">
+          <div class="service-item">
+            <div class="icon-wrapper"><i class="fas fa-project-diagram"></i></div>
+            <h3>Stratégie de Carrière</h3>
+            <p>Établissez un plan de déploiement rigoureux sur plusieurs mois (Retroplannings de sorties, Feat, RP).</p>
+            <div class="action-tag">Ouvrir mon plan <i class="fas fa-chevron-right"></i></div>
+          </div>
+        </a>
+
+        <a href="https://zonemusik.netlify.app/" class="service-link-wrapper" target="_blank" rel="noopener noreferrer">
+          <div class="service-item partner-card">
+            <div class="icon-wrapper"><i class="fas fa-fist-raised"></i></div>
+            <h3>Battles entre artistes</h3>
+            <p>Défiez la communauté sur notre plateforme partenaire officielle pour gagner en visibilité et asseoir votre style.</p>
+            <div class="action-tag" style="color: var(--accent-blue);">Rejoindre la Zone <i class="fas fa-external-link-alt"></i></div>
+          </div>
+        </a>
+
+      </div>
+    </section>
+
   </main>
 
-  <!-- ============================
-       FOOTER
-       ============================ -->
   <footer>
     <div class="container">
       <div class="footer-content">
-        <div class="logo">
-          <i class="fas fa-compact-disc"></i>
-          CINEXAU PRODUCTION
-        </div>
         <div class="social-icons">
           <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
           <a href="#" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
           <a href="#" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
           <a href="#" aria-label="Spotify"><i class="fab fa-spotify"></i></a>
         </div>
-        <p>&copy; 2025 CINEXAU PRODUCTION. Tous droits réservés. Propulsé par SOCIAL BOOST HORIZON</p>
+        <p>© 2026 CINEXAU MUSIC HOUSE — Accompagnement artistique & IA. Tous droits réservés.</p>
       </div>
     </div>
   </footer>
 
-  <!-- ============================
-       Boutons flottants
-       ============================ -->
-  <div class="floating-buttons">
-    <a href="index.html#hero">
-      <i class="fas fa-home icon-color"></i>
-      <span class="tooltip">Accueil</span>
-    </a>
-    <a href="index.html#services">
-      <i class="fas fa-tools icon-color"></i>
-      <span class="tooltip">Services</span>
-    </a>
-    <a href="dashboard.html">
-      <i class="fas fa-tachometer-alt icon-color"></i>
-      <span class="tooltip">Tableau de bord</span>
-    </a>
-    <a href="index.html#faq">
-      <i class="fas fa-comment-dots icon-color"></i>
-      <span class="tooltip">FAQ</span>
-    </a>
-    <a href="index.html#contact">
-      <i class="fas fa-envelope icon-color"></i>
-      <span class="tooltip">Nous contacter</span>
-    </a>
-  </div>
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
+    import { getAuth, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js";
 
-  <!-- ============================
-       Scripts JS
-       ============================ -->
-  <script>
-    document.addEventListener('DOMContentLoaded', () => {
-      /* ———————————
-         1) Hamburger menu (mobile)
-         ——————————— */
-      const hamburgerIcon = document.getElementById('hamburger-icon');
-      const navLinks = document.getElementById('nav-links');
+    // Configuration Firebase fournie dans register.html
+    const firebaseConfig = {
+      apiKey: "AIzaSyDpvdfugex1MtpC6jOyTOIyZzY2kgcgHnk",
+      authDomain: "cinexau-903a6.firebaseapp.com",
+      projectId: "cinexau-903a6",
+      storageBucket: "cinexau-903a6.firebasestorage.app",
+      messagingSenderId: "247230931008",
+      appId: "1:247230931008:web:89824e9a4a257bd831ffa5",
+      measurementId: "G-ZR6NMYVYS3"
+    };
 
-      hamburgerIcon.addEventListener('click', () => {
-        navLinks.classList.toggle('active');
-      });
+    // Initialisation
+    const app = initializeApp(firebaseConfig);
+    const auth = getAuth(app);
 
-      document.addEventListener('click', (event) => {
-        if (
-          !navLinks.contains(event.target) &&
-          !hamburgerIcon.contains(event.target)
-        ) {
-          navLinks.classList.remove('active');
+    const displayNameEl = document.getElementById('user-display-name');
+    const avatarLettersEl = document.getElementById('avatar-letters');
+
+    // Vérification de l'état de connexion de l'utilisateur
+    onAuthStateChanged(auth, (user) => {
+      if (user) {
+        // L'utilisateur est connecté, extraction du nom ou du préfixe d'email
+        let name = "Artiste";
+        if (user.displayName) {
+          name = user.displayName;
+        } else if (user.email) {
+          name = user.email.split('@')[0];
+          // Rendre la première lettre majuscule pour le style
+          name = name.charAt(0).toUpperCase() + name.slice(1);
         }
-      });
+        
+        // Mise à jour de l'interface
+        displayNameEl.innerText = name;
+        avatarLettersEl.innerText = name.substring(0, 2).toUpperCase();
+      } else {
+        // Aucun utilisateur connecté -> Redirection vers la page de connexion
+        window.location.href = 'login.html';
+      }
+    });
 
-      /* ———————————
-         2) Animation au défilement
-         ——————————— */
-      const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-          if (entry.isIntersecting) {
-            entry.target.style.opacity = 1;
-            entry.target.style.transform = 'translateY(0)';
-          }
-        });
-      }, { threshold: 0.1 });
-
-      document.querySelectorAll('section, .dashboard-card').forEach(section => {
-        section.style.opacity = 0;
-        section.style.transform = 'translateY(20px)';
-        section.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
-        observer.observe(section);
+    // Gestionnaire de déconnexion
+    document.getElementById('logout-btn').addEventListener('click', (e) => {
+      e.preventDefault();
+      signOut(auth).then(() => {
+        window.location.href = 'login.html';
+      }).catch((error) => {
+        console.error("Erreur lors de la déconnexion :", error);
       });
     });
+
+    // LOGIQUE NAVIGATION MOBILE (HAMBURGER)
+    const hamburger = document.getElementById('hamburger-icon');
+    const mainNav = document.getElementById('main-nav');
+    if (hamburger && mainNav) {
+      hamburger.addEventListener('click', (e) => {
+        e.stopPropagation();
+        mainNav.classList.toggle('active');
+      });
+      document.addEventListener('click', (event) => {
+        if (!mainNav.contains(event.target) && !hamburger.contains(event.target)) {
+          mainNav.classList.remove('active');
+        }
+      });
+    }
+
+    // ANIMATION FLUIDE INTERSECTION OBSERVER AU SCROLL
+    const animatedSections = document.querySelectorAll('.fade-in-section');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.style.opacity = '1';
+          entry.target.style.transform = 'translateY(0)';
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.05 });
+    
+    animatedSections.forEach(el => observer.observe(el));
   </script>
 </body>
 </html>
